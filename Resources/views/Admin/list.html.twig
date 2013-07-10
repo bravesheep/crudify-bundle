@@ -1,0 +1,47 @@
+{% extends "BsCrudifyBundle:Admin:layout.html.twig" %}
+
+{% block content %}
+<table class="table table-striped table-hover">
+  <thead>
+    <tr>
+      {% for field in entities[entity].index %}
+      <th>
+        {% if field.table != table %}
+          {{ knp_pagination_sortable(pagination, field.table|humanize|trans, field.table ~ '.' ~ field.name) }}
+        {% else %}
+          {{ knp_pagination_sortable(pagination, field.name|humanize|trans, field.table ~ '.' ~ field.name) }}
+        {% endif %}
+      </th>
+      {% endfor %}
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+  {% for item in pagination %}
+    <tr>
+      {% for field in entities[entity].index %}
+      {% if field.table != table %}
+      {% set value = attribute(attribute(item, field.table), field.name) %}
+      {% else %}
+      {% set value = attribute(item, field.name) %}
+      {% endif %}
+      {% if field.name == 'date' %}
+      <td>{{ value|date('d-m-Y') }}</td>
+      {% elseif field.name == 'duration' %}
+      <td>{{ value|format_minutes }}</td>
+      {% else %}
+      <td>{{ value }}</td>
+      {% endif %}
+      {% endfor %}
+      <td class="actions">
+        <a href="{{ path('admin_edit', {'entity': entity, 'id': item.id}) }}" class="btn btn-small click-disable">
+          <span class="icon-edit"></span>
+          {{ 'Edit'|trans }}
+        </a>
+      </td>
+    </tr>
+  {% endfor %}
+  </tbody>
+</table>
+{{ knp_pagination_render(pagination) }}
+{% endblock %}

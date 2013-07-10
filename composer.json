@@ -1,0 +1,20 @@
+{
+    "name": "bravesheep/crudify-bundle",
+    "description": "Symfony 2 bundle that provides a simple CRUD interface",
+    "require": {
+        "symfony/symfony": ">=2.3.0",
+        "tg/okoabundle": "dev-master",
+        "bravesheep/bootstrapify-bundle": "dev-master"
+    },
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Marlon Baeten",
+            "email": "marlon@bravesheep.nl"
+        }
+    ],
+    "autoload": {
+        "psr-0": { "Bs\\CrudifyBundle\\": [""] }
+    },
+    "target-dir": "Bs/CrudifyBundle"
+}

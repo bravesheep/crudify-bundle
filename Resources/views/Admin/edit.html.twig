@@ -1,0 +1,21 @@
+{% extends "BsCrudifyBundle:Admin:layout.html.twig" %}
+{% form_theme form 'BsBootstrapifyBundle::form.html.twig' %}
+
+{% block content %}
+  <h3>{{ 'Edit %s'|trans|format(entity|trans) }}</h3>
+  <form action="" method="post" {{ form_enctype(form) }}>
+  {{ form_widget(form) }}
+  {% set cancel_action  = path('admin_list', {'entity': entity}) %}
+  {{ block('form_actions') }}
+  </form>
+  <form action="{{ path('admin_delete', {'entity': entity, 'id': instance.id}) }}" class="pull-right" method="post">
+    <input type="hidden" name="_method" value="DELETE">
+    {{ form_widget(delete_form) }}
+    <div class="controls">
+      <button type="submit" class="btn btn-link text-error">
+        <span class="icon-trash"></span>
+        {{ 'Delete %s'|trans|format(entity|trans) }}
+      </button>
+    </div>
+  </form>
+{% endblock %}
