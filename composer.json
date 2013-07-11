@@ -3,8 +3,8 @@
     "description": "Symfony 2 bundle that provides a simple CRUD interface",
     "require": {
         "symfony/symfony": ">=2.3.0",
-        "tg/okoabundle": "dev-master",
-        "bravesheep/bootstrapify-bundle": "dev-master"
+        "tg/okoabundle": ">=0.7.8",
+        "bravesheep/bootstrapify-bundle": ">=0.1.2"
     },
     "license": "MIT",
     "authors": [
