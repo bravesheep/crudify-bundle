@@ -27,11 +27,7 @@
           {% set value = attribute(item, field.name) %}
         {% endif %}
 
-        {% if field.name == 'date' %}
-          <td>{{ value|date('d-m-Y') }}</td>
-        {% else %}
-          <td>{{ value }}</td>
-        {% endif %}
+        <td>{{ value }}</td>
 
       {% endfor %}
       <td class="actions">
