@@ -3,6 +3,13 @@
 Example configuration:
 
 ```yml
+
+knp_paginator:
+    page_range: 20
+    template:
+        pagination: KnpPaginatorBundle:Pagination:twitter_bootstrap_pagination.html.twig
+        sortable: BsBootstrapifyBundle:Pagination:sortable_link.html.twig
+
 bs_crudify:
     default: post
     layout: AcmeBundle::layout.html.twig
