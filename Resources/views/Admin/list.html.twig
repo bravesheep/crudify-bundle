@@ -20,18 +20,19 @@
   {% for item in pagination %}
     <tr>
       {% for field in entities[entity].index %}
-      {% if field.table != table %}
-      {% set value = attribute(attribute(item, field.table), field.name) %}
-      {% else %}
-      {% set value = attribute(item, field.name) %}
-      {% endif %}
-      {% if field.name == 'date' %}
-      <td>{{ value|date('d-m-Y') }}</td>
-      {% elseif field.name == 'duration' %}
-      <td>{{ value|format_minutes }}</td>
-      {% else %}
-      <td>{{ value }}</td>
-      {% endif %}
+
+        {% if field.table != table %}
+          {% set value = attribute(attribute(item, field.table), field.name) %}
+        {% else %}
+          {% set value = attribute(item, field.name) %}
+        {% endif %}
+
+        {% if field.name == 'date' %}
+          <td>{{ value|date('d-m-Y') }}</td>
+        {% else %}
+          <td>{{ value }}</td>
+        {% endif %}
+
       {% endfor %}
       <td class="actions">
         <a href="{{ path('admin_edit', {'entity': entity, 'id': item.id}) }}" class="btn btn-small click-disable">

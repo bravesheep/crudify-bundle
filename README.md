@@ -8,7 +8,7 @@ knp_paginator:
     page_range: 20
     template:
         pagination: KnpPaginatorBundle:Pagination:twitter_bootstrap_pagination.html.twig
-        sortable: BsBootstrapifyBundle:Pagination:sortable_link.html.twig
+        sortable: BsCrudifyBundle:Pagination:sortable_link.html.twig
 
 bs_crudify:
     default: post
