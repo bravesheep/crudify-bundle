@@ -45,7 +45,8 @@ class AdminController extends Controller
         if (isset($this->definition['sort'])) {
             list($sort, $direction) = $this->definition['sort'];
         } else {
-            $sort = $this->table . '.' . $this->definition['index'][0]['name'];
+            $first = reset($this->definition['index']);
+            $sort = $first['table'] . '.' . $first['name'];
             $direction = 'asc';
         }
 
@@ -218,12 +219,20 @@ class AdminController extends Controller
         $className = $className[count($className) - 1];
         $this->table = strtolower($className[0]) . substr($className, 1);
 
-        foreach ($this->entities[$this->entity]['index'] as &$field) {
-            if (strstr($field, '.') === false) {
-                $field = ['table' => $this->table, 'name' => $field];
+        foreach ($this->entities[$this->entity]['index'] as $name => $block) {
+            if (strstr($name, '.') === false) {
+                $this->entities[$this->entity]['index'][$name] = [
+                    'table' => $this->table,
+                    'name' => $name,
+                    'block' => $block
+                ];
             } else {
-                list($table, $name) = explode('.', $field, 2);
-                $field = ['table' => $table, 'name' => $name];
+                list($table, $field) = explode('.', $name, 2);
+                $this->entities[$this->entity]['index'][$name] = [
+                    'table' => $table,
+                    'name' => $field,
+                    'block' => $block
+                ];
             }
         }
 
@@ -257,7 +266,7 @@ class AdminController extends Controller
 
         if (is_array($definition)) {
             $builder = $this->createFormBuilder($this->instance);
-            foreach ($definition as $field) {
+            foreach ($definition as $field => $type) {
                 $builder->add($field);
             }
             $form = $builder->getForm();

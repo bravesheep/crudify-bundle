@@ -1,0 +1,27 @@
+{% block field_text %}
+  {{ value }}
+{% endblock %}
+
+{% block field_url %}
+  {% if value %}
+  <a href="{{ value }}">{{ value }}</a>
+  {% endif %}
+{% endblock %}
+
+{% block field_date %}
+  {{ value|date('d-m-Y') }}
+{% endblock %}
+
+{% block field_datetime %}
+  {{ value|date('d-m-Y H:i') }}
+{% endblock %}
+
+{% block field_bool %}
+  {{ value ? 'yes'|trans : 'no'|trans }}
+{% endblock %}
+
+{% block field_email %}
+  {% if value %}
+  <a href="mailto:{{ value }}">{{ value }}</a>
+  {% endif %}
+{% endblock %}

@@ -1,4 +1,5 @@
 {% extends "BsCrudifyBundle:Admin:layout.html.twig" %}
+{% use 'BsCrudifyBundle:Admin:blocks.html.twig' %}
 
 {% block content %}
 <table class="table table-striped table-hover">
@@ -20,15 +21,14 @@
   {% for item in pagination %}
     <tr>
       {% for field in entities[entity].index %}
-
-        {% if field.table != table %}
-          {% set value = attribute(attribute(item, field.table), field.name) %}
-        {% else %}
-          {% set value = attribute(item, field.name) %}
-        {% endif %}
-
-        <td>{{ value }}</td>
-
+        <td>
+          {% if field.table != table %}
+            {% set value = attribute(attribute(item, field.table), field.name) %}
+          {% else %}
+            {% set value = attribute(item, field.name) %}
+          {% endif %}
+          {{ block('field_' ~ field.block) }}
+        </td>
       {% endfor %}
       <td class="actions">
         <a href="{{ path('admin_edit', {'entity': entity, 'id': item.id}) }}" class="btn btn-small click-disable">
