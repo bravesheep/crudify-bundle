@@ -1,28 +1,29 @@
-
 $(document).ready(function() {
 
-    $('select[multiple]').each(function() {
-        var select = $(this),
-            search = $('<button/>', {
-                'class': 'btn'
-            }).append(
-            $('<span/>', {
-                'class': 'icon-search'
+    if(!/Android|webOS|iPhone|iPad|iPod|BlackBerry/i.test(navigator.userAgent)) {
+        $('select[multiple]').each(function() {
+            var select = $(this),
+                search = $('<button/>', {
+                    'class': 'btn'
+                }).append(
+                $('<span/>', {
+                    'class': 'icon-search'
+                }));
+            select.removeAttr('required');
+            select.parent().parent().find('span').remove();
+            select.wrap($('<div/>', {
+                'class': 'input-append'
             }));
-        select.removeAttr('required');
-        select.parent().parent().find('span').remove();
-        select.wrap($('<div/>', {
-            'class': 'input-append'
-        }));
-        select.after(search);
-        select.select2({
-            'width': '350px'
+            select.after(search);
+            select.select2({
+                'width': '350px'
+            });
+            search.on('click', function() {
+                select.select2('open');
+                return false;
+            });
         });
-        search.on('click', function() {
-            select.select2('open');
-            return false;
-        });
-    });
+    }
 
     $('form').on('submit', function() {
         if ($(this).get(0).checkValidity() === false) {
