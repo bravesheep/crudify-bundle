@@ -165,7 +165,8 @@ class AdminController extends Controller
             foreach ($mappings as $mapping) {
                 if (!$mapping['isOwningSide'] && !$mapping['isCascadeRemove']) {
                     // check for associated entities
-                    $values = $this->instance->{$mapping['fieldName']}();
+                    $method = 'get' . ucfirst($mapping['fieldName']);
+                    $values = $this->instance->{$method}();
                     if ($values instanceof PersistentCollection && count($values) > 0) {
                         // format error message
                         $name = substr(strrchr($mapping['targetEntity'], '\\'), 1);
