@@ -16,12 +16,12 @@ bs_crudify:
     entities:
         post:
             ns: AcmeBundle\Entity\Post
-            index: ['author.name', 'title', 'created']
+            index: {author.name: text, title: text, created: datetime}
             form: AcmeBundle\Form\PostType
         author:
             ns: AcmeBundle\Entity\Author
-            index: ['name', 'email']
-            form: ['name', 'email']
+            index: {name: text, email: email}
+            form: {name: text, email: email}
 ```
 
 Routes can also be customized:
