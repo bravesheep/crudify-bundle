@@ -2,8 +2,8 @@
 
 {% block stylesheets %}
   {{ parent() }}
-  {% stylesheets filter='lessphp,?yui_css'
-    '@BsCrudifyBundle/Resources/less/admin.less'
+  {% stylesheets filter='?yui_css'
+    '@BsCrudifyBundle/Resources/scss/admin.scss'
   %}
     <link href="{{ asset_url }}" type="text/css" rel="stylesheet" />
   {% endstylesheets %}
@@ -12,12 +12,10 @@
 {% block javascripts %}
   {{ parent() }}
   {% javascripts filter='?yui_js'
-    '@BsBootstrapifyBundle/Resources/js/bootstrap-datepicker.js'
     '@BsCrudifyBundle/Resources/js/admin.js'
   %}
     <script type="text/javascript" src="{{ asset_url }}"></script>
   {% endjavascripts %}
-  <script type="text/javascript" src="{{ asset('bundles/bsbootstrapify/js/locale/datepicker/' ~ locale ~ '.js') }}"></script>
 {% endblock %}
 
 {% block title %}Beheer | {{ parent() }}{% endblock %}
@@ -53,7 +51,7 @@
 {% endblock %}
 
 {% block page %}
-  <div class="row-fluid">
+  <div class="row">
     <a href="{{ path('admin_add', {'entity': entity}) }}" class="btn btn-primary pull-right click-disable">
       <span class="icon-plus"></span>
      {{ 'Add %s'|trans|format(entity|capitalize) }}
@@ -66,7 +64,7 @@
       {% endfor %}
     </ul>
   </div>
-  <div class="row-fluid">
+  <div class="row">
   {{ block('flash') }}
   {% block content %}{% endblock %}
   </div>

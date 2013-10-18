@@ -6,7 +6,7 @@
         "sonata-project/intl-bundle": ">=2.1.0",
         "tweedegolf/okoabundle": ">=0.7.5",
         "knplabs/knp-paginator-bundle": ">=v2.3.1",
-        "bravesheep/bootstrapify-bundle": ">=0.1.2"
+        "bravesheep/bootstrapify-bundle": "dev-bootstrap-v3-sass"
     },
     "license": "MIT",
     "authors": [
