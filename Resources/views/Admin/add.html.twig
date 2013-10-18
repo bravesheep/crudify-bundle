@@ -2,10 +2,14 @@
 {% form_theme form 'BsBootstrapifyBundle::form.html.twig' %}
 
 {% block content %}
-  <h3>{{ 'Add %s'|trans|format(entity|trans) }}</h3>
-  <form action="" method="post" {{ form_enctype(form) }}>
-  {{ form_widget(form) }}
-  {% set cancel_action  = path('admin_list', {'entity': entity }) %}
-  {{ block('form_actions') }}
-  </form>
+<div class="row">
+  <div class="col-md-12">
+    <h3>{{ 'Add %s'|trans|format(entity|trans) }}</h3>
+    {{ form_start(form) }}
+    {{ form_widget(form) }}
+    {% set cancel_action = path('admin_list', {'entity': entity }) %}
+    {{ block('form_actions') }}
+    {{ form_end(form) }}
+  </div>
+</div>
 {% endblock %}

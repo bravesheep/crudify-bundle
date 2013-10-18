@@ -1,8 +1,10 @@
 
-input,
-textarea,
-.uneditable-input {
-  width: 266px;
+input, select {
+    max-width: 40%;
+}
+
+textarea {
+    max-width: 80%;
 }
 
 .btn {
