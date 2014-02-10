@@ -122,6 +122,7 @@ class AdminController extends Controller
         }
 
         return [
+            'disable' => $this->definition['disable'],
             'form' => $form->createView()
         ];
     }
