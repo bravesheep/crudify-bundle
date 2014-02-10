@@ -33,6 +33,8 @@ class Configuration implements ConfigurationInterface
                             ->variableNode('sort')->end()
                             ->variableNode('index')->end()
                             ->variableNode('form')->end()
+                            ->variableNode('disable')->end()
+                            ->variableNode('query')->end()
                         ->end()
                     ->end()
                 ->end()

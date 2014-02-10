@@ -41,7 +41,12 @@ class AdminController extends Controller
         // default query builder
         $doctrine = $this->getDoctrine();
         $repo = $doctrine->getRepository($class);
-        $qb = $repo->createQueryBuilder($this->table);
+
+        if (isset($this->definition['query'])) {
+            $qb = $repo->{$this->definition['query']}();
+        } else {
+            $qb = $repo->createQueryBuilder($this->table);
+        }
 
         // default sort settings
         if (isset($this->definition['sort'])) {
@@ -52,15 +57,25 @@ class AdminController extends Controller
             $direction = 'asc';
         }
 
+        // select table
+        $fields = $this->definition['index'];
+        $joins = [];
+        foreach ($fields as $field) {
+            $join = $field['table'];
+            if ($join !== $this->table) {
+                if (!in_array($join, $joins)) {
+                    $joins[] = $join;
+                    $qb->addSelect($join);
+                    $qb->leftJoin($this->table . '.' . $join, $join);
+                }
+            }
+        }
+
         // get sort parameters
         $sort = $this->getRequest()->get('sort', $sort);
         $direction = $this->getRequest()->get('direction', $direction);
 
-        // join sort associations
-        list($join, $field) = explode('.', $sort);
-        if ($join !== $this->table) {
-            $qb->leftJoin($this->table . '.' . $join, $join);
-        }
+        // set sort
         $qb->orderBy($sort, $direction);
 
         //product pagination
@@ -72,6 +87,7 @@ class AdminController extends Controller
         $pagination->setParam('direction', $direction);
 
         return [
+            'disable' => $this->definition['disable'],
             'pagination' => $pagination
         ];
     }
@@ -83,13 +99,18 @@ class AdminController extends Controller
     public function addAction($entity)
     {
         $class = $this->setEntity($entity);
-        $this->instance = new $class();
 
+        if (in_array('add', $this->definition['disable'])) {
+            throw new HttpException(404);
+        }
+
+        $this->instance = new $class();
         $form = $this->buildForm();
 
         if ($form->isValid()) {
-            $this->em->persist($this->instance);
-            $this->em->flush();
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($this->instance);
+            $em->flush();
 
             $this->setMessage('saved');
 
@@ -113,6 +134,10 @@ class AdminController extends Controller
     {
         $class = $this->setEntity($entity);
 
+        if (in_array('edit', $this->definition['disable'])) {
+            throw new HttpException(404);
+        }
+
         $doctrine = $this->getDoctrine();
         $repo = $doctrine->getRepository($class);
         $this->instance = $repo->find($id);
@@ -124,8 +149,9 @@ class AdminController extends Controller
         $form = $this->buildForm();
 
         if ($form->isValid()) {
-            $this->em->persist($this->instance);
-            $this->em->flush();
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($this->instance);
+            $em->flush();
 
             $this->setMessage('saved');
 
@@ -139,6 +165,7 @@ class AdminController extends Controller
         $deleteForm = $this->createFormBuilder()->getForm();
 
         return [
+            'disable' => $this->definition['disable'],
             'form' => $form->createView(),
             'instance' => $this->instance,
             'delete_form' => $deleteForm->createView()
@@ -155,6 +182,10 @@ class AdminController extends Controller
     {
         $class = $this->setEntity($entity);
 
+        if (in_array('delete', $this->definition['disable'])) {
+            throw new HttpException(404);
+        }
+
         // create form
         $doctrine = $this->getDoctrine();
         $repo = $doctrine->getRepository($class);
@@ -165,10 +196,11 @@ class AdminController extends Controller
         }
 
         $form = $this->createFormBuilder()->getForm()->bind($this->getRequest());
+        $em = $this->getDoctrine()->getManager();
 
         if ($form->isValid()) {
 
-            $mappings = $this->em->getClassMetadata($class)->getAssociationMappings();
+            $mappings = $em->getClassMetadata($class)->getAssociationMappings();
             foreach ($mappings as $mapping) {
                 if (!$mapping['isOwningSide'] && !$mapping['isCascadeRemove']) {
                     // check for associated entities
@@ -177,8 +209,8 @@ class AdminController extends Controller
                     if ($values instanceof PersistentCollection && count($values) > 0) {
                         // format error message
                         $name = substr(strrchr($mapping['targetEntity'], '\\'), 1);
-                        $name = $this->translator->trans($name);
-                        $message = $this->translator->trans(
+                        $name = $this->get('translator')->trans($name);
+                        $message = $this->get('translator')->trans(
                             'not deleted, %num% %association% associations present', [
                                 '%num%' => count($values),
                                 '%association%' => strtolower($name)
@@ -196,8 +228,8 @@ class AdminController extends Controller
                 }
             }
 
-            $this->em->remove($this->instance);
-            $this->em->flush();
+            $em->remove($this->instance);
+            $em->flush();
             $this->setMessage('deleted', 'notice');
         }
 
@@ -206,9 +238,9 @@ class AdminController extends Controller
 
     protected function setMessage($message, $type = 'success')
     {
-        $message = $this->translator->trans($message);
+        $message = $this->get('translator')->trans($message);
         $message = sprintf('%s "%s" %s', $this->entity, $this->instance, $message);
-        $this->session->getFlashBag()->set($type, $message);
+        $this->get('session')->getFlashBag()->set($type, $message);
     }
 
     protected function setEntity($entity)
@@ -245,6 +277,10 @@ class AdminController extends Controller
         }
 
         $this->definition = $this->entities[$this->entity];
+
+        if (!isset($this->definition['disable'])) {
+            $this->definition['disable'] = [];
+        }
 
         $this->get('twig')->addGlobal('layout', $config['layout']);
         $this->get('twig')->addGlobal('table', $this->table);

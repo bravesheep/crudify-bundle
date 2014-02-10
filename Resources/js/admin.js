@@ -1,28 +1,7 @@
 $(document).ready(function() {
 
     if(!/Android|webOS|iPhone|iPad|iPod|BlackBerry/i.test(navigator.userAgent)) {
-        $('select[multiple]').each(function() {
-            var select = $(this),
-                search = $('<button/>', {
-                    'class': 'btn'
-                }).append(
-                $('<span/>', {
-                    'class': 'icon-search'
-                }));
-            select.removeAttr('required');
-            select.parent().parent().find('span').remove();
-            select.wrap($('<div/>', {
-                'class': 'input-append'
-            }));
-            select.after(search);
-            select.select2({
-                'width': '350px'
-            });
-            search.on('click', function() {
-                select.select2('open');
-                return false;
-            });
-        });
+        $('select[multiple]').selectize();
     }
 
     $('form').on('submit', function() {
@@ -39,7 +18,7 @@ $(document).ready(function() {
             }
         }
         $(this).addClass('disabled');
-        $(this).find('span').attr('class', 'icon-spinner icon-spin');
+        $(this).find('span').attr('class', 'fa fa-spinner fa-spin');
     });
 
     $('.datepicker').css('width', '100px').datepicker({

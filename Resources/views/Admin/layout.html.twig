@@ -52,26 +52,25 @@
 {% endblock %}
 
 {% block page %}
-  <div class="row">
+  {% if 'add' not in disable %}
+    <div class="row">
       <a href="{{ path('admin_add', {'entity': entity}) }}" class="btn btn-primary pull-right add-btn click-disable">
         <span class="fa fa-plus"></span>
        {{ 'Add %s'|trans|format(entity|capitalize) }}
       </a>
+    </div>
+  {% endif %}
   <div class="row">
-    {{ block('flash') }}
+    <ul class="nav nav-tabs">
+      {% for name, fields in entities %}
+      <li class="{{ entity == name ? 'active' }}">
+        <a href="{{ path('admin_list', {'entity': name}) }}">{{ name|capitalize }}</a>
+      </li>
+      {% endfor %}
+    </ul>
   </div>
   <div class="row">
-    <div class="col-md-2">
-      <ul class="nav nav-pills nav-stacked">
-        {% for name, fields in entities %}
-        <li class="{{ entity == name ? 'active' }}">
-          <a href="{{ path('admin_list', {'entity': name}) }}">{{ name|capitalize }}</a>
-        </li>
-        {% endfor %}
-      </ul>
-    </div>
-    <div class="col-md-10">
-      {% block content %}{% endblock %}
-    </div>
+    {{ block('flash') }}
+    {% block content %}{% endblock %}
   </div>
 {% endblock %}

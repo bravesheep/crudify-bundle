@@ -11,16 +11,18 @@
     {{ block('form_actions') }}
     {{ form_end(form) }}
     <hr>
-    <form action="{{ path('admin_delete', {'entity': entity, 'id': instance.id}) }}" method="post">
-      <input type="hidden" name="_method" value="DELETE">
-      {{ form_widget(delete_form) }}
-      <div class="controls">
-        <button type="submit" class="btn btn-link text-error pull-right">
-          <span class="fa fa-trash-o"></span>
-          {{ 'Delete %s'|trans|format(entity|trans) }}
-        </button>
-      </div>
-    </form>
+    {% if 'delete' not in disable %}
+      <form action="{{ path('admin_delete', {'entity': entity, 'id': instance.id}) }}" method="post">
+        <input type="hidden" name="_method" value="DELETE">
+        {{ form_widget(delete_form) }}
+        <div class="controls">
+          <button type="submit" class="btn btn-link text-error pull-right">
+            <span class="fa fa-trash-o"></span>
+            {{ 'Delete %s'|trans|format(entity|trans) }}
+          </button>
+        </div>
+      </form>
+    {% endif %}
   </div>
 </div>
 {% endblock %}
