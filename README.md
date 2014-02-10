@@ -7,7 +7,7 @@ Example configuration:
 knp_paginator:
     page_range: 20
     template:
-        pagination: KnpPaginatorBundle:Pagination:twitter_bootstrap_pagination.html.twig
+        pagination: KnpPaginatorBundle:Pagination:twitter_bootstrap_v3_pagination.html.twig
         sortable: BsCrudifyBundle:Pagination:sortable_link.html.twig
 
 bs_crudify:

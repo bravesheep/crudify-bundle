@@ -65,7 +65,7 @@ class AdminController extends Controller
 
         //product pagination
         $page = $this->getRequest()->get('page', 1);
-        $pagination = $this->get('knp_paginator')->paginate($qb, $page, 20);
+        $pagination = $this->get('knp_paginator')->paginate($qb, $page, 50);
 
         // default sort
         $pagination->setParam('sort', $sort);

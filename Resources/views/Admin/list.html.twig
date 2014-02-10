@@ -31,8 +31,8 @@
         </td>
       {% endfor %}
       <td class="actions">
-        <a href="{{ path('admin_edit', {'entity': entity, 'id': item.id}) }}" class="btn btn-small click-disable">
-          <span class="icon-edit"></span>
+        <a href="{{ path('admin_edit', {'entity': entity, 'id': item.id}) }}" class="btn btn-default btn-sm click-disable">
+          <span class="fa fa-pencil"></span>
           {{ 'Edit'|trans }}
         </a>
       </td>
