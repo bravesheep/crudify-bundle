@@ -39,7 +39,9 @@ class AdminController extends Controller
         $class = $this->setEntity($entity);
 
         // default query builder
-        $qb = $class::qb($this->table);
+        $doctrine = $this->getDoctrine();
+        $repo = $doctrine->getRepository($class);
+        $qb = $repo->createQueryBuilder($this->table);
 
         // default sort settings
         if (isset($this->definition['sort'])) {
@@ -51,8 +53,8 @@ class AdminController extends Controller
         }
 
         // get sort parameters
-        $sort = $this->request->get('sort', $sort);
-        $direction = $this->request->get('direction', $direction);
+        $sort = $this->getRequest()->get('sort', $sort);
+        $direction = $this->getRequest()->get('direction', $direction);
 
         // join sort associations
         list($join, $field) = explode('.', $sort);
@@ -62,8 +64,8 @@ class AdminController extends Controller
         $qb->orderBy($sort, $direction);
 
         //product pagination
-        $page = $this->request->get('page', 1);
-        $pagination = $this->knp_paginator->paginate($qb, $page, 20);
+        $page = $this->getRequest()->get('page', 1);
+        $pagination = $this->get('knp_paginator')->paginate($qb, $page, 20);
 
         // default sort
         $pagination->setParam('sort', $sort);
@@ -91,10 +93,10 @@ class AdminController extends Controller
 
             $this->setMessage('saved');
 
-            $action = $this->request->get('action', 'index');
+            $action = $this->getRequest()->get('action', 'index');
             return $this->redirect($this->getUrl($action));
 
-        } elseif ($this->request->getMethod() === 'POST') {
+        } elseif ($this->getRequest()->getMethod() === 'POST') {
             $this->setMessage('not saved', 'error');
         }
 
@@ -110,7 +112,10 @@ class AdminController extends Controller
     public function editAction($entity, $id)
     {
         $class = $this->setEntity($entity);
-        $this->instance = $class::find($id);
+
+        $doctrine = $this->getDoctrine();
+        $repo = $doctrine->getRepository($class);
+        $this->instance = $repo->find($id);
 
         if (!$this->instance) {
             throw new HttpException(404);
@@ -124,10 +129,10 @@ class AdminController extends Controller
 
             $this->setMessage('saved');
 
-            $action = $this->request->get('action', 'index');
+            $action = $this->getRequest()->get('action', 'index');
             return $this->redirect($this->getUrl($action));
 
-        } elseif ($this->request->getMethod() === 'POST') {
+        } elseif ($this->getRequest()->getMethod() === 'POST') {
             $this->setMessage('not saved', 'error');
         }
 
@@ -151,13 +156,15 @@ class AdminController extends Controller
         $class = $this->setEntity($entity);
 
         // create form
-        $this->instance = $class::find($id);
+        $doctrine = $this->getDoctrine();
+        $repo = $doctrine->getRepository($class);
+        $this->instance = $repo->find($id);
 
         if (!$this->instance) {
             throw new HttpException(404);
         }
 
-        $form = $this->createFormBuilder()->getForm()->bind($this->request);
+        $form = $this->createFormBuilder()->getForm()->bind($this->getRequest());
 
         if ($form->isValid()) {
 
@@ -239,10 +246,10 @@ class AdminController extends Controller
 
         $this->definition = $this->entities[$this->entity];
 
-        $this->twig->addGlobal('layout', $config['layout']);
-        $this->twig->addGlobal('table', $this->table);
-        $this->twig->addGlobal('entity', $this->entity);
-        $this->twig->addGlobal('entities', $this->entities);
+        $this->get('twig')->addGlobal('layout', $config['layout']);
+        $this->get('twig')->addGlobal('table', $this->table);
+        $this->get('twig')->addGlobal('entity', $this->entity);
+        $this->get('twig')->addGlobal('entities', $this->entities);
 
         return $class;
     }
@@ -277,7 +284,7 @@ class AdminController extends Controller
             throw new HttpException(404);
         }
 
-        $form->handleRequest($this->request);
+        $form->handleRequest($this->getRequest());
 
         return $form;
     }
