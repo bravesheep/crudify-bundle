@@ -8,7 +8,7 @@
       {% for field in entities[entity].index %}
       <th>
         {% if field.table != table %}
-          {{ knp_pagination_sortable(pagination, field.name|humanize|trans, field.table ~ '.' ~ field.name) }}
+          {{ knp_pagination_sortable(pagination, field.table|humanize|trans ~ ' ' ~ field.name|humanize|trans, field.table ~ '.' ~ field.name) }}
         {% else %}
           {{ knp_pagination_sortable(pagination, field.name|humanize|trans, field.table ~ '.' ~ field.name) }}
         {% endif %}
