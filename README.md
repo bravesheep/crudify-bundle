@@ -59,12 +59,12 @@ public function registerBundles()
 }
 ```
 
-[doc_introduction]: src/Bs/CrudifyBundle/Resources/introduction.md
-[doc_permissions]: src/Bs/CrudifyBundle/Resources/permissions.md
-[doc_templates]: src/Bs/CrudifyBundle/Resources/templates.md
-[doc_modify_index_query]: src/Bs/CrudifyBundle/Resources/modify_index_query.md
-[doc_custom_object_retriever]: src/Bs/CrudifyBundle/Resources/custom_object_retriever.md
-[doc_custom_form_options]: src/Bs/CrudifyBundle/Resources/custom_form_options.md
-[doc_custom_controller]: src/Bs/CrudifyBundle/Resources/custom_controller.md
+[doc_introduction]: src/Bs/CrudifyBundle/Resources/doc/introduction.md
+[doc_permissions]: src/Bs/CrudifyBundle/Resources/doc/permissions.md
+[doc_templates]: src/Bs/CrudifyBundle/Resources/doc/templates.md
+[doc_modify_index_query]: src/Bs/CrudifyBundle/Resources/doc/modify_index_query.md
+[doc_custom_object_retriever]: src/Bs/CrudifyBundle/Resources/doc/custom_object_retriever.md
+[doc_custom_form_options]: src/Bs/CrudifyBundle/Resources/doc/custom_form_options.md
+[doc_custom_controller]: src/Bs/CrudifyBundle/Resources/doc/custom_controller.md
 [doc_config]: src/Bs/CrudifyBundle/Resources/doc/config.md
 [composer]: https://getcomposer.org/
