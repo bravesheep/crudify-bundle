@@ -1,0 +1,38 @@
+{% extends definition.layout %}
+{% form_theme form definition.formThemeTemplate %}
+
+{% block bs_crudify_content %}
+  <div class="row">
+    <div class="col-md-12">
+      <h3>{{ 'Edit'|trans }} <small>{{ definition.entityTitle|trans }}</small></h3>
+      {{ form_start(form) }}
+      {{ form_widget(form) }}
+      {% block form_actions %}
+        <hr>
+        <div>
+          <button name="action" value="index" type="submit" class="btn btn-primary click-disable">
+            <span class="fa fa-save"></span>
+            {{ 'Save'|trans }}
+          </button>
+          <button name="action" value="edit" type="submit" class="btn btn-default click-disable">
+            <span class="fa fa-save"></span>
+            {{ 'Save and Continue Editing'|trans }}
+          </button>
+          <a href="{{ crudify_action('index', definition) }}" class="btn pull-right">
+            <span class="fa fa-times"></span>
+            {{ 'Cancel'|trans }}
+          </a>
+        </div>
+      {% endblock %}
+      {{ form_end(form) }}
+      <hr>
+      {% if definition.withDelete and is_granted('CRUDIFY_DELETE', definition) %}
+        {% set delete_form = crudify_delete_form(definition, object) %}
+        {{ form_start(delete_form) }}
+        {{ form_widget(delete_form) }}
+         <input type="submit" value="{{ "Delete"|trans }}" class="btn btn-danger">
+        {{ form_end(delete_form) }}
+      {% endif %}
+    </div>
+  </div>
+{% endblock %}

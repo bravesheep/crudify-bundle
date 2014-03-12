@@ -1,45 +1,56 @@
 # Bravesheep Crudify bundle
 
-Example configuration:
+## Documentation
+Read more about the bundle here:
 
-```yml
+* [Default configuration][config_default]
 
-knp_paginator:
-    page_range: 20
-    template:
-        pagination: KnpPaginatorBundle:Pagination:twitter_bootstrap_pagination.html.twig
-        sortable: BsCrudifyBundle:Pagination:sortable_link.html.twig
+## Installation and configuration
+Using [Composer][composer] add the bundle to your requirements:
 
+```json
+{
+    "require": {
+        "bravesheep/crudify-bundle": "dev-master"
+    }
+}
+```
+
+Then run `composer update bravesheep/crudify-bundle`
+
+### Basic configuration
+Define mappings in your configuration file `app/config/config.yml`:
+
+```yaml
 bs_crudify:
-    default: post
-    layout: AcmeBundle::layout.html.twig
-    entities:
-        post:
-            ns: AcmeBundle\Entity\Post
-            index: {author.name: text, title: text, created: datetime}
-            form: AcmeBundle\Form\PostType
-        author:
-            ns: AcmeBundle\Entity\Author
-            index: {name: text, email: email}
-            form: {name: text, email: email}
+    mappings: ~
 ```
 
-Routes can also be customized:
+A [full listing of the default config][config_default] is available in the documentation.
 
-```yml
-admin_index:
-    path:      /beheer/
-    defaults:  { _controller: BsCrudifyBundle:Admin:index }
-admin_list:
-    path:      /beheer/overzicht/{entity}
-    defaults:  { _controller: BsCrudifyBundle:Admin:list }
-admin_add:
-    path:      /beheer/toevoegen/{entity}
-    defaults:  { _controller: BsCrudifyBundle:Admin:add }
-admin_edit:
-    path:      /beheer/bewerk/{entity}/{id}
-    defaults:  { _controller: BsCrudifyBundle:Admin:edit }
-admin_delete:
-    path:      /beheer/verwijderen/{entity}/{id}
-    defaults:  { _controller: BsCrudifyBundle:Admin:delete }
+### Add routes to your routing file
+In `app/config/routing.yml`, add the routes for the crudify administrator interface:
+
+```yaml
+crudify_admin:
+    prefix: /admin/
+    type: crudify
+    resource: .
 ```
+
+### Add the bundle to your AppKernel
+Finally add the bundle in `app/AppKernel.php`:
+
+```php
+public function registerBundles()
+{
+    return array(
+        // ...
+        new Bs\CrudifyBundle\BsCrudifyBundle(),
+        // ...
+    );
+}
+```
+
+[config_default]: src/Bs/CrudifyBundle/Resources/doc/config.md
+[composer]: https://getcomposer.org/

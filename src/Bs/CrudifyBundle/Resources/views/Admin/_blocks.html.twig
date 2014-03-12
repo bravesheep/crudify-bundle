@@ -1,0 +1,23 @@
+{% block crudify_field_bool %}
+  {{ (value ? 'Yes' : 'No')|trans }}
+{% endblock %}
+
+{% block crudify_field_url %}
+  {% if value %}
+    <a href="{{ value }}">{{ value }}</a>
+  {% endif %}
+{% endblock %}
+
+{% block crudify_field_date %}
+  {{ value|date('d-m-Y') }}
+{% endblock %}
+
+{% block crudify_field_datetime %}
+  {{ value|date('d-m-Y H:i') }}
+{% endblock %}
+
+{% block crudify_field_email %}
+  {% if value %}
+    <a href="mailto:{{ value }}">{{ value }}</a>
+  {% endif %}
+{% endblock %}

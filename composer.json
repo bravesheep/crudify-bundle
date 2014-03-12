@@ -1,22 +1,26 @@
 {
     "name": "bravesheep/crudify-bundle",
     "description": "Symfony 2 bundle that provides a simple CRUD interface",
-    "require": {
-        "symfony/symfony": ">=2.3.0",
-        "sonata-project/intl-bundle": ">=2.1.0",
-        "tweedegolf/okoabundle": ">=0.7.5",
-        "knplabs/knp-paginator-bundle": ">=v2.3.1",
-        "bravesheep/bootstrapify-bundle": ">=0.1.2"
-    },
     "license": "MIT",
     "authors": [
         {
             "name": "Marlon Baeten",
             "email": "marlon@bravesheep.nl"
+        },
+        {
+            "name": "Ruben Nijveld",
+            "email": "ruben@bravesheep.nl"
         }
     ],
-    "autoload": {
-        "psr-0": { "Bs\\CrudifyBundle\\": [""] }
+    "require": {
+        "symfony/symfony": ">=2.3.0",
+        "sonata-project/intl-bundle": ">=2.1.0",
+        "knplabs/knp-paginator-bundle": ">=v2.3.1",
+        "bravesheep/bootstrapify-bundle": ">=0.1.2"
     },
-    "target-dir": "Bs/CrudifyBundle"
+    "autoload": {
+        "psr-4": {
+            "Bs\\CrudifyBundle\\": "src/Bs/CrudifyBundle/"
+        }
+    }
 }
