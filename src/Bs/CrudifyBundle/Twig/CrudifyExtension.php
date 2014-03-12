@@ -105,13 +105,17 @@ class CrudifyExtension extends \Twig_Extension
             $context['object'] = $object;
             $result = $template->renderBlock($block, $context, $blocks);
         } else {
-            $result = \twig_escape_filter($template->getEnvironment(), $value);
+            $result = \twig_escape_filter($template->getEnvironment(), (string) $value);
         }
         return $result;
     }
 
-    public function getLinkForAction($action, DefinitionInterface $definition, $object = null)
+    public function getLinkForAction($action, $definition, $object = null)
     {
+        if (!($definition instanceof DefinitionInterface)) {
+            $definition = $this->definitionRegistry->getDefinition($definition);
+        }
+
         return $this->linkResolver->getLinkForAction($action, $definition, $object);
     }
 
