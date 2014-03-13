@@ -57,6 +57,8 @@ parts of the page. Each of these templates can also be overridden per mapping if
 * `new`: The template to be used for the new/create view.
 * `edit`: The template to be used for the edit/update view.
 
+To get a list of all the options available, take a look at the [example/default configuration][doc_config].
+
 ## Templates
 The layout template you specify should contain the block `bs_crudify_content` which is where BsCrudifyBundle will place
 the content of its views. The BsCrudifyBundle also registers a few Twig functions for you to use in your templates:
@@ -72,7 +74,25 @@ The values inside the columns of the listview are generated using blocks. You ha
 The BsCrudifyBundle uses the Twig statement `{% use "BsCrudifyBundle:Admin:_blocks.html.twig" %}` to load the blocks
 used for the default types. Blocks must have a name `crudify_field_{type}` where `{type}` is the type of the column
 that should be rendered. Note that if no block could be found, the crudify bundle will try to display the field
-directly.
+directly. More about templates can be found in [its own documentation][doc_templates].
+
+## Access permissions
+Read more about permissions in the [documentation about permissions][doc_permissions].
+
+## Customizing behavior
+Some parts of the crudify bundle can be customed so that you can implement your own behavior, read about them here:
+
+* [Modify the query used for index pages][doc_modify_index_query]
+* [Modify the way objects are retrieved on edit and delete pages][doc_custom_object_retriever]
+* [Modify the options array for building the form][doc_custom_form_options]
+* [Use a custom controller][doc_custom_controller]
 
 [doc_readme]: ../../../../../README.md
+[doc_permissions]: permissions.md
+[doc_templates]: templates.md
+[doc_modify_index_query]: modify_index_query.md
+[doc_custom_object_retriever]: custom_object_retriever.md
+[doc_custom_form_options]: custom_form_options.md
+[doc_custom_controller]: custom_controller.md
+[doc_config]: config.md
 [knp_paginatior_bundle]: https://github.com/KnpLabs/KnpPaginatorBundle

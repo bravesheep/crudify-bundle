@@ -1,4 +1,8 @@
 # Bravesheep Crudify bundle
+The crudify bundle provides an easy way to quickly get a CRUD interface (Create-Read-Update-Delete) for
+simple entities. The bundle has several extension points and options to customize behavior. Most
+functionality can be customized quickly via the configuration. For a more generalized (be it more verbose)
+approach you should take a look at the [SonataAdminBundle][sonata_admin_bundle].
 
 ## Documentation
 Read more about the bundle here:
@@ -68,3 +72,4 @@ public function registerBundles()
 [doc_custom_controller]: src/Bs/CrudifyBundle/Resources/doc/custom_controller.md
 [doc_config]: src/Bs/CrudifyBundle/Resources/doc/config.md
 [composer]: https://getcomposer.org/
+[sonata_admin_bundle]: https://github.com/sonata-project/SonataAdminBundle

@@ -45,6 +45,21 @@ class DIDefinitionLoader extends ContainerAware
         }
     }
 
+    /**
+     * Retrieve the templates for the local
+     * @param string $template
+     * @param array  $local
+     * @return string
+     */
+    private function getTemplate($template, array $local)
+    {
+        if (array_key_exists($template, $local) && null !== $local[$template]) {
+            return $local[$template];
+        } else {
+            return $this->templates[$template];
+        }
+    }
+
     public function load($key, array $options, DefinitionRegistry $registry)
     {
         $definition = new Definition(
@@ -53,14 +68,14 @@ class DIDefinitionLoader extends ContainerAware
         );
 
         $tpls = $options['templates'];
-        $definition->setIndexTemplate(null === $tpls['index'] ? $this->templates['index'] : $tpls['index']);
-        $definition->setNewTemplate(null === $tpls['new'] ? $this->templates['new'] : $tpls['new']);
-        $definition->setEditTemplate(null === $tpls['edit'] ? $this->templates['edit'] : $tpls['edit']);
+        $definition->setIndexTemplate($this->getTemplate('index', $tpls));
+        $definition->setNewTemplate($this->getTemplate('new', $tpls));
+        $definition->setEditTemplate($this->getTemplate('edit', $tpls));
 
-        $definition->setLayout($this->templates['layout']);
-        $definition->setFormThemeTemplate($this->templates['form_theme']);
-        $definition->setPaginationTemplate($this->templates['pagination']);
-        $definition->setSortableTemplate($this->templates['sortable']);
+        $definition->setLayout($this->getTemplate('layout', $tpls));
+        $definition->setFormThemeTemplate($this->getTemplate('form_theme', $tpls));
+        $definition->setPaginationTemplate($this->getTemplate('pagination', $tpls));
+        $definition->setSortableTemplate($this->getTemplate('sortable', $tpls));
 
         $definition->setObjectRetriever($options['object_retriever']);
 

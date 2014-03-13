@@ -41,12 +41,18 @@ bs_crudify:
                 update: ~ # Form type for update, either class or service name
             # Provider that generates the options available to the form
             form_options_provider: bs_crudify.form.options.provider.basic
+            # Service/class name which provides the loading of a single object for a definition
+            object_retriever: bs_crudify.query.retriever.repository
             create: true # Whether or not to enable create functionality for the mapping
             update: true # Whether or not to enable update functionality for the mapping
             delete: true # Whether or not to enable delete functionality for the mapping
             controller: ~ # The controller to be used for this mapping, either class name or service name
             templates:
+                layout: ~ # Layout template for this mapping
+                form_theme: ~ # Form theme template for this mapping
+                pagination: ~ # Pagination template for this mapping
+                sortable: ~ # Sortable template for this mapping
                 index: ~ # Index template for this mapping
-                edit: ~ # Edit template for this mapping
-                new: ~ # New template for this mapping
+                new: ~ # New/create template for this mapping
+                edit: ~ # Edit/update template for this mapping
 ```
