@@ -9,11 +9,11 @@
 {% endblock %}
 
 {% block crudify_field_date %}
-  {{ value|date('d-m-Y') }}
+  {{ value|date('Y-m-d') }}
 {% endblock %}
 
 {% block crudify_field_datetime %}
-  {{ value|date('d-m-Y H:i') }}
+  {{ value|date('Y-m-d H:i') }}
 {% endblock %}
 
 {% block crudify_field_email %}

@@ -35,9 +35,19 @@ The BsCrudifyBundle creates a few functions that you can call in your templates:
 
 ## Value blocks
 When rendering the grid inside the index view, as long as the `crudify_value()` function is used to display the field values,
-some blocks will be called inside your view.
+some blocks will be called inside your view. These blocks should be named `crudify_field_{type}` where `{type}` is the type
+of the column. If you don't define a block for a specific type, then the `crudify_value()` function will try to display the
+value of a specific column for some object as a string.
 
+You might the `{% use %}` tag Twig provides to include blocks in your template, you can read more about that tag
+in [the Twig documentation][twig_use_tag]. The default BsCrudifyBundle layout template also uses that tag to include
+a few default blocks for some types:
 
-
+* `bool`: Displays a Yes/No value for a field.
+* `url`: Adds an anchor tag around the value with the href attribute being the same as the value, giving you a clickable link.
+* `date`: Displays a field as a date with `Y-m-d` as the format.
+* `datetime`: Displays a field as a date and time with `Y-m-d H:i` as the format.
+* `email`: Similar to the `url` type, except with `mailto:` added to the href attribute.
 
 [knp_paginatior_bundle]: https://github.com/KnpLabs/KnpPaginatorBundle
+[twig_use_tag]: http://twig.sensiolabs.org/doc/tags/use.html
