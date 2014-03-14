@@ -77,10 +77,14 @@ that should be rendered. Note that if no block could be found, the crudify bundl
 directly. More about templates can be found in [its own documentation][doc_templates].
 
 ## Access permissions
-Read more about permissions in the [documentation about permissions][doc_permissions].
+You can use the attributes `CRUDIFY_INDEX`, `CRUDIFY_CREATE` and `CRUDIFY_UPDATE` for checking permissions of
+the index, new/create actions and edit/update actions respectively. All these attributes work on `DefinitionInterface`
+objects. In twig templates you might for example use `is_granted('CRUDIFY_INDEX', definition)` to determine whether or
+not to show a user the link to the list view of some mapping. Read more about permissions in the
+[documentation about permissions][doc_permissions].
 
 ## Customizing behavior
-Some parts of the crudify bundle can be customed so that you can implement your own behavior, read about them here:
+Some parts of the crudify bundle can be customized so that you can implement your own behavior, read about them here:
 
 * [Modify the query used for index pages][doc_modify_index_query]
 * [Modify the way objects are retrieved on edit and delete pages][doc_custom_object_retriever]
