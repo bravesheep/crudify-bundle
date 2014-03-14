@@ -62,6 +62,7 @@ class CrudifyExtension extends \Twig_Extension
             new \Twig_SimpleFunction('crudify_action', [$this, 'getLinkForAction']),
             new \Twig_SimpleFunction('crudify_delete_form', [$this, 'createDeleteForm']),
             new \Twig_SimpleFunction('crudify_defined', [$this, 'getDefinedMappings']),
+            new \Twig_SimpleFunction('crudify_definition', [$this, 'getDefinition']),
         ];
     }
 
@@ -122,5 +123,10 @@ class CrudifyExtension extends \Twig_Extension
     public function getDefinedMappings()
     {
         return $this->definitionRegistry->getDefinitions();
+    }
+
+    public function getDefinition($name)
+    {
+        return $this->definitionRegistry->getDefinition($name);
     }
 }

@@ -69,6 +69,7 @@ the content of its views. The BsCrudifyBundle also registers a few Twig function
 * `crudify_defined()`: Retrieve a list of defined definitions.
 * `crudify_delete_form(definition, object)`: Retrieve the delete form for an object given the definition.
 * `crudify_value(column, object)`: Display the value of `column` for `object` inside the index view.
+* `crudify_definition(mapping)`: Retrieve the definition for a specific mapping.
 
 The values inside the columns of the listview are generated using blocks. You have to include these blocks yourself.
 The BsCrudifyBundle uses the Twig statement `{% use "BsCrudifyBundle:Admin:_blocks.html.twig" %}` to load the blocks
