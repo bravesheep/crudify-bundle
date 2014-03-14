@@ -13,9 +13,13 @@
         }
     ],
     "require": {
-        "symfony/symfony": ">=2.3.0",
-        "knplabs/knp-paginator-bundle": ">=v2.3.1",
-        "bravesheep/bootstrapify-bundle": "*"
+        "symfony/symfony": "~2.3",
+        "doctrine/doctrine-bundle": "~1.2",
+        "doctrine/orm": "~2.4",
+        "knplabs/knp-paginator-bundle": "~2.3.1"
+    },
+    "require-dev": {
+        "phpspec/phpspec": "2.0.*@dev"
     },
     "autoload": {
         "psr-4": {
