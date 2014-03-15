@@ -29,6 +29,14 @@ method is `OptionsInterface::getUpdateOptions()` also takes the controller and d
 provided with the current object on which the form should be created. You can use this object to dynamically modify
 the options to be provided to your update form based on the properties of the object.
 
+## Updating the mapping
+In order to activate the custom form options provider for a single mapping, you need to update the
+`mapping.form_options_provider` key with a service that contains your custom form options provider. You can then use
+Dependency Injection on that service. Alternatively, if you do not require any Dependency Injection, you can use
+the name of the class directly. The class will need to be constructable without having any required parameters in this
+case however. Also take a look at the [default config][doc_config].
+
 [symfony_forms_services]: http://symfony.com/doc/current/book/forms.html#defining-your-forms-as-services
 [doc_object_retriever]: custom_object_retriever.md
 [symfony_forms_empty_data]: http://symfony.com/doc/current/cookbook/form/use_empty_data.html
+[doc_config]: config.md

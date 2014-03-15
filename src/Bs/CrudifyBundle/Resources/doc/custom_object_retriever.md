@@ -18,4 +18,12 @@ entity manager. Alternatively you can even create a custom query that directly l
 Changing the retrieval of objects on the `indexAction` of the `CrudifyController` can be done by creating a
 [query modifier][doc_query_modifier].
 
+## Updating the mapping
+In order to activate your object retriever, you will need to set the `mapping.object_retriever` key of your mapping
+to a service that contains your object retriever. In this case you can use Dependency Injection on your service to
+include additional services. Alternatively you can specifiy the name of the object retriever class if you do not
+need to specify any dependency injection. However this also means that the object must be constructable without
+having any required parameters in the constructor. Also take a look at the [default config][doc_config].
+
 [doc_query_modifier]: modify_index_query.md
+[doc_config]: config.md

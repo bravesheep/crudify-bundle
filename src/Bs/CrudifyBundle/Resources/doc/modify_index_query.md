@@ -29,7 +29,8 @@ having to touch the other.
 In order to let your QueryModifier be applied, you need to update your mapping: The `mapping.index.query_modifier` key
 of a mapping allows you to specify either a service, so you can use Dependency Injection on your query modifier, or use
 it directly by providing the class name directly. In the latter case the BsCrudifyBundle will construct the query
-modifier for you as long as it is constructable without requiring any arguments.
+modifier for you as long as it is constructable without requiring any arguments. Also take a look at the
+[default config][doc_config].
 
 ## Modify the query for the edit, update and delete pages
 The query modifier only modifies the query for the `indexAction`, not for the actions where a single object is
@@ -38,3 +39,4 @@ For more information on the `ObjectRetrieverInterface`, take a look at the docum
 [modifying the way objects are retrieved on edit and delete pages][doc_custom_object_retriever]
 
 [doc_custom_object_retriever]: custom_object_retriever.md
+[doc_config]: config.md
