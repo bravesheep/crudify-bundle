@@ -8,6 +8,7 @@ use Bs\CrudifyBundle\Definition\Form\FormDefinitionInterface;
 use Bs\CrudifyBundle\Definition\Index\Builder\Registry\BuilderRegistry;
 use Bs\CrudifyBundle\Definition\Index\IndexDefinitionInterface;
 use Bs\CrudifyBundle\Definition\Registry\DefinitionRegistry;
+use Bs\CrudifyBundle\Definition\Template\TemplateDefinition;
 use Doctrine\Bundle\DoctrineBundle\Registry;
 use Symfony\Component\DependencyInjection\ContainerAware;
 
@@ -60,6 +61,19 @@ class DIDefinitionLoader extends ContainerAware
         }
     }
 
+    private function getTemplateDefinition(array $templates)
+    {
+        $definition = new TemplateDefinition();
+        $definition->setIndex($this->getTemplate('index', $templates));
+        $definition->setNew($this->getTemplate('new', $templates));
+        $definition->setEdit($this->getTemplate('edit', $templates));
+        $definition->setLayout($this->getTemplate('layout', $templates));
+        $definition->setFormTheme($this->getTemplate('form_theme', $templates));
+        $definition->setPagination($this->getTemplate('pagination', $templates));
+        $definition->setSortable($this->getTemplate('sortable', $templates));
+        return $definition;
+    }
+
     public function load($key, array $options, DefinitionRegistry $registry)
     {
         $definition = new Definition(
@@ -67,16 +81,7 @@ class DIDefinitionLoader extends ContainerAware
             $this->doctrine->getManagerForClass($options['entity'])
         );
 
-        $tpls = $options['templates'];
-        $definition->setIndexTemplate($this->getTemplate('index', $tpls));
-        $definition->setNewTemplate($this->getTemplate('new', $tpls));
-        $definition->setEditTemplate($this->getTemplate('edit', $tpls));
-
-        $definition->setLayout($this->getTemplate('layout', $tpls));
-        $definition->setFormThemeTemplate($this->getTemplate('form_theme', $tpls));
-        $definition->setPaginationTemplate($this->getTemplate('pagination', $tpls));
-        $definition->setSortableTemplate($this->getTemplate('sortable', $tpls));
-
+        $definition->setTemplates($this->getTemplateDefinition($options['templates']));
         $definition->setObjectRetriever($options['object_retriever']);
 
         $definition->setController($options['controller']);

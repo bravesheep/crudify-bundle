@@ -33,7 +33,7 @@ class Configuration implements ConfigurationInterface
                     ->addDefaultsIfNotSet()
                     ->children()
                         ->scalarNode('layout')->defaultValue('BsCrudifyBundle:Admin:_layout.html.twig')->end()
-                        ->scalarNode('form_theme')->defaultValue('BsBootstrapifyBundle::form.html.twig')->end()
+                        ->scalarNode('form_theme')->defaultNull()->end()
                         ->scalarNode('pagination')
                             ->defaultValue('KnpPaginatorBundle:Pagination:twitter_bootstrap_v3_pagination.html.twig')
                         ->end()

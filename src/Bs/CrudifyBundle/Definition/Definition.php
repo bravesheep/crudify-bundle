@@ -5,6 +5,7 @@ namespace Bs\CrudifyBundle\Definition;
 use Bs\CrudifyBundle\Controller\CrudControllerInterface;
 use Bs\CrudifyBundle\Definition\Form\FormDefinitionInterface;
 use Bs\CrudifyBundle\Definition\Index\IndexDefinitionInterface;
+use Bs\CrudifyBundle\Definition\Template\TemplateDefinitionInterface;
 use Doctrine\ORM\EntityManager;
 
 class Definition implements DefinitionInterface
@@ -40,44 +41,9 @@ class Definition implements DefinitionInterface
     private $controller;
 
     /**
-     * @var string
-     */
-    private $indexTemplate;
-
-    /**
-     * @var string
-     */
-    private $newTemplate;
-
-    /**
-     * @var string
-     */
-    private $editTemplate;
-
-    /**
-     * @var string
-     */
-    private $formThemeTemplate;
-
-    /**
-     * @var string
-     */
-    private $paginationTemplate;
-
-    /**
-     * @var string
-     */
-    private $sortableTemplate;
-
-    /**
      * @var EntityManager
      */
     private $entityManager;
-
-    /**
-     * @var string
-     */
-    private $layout;
 
     /**
      * @var string
@@ -88,6 +54,11 @@ class Definition implements DefinitionInterface
      * @var string
      */
     private $objectRetriever;
+
+    /**
+     * @var TemplateDefinitionInterface
+     */
+    private $templates;
 
     public function __construct($entity, $entityManager)
     {
@@ -223,114 +194,6 @@ class Definition implements DefinitionInterface
     }
 
     /**
-     * @param string $editTemplate
-     * @return $this
-     */
-    public function setEditTemplate($editTemplate)
-    {
-        $this->editTemplate = $editTemplate;
-        return $this;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function getEditTemplate()
-    {
-        return $this->editTemplate;
-    }
-
-    /**
-     * @param string $indexTemplate
-     * @return $this
-     */
-    public function setIndexTemplate($indexTemplate)
-    {
-        $this->indexTemplate = $indexTemplate;
-        return $this;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function getIndexTemplate()
-    {
-        return $this->indexTemplate;
-    }
-
-    /**
-     * @param string $newTemplate
-     * @return $this
-     */
-    public function setNewTemplate($newTemplate)
-    {
-        $this->newTemplate = $newTemplate;
-        return $this;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function getNewTemplate()
-    {
-        return $this->newTemplate;
-    }
-
-    /**
-     * @param string $formThemeTemplate
-     * @return $this
-     */
-    public function setFormThemeTemplate($formThemeTemplate)
-    {
-        $this->formThemeTemplate = $formThemeTemplate;
-        return $this;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function getFormThemeTemplate()
-    {
-        return $this->formThemeTemplate;
-    }
-
-    /**
-     * @param string $paginationTemplate
-     * @return $this
-     */
-    public function setPaginationTemplate($paginationTemplate)
-    {
-        $this->paginationTemplate = $paginationTemplate;
-        return $this;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function getPaginationTemplate()
-    {
-        return $this->paginationTemplate;
-    }
-
-    /**
-     * @param string $sortableTemplate
-     * @return $this
-     */
-    public function setSortableTemplate($sortableTemplate)
-    {
-        $this->sortableTemplate = $sortableTemplate;
-        return $this;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function getSortableTemplate()
-    {
-        return $this->sortableTemplate;
-    }
-
-    /**
      * {@inheritdoc}
      */
     public function getEntityManager()
@@ -354,24 +217,6 @@ class Definition implements DefinitionInterface
     {
         $this->entityManager = $entityManager;
         return $this;
-    }
-
-    /**
-     * @param string $layout
-     * @return $this
-     */
-    public function setLayout($layout)
-    {
-        $this->layout = $layout;
-        return $this;
-    }
-
-    /**
-     * @return string
-     */
-    public function getLayout()
-    {
-        return $this->layout;
     }
 
     /**
@@ -408,5 +253,24 @@ class Definition implements DefinitionInterface
     public function getObjectRetriever()
     {
         return $this->objectRetriever;
+    }
+
+    /**
+     * @param TemplateDefinitionInterface $templates
+     * @return $this
+     */
+    public function setTemplates(TemplateDefinitionInterface $templates)
+    {
+        $this->templates = $templates;
+        $templates->setParent($this);
+        return $this;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getTemplates()
+    {
+        return $this->templates;
     }
 }

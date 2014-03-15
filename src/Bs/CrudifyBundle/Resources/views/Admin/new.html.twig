@@ -1,30 +1,32 @@
-{% extends definition.layout %}
-{% form_theme form definition.formThemeTemplate %}
+{% extends definition.templates.layout %}
+{% if definition.templates.formTheme is not null %}
+  {% form_theme form definition.templates.formTheme %}
+{% endif %}
 
 {% block bs_crudify_content %}
   <div class="row">
     <div class="col-md-12">
-    <h3>{{ 'Add'|trans }} <small>{{ definition.entityTitle|trans }}</small></h3>
-    {{ form_start(form) }}
-    {{ form_widget(form) }}
-    {% block form_actions %}
-      <hr>
-      <div>
-        <button name="action" value="index" type="submit" class="btn btn-primary click-disable">
-          <span class="fa fa-save"></span>
-          {{ 'Save'|trans }}
-        </button>
-        <button name="action" value="edit" type="submit" class="btn btn-default click-disable">
-          <span class="fa fa-save"></span>
-          {{ 'Save and Continue Editing'|trans }}
-        </button>
-        <a href="{{ crudify_action('index', definition) }}" class="btn pull-right">
-          <span class="fa fa-times"></span>
-          {{ 'Cancel'|trans }}
-        </a>
-      </div>
-    {% endblock %}
-    {{ form_end(form) }}
+      <h3>{{ 'Add'|trans }} <small>{{ definition.entityTitle|trans }}</small></h3>
+      {{ form_start(form) }}
+      {{ form_widget(form) }}
+      {% block form_actions %}
+        <hr>
+        <div>
+          <button name="action" value="index" type="submit" class="btn btn-primary click-disable">
+            <span class="fa fa-save"></span>
+            {{ 'Save'|trans }}
+          </button>
+          <button name="action" value="edit" type="submit" class="btn btn-default click-disable">
+            <span class="fa fa-save"></span>
+            {{ 'Save and Continue Editing'|trans }}
+          </button>
+          <a href="{{ crudify_action('index', definition) }}" class="btn pull-right">
+            <span class="fa fa-times"></span>
+            {{ 'Cancel'|trans }}
+          </a>
+        </div>
+      {% endblock %}
+      {{ form_end(form) }}
     </div>
   </div>
  {% endblock %}

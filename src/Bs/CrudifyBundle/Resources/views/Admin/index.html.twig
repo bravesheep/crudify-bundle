@@ -1,8 +1,8 @@
-{% extends definition.layout %}
+{% extends definition.templates.layout %}
 
 {% block bs_crudify_content %}
   <h3>{{ "Overview"|trans }} <small>{{ definition.entityTitle|trans }}</small></h3>
-  {% if definition.withCreate and is_granted('CRUDIFY_CREATE', definition) %}
+  {% if is_granted('CRUDIFY_CREATE', definition) %}
   <a href="{{ crudify_action('new', definition) }}" class="btn btn-success pull-right">
     <i class="fa fa-plus"></i> {{ "Add"|trans }}
   </a>
@@ -25,7 +25,7 @@
           <td class="{{ column.type }}">{{ crudify_value(column, object) }}</td>
         {% endfor %}
         <td class="actions">
-          {% if definition.withUpdate and is_granted('CRUDIFY_UPDATE', definition) %}
+          {% if is_granted('CRUDIFY_UPDATE', definition) %}
             <a href="{{ crudify_action('edit', definition, object) }}"
                class="btn btn-default btn-sm click-disable">
               <span class="fa fa-pencil"></span>

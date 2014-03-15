@@ -1,5 +1,7 @@
-{% extends definition.layout %}
-{% form_theme form definition.formThemeTemplate %}
+{% extends definition.templates.layout %}
+{% if definition.templates.formTheme is not null %}
+  {% form_theme form definition.templates.formTheme %}
+{% endif %}
 
 {% block bs_crudify_content %}
   <div class="row">
@@ -26,7 +28,7 @@
       {% endblock %}
       {{ form_end(form) }}
       <hr>
-      {% if definition.withDelete and is_granted('CRUDIFY_DELETE', definition) %}
+      {% if is_granted('CRUDIFY_DELETE', definition) %}
         {% set delete_form = crudify_delete_form(definition, object) %}
         {{ form_start(delete_form) }}
         {{ form_widget(delete_form) }}

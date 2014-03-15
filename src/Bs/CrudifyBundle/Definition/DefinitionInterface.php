@@ -5,6 +5,7 @@ namespace Bs\CrudifyBundle\Definition;
 use Bs\CrudifyBundle\Controller\CrudControllerInterface;
 use Bs\CrudifyBundle\Definition\Form\FormDefinitionInterface;
 use Bs\CrudifyBundle\Definition\Index\IndexDefinitionInterface;
+use Bs\CrudifyBundle\Definition\Template\TemplateDefinitionInterface;
 use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\EntityRepository;
 
@@ -51,36 +52,6 @@ interface DefinitionInterface
     public function getController();
 
     /**
-     * @return string
-     */
-    public function getIndexTemplate();
-
-    /**
-     * @return string
-     */
-    public function getNewTemplate();
-
-    /**
-     * @return string
-     */
-    public function getEditTemplate();
-
-    /**
-     * @return string
-     */
-    public function getFormThemeTemplate();
-
-    /**
-     * @return string
-     */
-    public function getPaginationTemplate();
-
-    /**
-     * @return string
-     */
-    public function getSortableTemplate();
-
-    /**
      * @return EntityManager
      */
     public function getEntityManager();
@@ -93,15 +64,15 @@ interface DefinitionInterface
     /**
      * @return string
      */
-    public function getLayout();
-
-    /**
-     * @return string
-     */
     public function getEntityTitle();
 
     /**
      * @return string
      */
     public function getObjectRetriever();
+
+    /**
+     * @return TemplateDefinitionInterface
+     */
+    public function getTemplates();
 }

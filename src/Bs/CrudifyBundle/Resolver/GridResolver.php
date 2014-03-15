@@ -54,8 +54,8 @@ class GridResolver
             $pagination->setParam('direction', $sortDirection);
         }
 
-        $pagination->setTemplate($index->getParent()->getPaginationTemplate());
-        $pagination->setSortableTemplate($index->getParent()->getSortableTemplate());
+        $pagination->setTemplate($index->getParent()->getTemplates()->getPagination());
+        $pagination->setSortableTemplate($index->getParent()->getTemplates()->getSortable());
         return $pagination;
     }
 }
