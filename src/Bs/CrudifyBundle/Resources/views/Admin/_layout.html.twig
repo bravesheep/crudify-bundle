@@ -1,0 +1,25 @@
+{% extends "::base.html.twig" %}
+
+{% block stylesheets %}
+
+{% endblock %}
+
+{% block javascripts %}
+
+{% endblock %}
+
+{% block body %}
+  {% block bs_crudify_menu %}
+    <div class="row">
+      <ul class="nav nav-tabs">
+        {% for def in crudify_defined() if is_granted('CRUDIFY_INDEX', def) %}
+          <li class="{{ definition is defined and definition.name == def.name ? 'active' }}">
+            <a href="{{ crudify_action('index', def) }}">{{ def.entityTitle|trans }}</a>
+          </li>
+        {% endfor %}
+      </ul>
+    </div>
+  {% endblock %}
+  
+  {% block bs_crudify_content %}{% endblock %}
+{% endblock %}

@@ -8,7 +8,7 @@ bs_crudify:
     default_access: grant # Allowed: grant, abstain, deny; default result whenever access is checked in crudify
     templates: # Provide the templates used for showing
         layout: BsCrudifyBundle:Admin:_layout.html.twig # Layout file
-        form_theme: BsBootstrapifyBundle::form.html.twig # Form theme
+        form_theme: ~ # Form theme
         pagination: KnpPaginatorBundle:Pagination:twitter_bootstrap_v3_pagination.html.twig
         sortable: BsCrudifyBundle:Pagination:sortable_link.html.twig # Sorting column header
         index: BsCrudifyBundle:Admin:index.html.twig # Template for the index
