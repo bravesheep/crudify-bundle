@@ -67,7 +67,7 @@ class CrudifyAccessVoter implements VoterInterface
     {
         if ($attribute === 'CRUDIFY_CREATE') {
             if ($definition->withCreate()) {
-                return VoterInterface::ACCESS_GRANTED;
+                return $this->defaultAccess;
             } else {
                 return VoterInterface::ACCESS_DENIED;
             }
@@ -75,7 +75,7 @@ class CrudifyAccessVoter implements VoterInterface
 
         if ($attribute === 'CRUDIFY_UPDATE') {
             if ($definition->withUpdate()) {
-                return VoterInterface::ACCESS_GRANTED;
+                return $this->defaultAccess;
             } else {
                 return VoterInterface::ACCESS_DENIED;
             }
@@ -83,7 +83,7 @@ class CrudifyAccessVoter implements VoterInterface
 
         if ($attribute === 'CRUDIFY_DELETE') {
             if ($definition->withDelete()) {
-                return VoterInterface::ACCESS_GRANTED;
+                return $this->defaultAccess;
             } else {
                 return VoterInterface::ACCESS_DENIED;
             }
