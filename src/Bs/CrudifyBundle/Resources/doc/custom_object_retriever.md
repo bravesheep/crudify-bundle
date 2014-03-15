@@ -18,5 +18,4 @@ entity manager. Alternatively you can even create a custom query that directly l
 Changing the retrieval of objects on the `indexAction` of the `CrudifyController` can be done by creating a
 [query modifier][doc_query_modifier].
 
-
 [doc_query_modifier]: modify_index_query.md
