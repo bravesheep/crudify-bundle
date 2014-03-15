@@ -58,9 +58,16 @@ class QueryResolver
         if ($definition->hasQueryModifier()) {
             $modifier = $this->queryModifierResolver->resolve($definition->getQueryModifier());
 
-            $modifier->modifyBuilder($qb);
+            $result = $modifier->modifyBuilder($qb);
+            if ($result instanceof QueryBuilder) {
+                $qb = $result;
+            }
+
             $query = $qb->getQuery();
-            $modifier->modifyQuery($query);
+            $result = $modifier->modifyQuery($query);
+            if ($result instanceof Query) {
+                $query = $result;
+            }
         } else {
             $query = $qb->getQuery();
         }
