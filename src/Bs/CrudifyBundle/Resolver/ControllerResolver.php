@@ -3,7 +3,7 @@
 namespace Bs\CrudifyBundle\Resolver;
 
 use Bs\CrudifyBundle\Controller\CrudControllerInterface;
-use Bs\CrudifyBundle\Exception\CrudifyException;
+use Bs\CrudifyBundle\Exception\ControllerNotFoundException;
 use Symfony\Component\DependencyInjection\ContainerAware;
 
 class ControllerResolver extends ContainerAware
@@ -21,7 +21,7 @@ class ControllerResolver extends ContainerAware
     /**
      * @param null|string|CrudControllerInterface $controller
      * @return CrudControllerInterface
-     * @throws CrudifyException
+     * @throws ControllerNotFoundException
      */
     public function resolve($controller)
     {
@@ -51,7 +51,7 @@ class ControllerResolver extends ContainerAware
         }
 
         if (!($controller instanceof CrudControllerInterface)) {
-            throw new CrudifyException("Could not resolve controller specification to controller");
+            throw new ControllerNotFoundException("Could not resolve controller specification to controller");
         }
 
         if (is_string($name)) {
