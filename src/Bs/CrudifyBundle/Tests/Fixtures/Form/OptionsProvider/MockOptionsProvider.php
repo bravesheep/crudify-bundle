@@ -10,11 +10,11 @@ class MockOptionsProvider implements OptionsInterface
 {
     public function getCreateOptions(CrudControllerInterface $controller, DefinitionInterface $definition)
     {
-        return [];
+        return ['create' => true];
     }
 
     public function getUpdateOptions(CrudControllerInterface $controller, DefinitionInterface $definition, $object)
     {
-        return [];
+        return ['update' => true];
     }
 }

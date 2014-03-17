@@ -25,7 +25,7 @@ class FormOptionsResolver extends ContainerAware
                 $refl = new \ReflectionClass($provider);
                 if ($refl->implementsInterface('Bs\CrudifyBundle\Form\OptionsProvider\OptionsInterface')) {
                     $constructor = $refl->getConstructor();
-                    if ($constructor && $constructor->getNumberOfRequiredParameters() === 0) {
+                    if (null === $constructor || $constructor->getNumberOfRequiredParameters() === 0) {
                         $provider = $refl->newInstance();
                     }
                 }

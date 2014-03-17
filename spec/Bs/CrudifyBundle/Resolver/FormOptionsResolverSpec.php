@@ -87,28 +87,86 @@ class FormOptionsResolverSpec extends ObjectBehavior
         ContainerInterface $container,
         FormDefinition $definition,
         CrudControllerInterface $controller,
-        OptionsInterface $options,
         DefinitionInterface $mappingDefinition
     ) {
         $class = 'Bs\\CrudifyBundle\\Tests\\Fixtures\\Form\\OptionsProvider\\MockOptionsProvider';
 
+        $container->has($class)->willReturn(false);
 
+        $definition->getOptionsProvider()->willReturn($class);
+        $definition->getParent()->willReturn($mappingDefinition);
 
+        $mappingDefinition->getName()->shouldNotBeCalled();
 
+        $this->setContainer($container);
+        $this->resolve($definition, FormOptionsResolver::TYPE_CREATE, $controller)->shouldReturn(['create' => true]);
     }
 
-    function it_should_retrieve_update_options_for_a_service()
-    {
+    function it_should_retrieve_update_options_for_a_service(
+        ContainerInterface $container,
+        FormDefinition $definition,
+        CrudControllerInterface $controller,
+        OptionsInterface $options,
+        DefinitionInterface $mappingDefinition,
+        $object
+    ) {
+        $service = 'this_is_a_service';
+        $generatedOptions = ['test' => 'value'];
 
+        $container->has($service)->willReturn(true);
+        $container->get($service)->willReturn($options);
+
+        $definition->getOptionsProvider()->willReturn($service);
+        $definition->getParent()->willReturn($mappingDefinition);
+
+        $mappingDefinition->getName()->shouldNotBeCalled();
+
+        $options
+            ->getUpdateOptions($controller, $mappingDefinition, $object)
+            ->shouldBeCalled()
+            ->willReturn($generatedOptions)
+        ;
+
+        $this->setContainer($container);
+        $this
+            ->resolve($definition, FormOptionsResolver::TYPE_UPDATE, $controller, $object)
+            ->shouldReturn($generatedOptions)
+        ;
     }
 
-    function it_should_retrieve_update_options_for_a_class()
-    {
+    function it_should_retrieve_update_options_for_a_class(
+        ContainerInterface $container,
+        FormDefinition $definition,
+        CrudControllerInterface $controller,
+        DefinitionInterface $mappingDefinition
+    ) {
+        $class = 'Bs\\CrudifyBundle\\Tests\\Fixtures\\Form\\OptionsProvider\\MockOptionsProvider';
 
+        $container->has($class)->willReturn(false);
+
+        $definition->getOptionsProvider()->willReturn($class);
+        $definition->getParent()->willReturn($mappingDefinition);
+
+        $mappingDefinition->getName()->shouldNotBeCalled();
+
+        $this->setContainer($container);
+        $this->resolve($definition, FormOptionsResolver::TYPE_UPDATE, $controller)->shouldReturn(['update' => true]);
     }
 
-    function it_should_throw_an_error_if_it_does_not_understand_the_type()
-    {
+    function it_should_throw_an_error_if_it_does_not_understand_the_type(
+        FormDefinition $definition,
+        CrudControllerInterface $controller,
+        DefinitionInterface $mappingDefinition
+    ) {
 
+        $definition->getOptionsProvider()->willReturn(10);
+
+        $definition->getParent()->willReturn($mappingDefinition);
+        $mappingDefinition->getName()->willReturn('test');
+
+        $this
+            ->shouldThrow('Bs\\CrudifyBundle\\Exception\\OptionsProviderNotFoundException')
+            ->duringResolve($definition, FormOptionsResolver::TYPE_CREATE, $controller)
+        ;
     }
 }
