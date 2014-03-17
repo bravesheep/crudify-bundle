@@ -2,7 +2,7 @@
 
 namespace Bs\CrudifyBundle\Query;
 
-use Doctrine\ORM\Query;
+use Doctrine\ORM\AbstractQuery;
 use Doctrine\ORM\QueryBuilder;
 
 interface ModifierInterface
@@ -16,8 +16,8 @@ interface ModifierInterface
 
     /**
      * Modify the query constructed by the Crudify bundle or return a completely different Query.
-     * @param Query $query
-     * @return Query|null
+     * @param AbstractQuery $query
+     * @return AbstractQuery|null
      */
-    public function modifyQuery(Query $query);
+    public function modifyQuery(AbstractQuery $query);
 }

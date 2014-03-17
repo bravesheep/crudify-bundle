@@ -2,7 +2,7 @@
 
 namespace Bs\CrudifyBundle\Query;
 
-use Doctrine\ORM\Query;
+use Doctrine\ORM\AbstractQuery;
 use Doctrine\ORM\QueryBuilder;
 
 abstract class AbstractModifier implements ModifierInterface
@@ -18,7 +18,7 @@ abstract class AbstractModifier implements ModifierInterface
     /**
      * {@inheritdoc}
      */
-    public function modifyQuery(Query $query)
+    public function modifyQuery(AbstractQuery $query)
     {
 
     }
