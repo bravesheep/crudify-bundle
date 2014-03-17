@@ -4,6 +4,7 @@ namespace Bs\CrudifyBundle\Resolver;
 
 use Bs\CrudifyBundle\Definition\Index\IndexDefinitionInterface;
 use Bs\CrudifyBundle\Exception\CrudifyException;
+use Doctrine\ORM\AbstractQuery;
 use Doctrine\ORM\Query;
 use Knp\Bundle\PaginatorBundle\Pagination\SlidingPagination;
 use Knp\Component\Pager\Pagination\PaginationInterface;
@@ -23,12 +24,12 @@ class GridResolver
     }
 
     /**
-     * @param Query                    $query
+     * @param AbstractQuery            $query
      * @param IndexDefinitionInterface $index
      * @param Request                  $request
      * @return PaginationInterface
      */
-    public function getGrid(Query $query, IndexDefinitionInterface $index, Request $request)
+    public function getGrid(AbstractQuery $query, IndexDefinitionInterface $index, Request $request)
     {
         $sortDirection = $request->get('direction', IndexDefinitionInterface::SORT_ASC);
         $sortColumn = $request->get('sort');
