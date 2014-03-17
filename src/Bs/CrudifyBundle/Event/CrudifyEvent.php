@@ -42,6 +42,4 @@ class CrudifyEvent extends Event
     {
         return $this->definition;
     }
-
-
 }

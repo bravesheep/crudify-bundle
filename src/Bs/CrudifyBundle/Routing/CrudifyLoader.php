@@ -33,16 +33,25 @@ class CrudifyLoader extends Loader
         $mappingReq = ['mapping' => '\w+'];
         $mappingIdReq = array_merge($mappingReq, ['id' => '\d+']);
 
-        $this->addRoute('index', '/{mapping}', 'indexAction', $mappingReq, ['GET'], $routes);
-        $this->addRoute('new', '/{mapping}/new', 'newAction', $mappingReq, ['GET'], $routes);
-        $this->addRoute('create', '/{mapping}', 'createAction', $mappingReq, ['POST'], $routes);
-        $this->addRoute('edit', '/{mapping}/{id}/edit', 'editAction', $mappingIdReq, ['GET'], $routes);
-        $this->addRoute('update', '/{mapping}/{id}', 'updateAction', $mappingIdReq, ['PUT', 'PATCH'], $routes);
-        $this->addRoute('delete', '/{mapping}/{id}', 'deleteAction', $mappingIdReq, ['DELETE'], $routes);
+        $routes->add('bs_crudify.index', $this->createRoute('/{mapping}', 'indexAction', $mappingReq, ['GET']));
+        $routes->add('bs_crudify.new', $this->createRoute('/{mapping}/new', 'newAction', $mappingReq, ['GET']));
+        $routes->add('bs_crudify.create', $this->createRoute('/{mapping}', 'createAction', $mappingReq, ['POST']));
+        $routes->add(
+            'bs_crudify.edit',
+            $this->createRoute('/{mapping}/{id}/edit', 'editAction', $mappingIdReq, ['GET'])
+        );
+        $routes->add(
+            'bs_crudify.update',
+            $this->createRoute('/{mapping}/{id}', 'updateAction', $mappingIdReq, ['PUT', 'PATCH'])
+        );
+        $routes->add(
+            'bs_crudify.delete',
+            $this->createRoute('/{mapping}/{id}', 'deleteAction', $mappingIdReq, ['DELETE'])
+        );
         return $routes;
     }
 
-    public function addRoute($name, $path, $action, array $requirements, array $methods, RouteCollection $routes)
+    private function createRoute($path, $action, array $requirements, array $methods)
     {
         $route = new Route(
             $path,
@@ -53,7 +62,7 @@ class CrudifyLoader extends Loader
             [],
             $methods
         );
-        $routes->add("bs_crudify.{$name}", $route);
+        return $route;
     }
 
     public function supports($resource, $type = null)

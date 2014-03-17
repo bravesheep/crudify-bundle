@@ -63,7 +63,7 @@ class CrudifyAccessVoter implements VoterInterface
         return VoterInterface::ACCESS_ABSTAIN;
     }
 
-    public function voteAccess(DefinitionInterface $definition, $attribute)
+    private function voteAccess(DefinitionInterface $definition, $attribute)
     {
         if ($attribute === 'CRUDIFY_CREATE') {
             if ($definition->withCreate()) {
