@@ -22,9 +22,8 @@ class FormResolver extends ContainerAware
             } elseif (class_exists($form, true)) {
                 $refl = new \ReflectionClass($form);
                 if ($refl->implementsInterface('Symfony\Component\Form\FormTypeInterface')) {
-                    if ($refl->getConstructor() === null ||
-                        $refl->getConstructor()->getNumberOfRequiredParameters() === 0
-                    ) {
+                    $constructor = $refl->getConstructor();
+                    if (null === $constructor || $constructor->getNumberOfRequiredParameters() === 0) {
                         $form = $refl->newInstance();
                         if ($form instanceof ContainerAwareInterface) {
                             $form->setContainer($this->container);
