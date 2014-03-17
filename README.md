@@ -1,8 +1,9 @@
-# Bravesheep Crudify bundle
-The crudify bundle provides an easy way to quickly get a CRUD interface (Create-Read-Update-Delete) for
+# BsCrudifyBundle
+The Bravesheep crudify bundle provides an easy way to quickly get a CRUD interface (Create-Read-Update-Delete) for
 simple entities. The bundle has several extension points and options to customize behavior. Most
 functionality can be customized quickly via the configuration. For a more generalized (be it more verbose)
-approach you should take a look at the [SonataAdminBundle][sonata_admin_bundle].
+approach you should take a look at the [SonataAdminBundle][sonata_admin_bundle]. Currently the BsCrudifyBundle only
+supports Doctrine ORM as a backend for retrieving data.
 
 ## Documentation
 Read more about the bundle here:
