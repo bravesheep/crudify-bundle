@@ -4,21 +4,9 @@ namespace Bs\CrudifyBundle\Resolver;
 
 use Bs\CrudifyBundle\Definition\DefinitionInterface;
 use Bs\CrudifyBundle\Exception\UnsupportedEntityException;
-use Doctrine\Bundle\DoctrineBundle\Registry;
-use Doctrine\ORM\Mapping\ClassMetadata;
 
 class IdentityResolver
 {
-    /**
-     * @var Registry
-     */
-    private $doctrine;
-
-    public function __construct(Registry $doctrine)
-    {
-        $this->doctrine = $doctrine;
-    }
-
     /**
      * @param object $object
      * @return string

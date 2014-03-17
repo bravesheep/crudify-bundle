@@ -2,15 +2,16 @@
 
 namespace spec\Bs\CrudifyBundle\Resolver;
 
-use Doctrine\Bundle\DoctrineBundle\Registry;
+use Bs\CrudifyBundle\Definition\DefinitionInterface;
+use Doctrine\ORM\EntityManager;
 use PhpSpec\ObjectBehavior;
 use Prophecy\Argument;
 
 class IdentityResolverSpec extends ObjectBehavior
 {
-    function let(Registry $doctrine)
+    function let(DefinitionInterface $definition, EntityManager $manager)
     {
-        $this->beConstructedWith($doctrine);
+        $definition->getEntityManager()->willReturn($manager);
     }
 
     function it_is_initializable()

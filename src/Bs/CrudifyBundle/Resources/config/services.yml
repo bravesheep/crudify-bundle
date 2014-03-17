@@ -113,8 +113,6 @@ services:
 
     bs_crudify.resolver.identity:
         class: %bs_crudify.resolver.identity.class%
-        arguments:
-            - @doctrine
 
     bs_crudify.resolver.link:
         class: %bs_crudify.resolver.link.class%
