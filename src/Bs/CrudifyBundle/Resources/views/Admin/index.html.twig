@@ -54,7 +54,7 @@
                 {% endblock %}
                 {% block bs_crudify_body_before_actions %}{% endblock %}
                 {% block bs_crudify_body_actions %}
-                  <td class="actions">
+                  <td class="actions text-right">
                     {% if is_granted('CRUDIFY_UPDATE', definition) %}
                       {% block bs_crudify_action_edit %}
                         <a href="{{ crudify_action('edit', definition, object) }}"
