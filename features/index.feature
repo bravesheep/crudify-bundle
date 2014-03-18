@@ -3,6 +3,6 @@ Feature: Visiting the index page
   As a user
   I need to be able to view the list of objects
 
-  Scenario: Viewing the website root
+  Scenario: Getting redirected to the default mapping
     Given I am on the homepage
      Then I should be on "/users"
