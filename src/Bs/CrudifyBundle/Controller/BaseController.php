@@ -16,7 +16,7 @@ class BaseController extends AbstractCrudController
         $query = $this->createSelectQuery($definition->getIndex());
         $grid = $this->getGrid($query, $definition, $request);
 
-        return $this->render($definition->getIndexTemplate(), [
+        return $this->render($definition->getTemplates()->getIndex(), [
             'definition' => $definition,
             'objects' => $grid,
         ]);
@@ -30,7 +30,7 @@ class BaseController extends AbstractCrudController
         $form = $this->createCreateForm($definition);
         $object = $form->getData();
 
-        return $this->render($definition->getNewTemplate(), [
+        return $this->render($definition->getTemplates()->getNew(), [
             'definition' => $definition,
             'form' => $form->createView(),
             'object' => $object,
@@ -57,7 +57,7 @@ class BaseController extends AbstractCrudController
         }
 
         $this->addTranslatedFlash($definition, 'error', 'There were errors on the form.');
-        return $this->render($definition->getNewTemplate(), [
+        return $this->render($definition->getTemplates()->getNew(), [
             'definition' => $definition,
             'form' => $form->createView(),
             'object' => $object,
@@ -75,7 +75,7 @@ class BaseController extends AbstractCrudController
         }
 
         $form = $this->createUpdateForm($definition, $object);
-        return $this->render($definition->getEditTemplate(), [
+        return $this->render($definition->getTemplates()->getEdit(), [
             'definition' => $definition,
             'form' => $form->createView(),
             'object' => $object,
@@ -105,7 +105,7 @@ class BaseController extends AbstractCrudController
         }
 
         $this->addTranslatedFlash($definition, 'error', 'There were errors on the form.');
-        return $this->render($definition->getEditTemplate(), [
+        return $this->render($definition->getTemplates()->getEdit(), [
             'definition' => $definition,
             'form' => $form->createView(),
             'object' => $object,
