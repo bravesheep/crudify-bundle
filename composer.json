@@ -23,7 +23,6 @@
         "behat/behat": "~2.5",
         "behat/mink-extension": "*",
         "behat/mink-browserkit-driver": "*",
-        "behat/mink-zombie-driver": "*",
         "behat/symfony2-extension": "*",
         "vipsoft/doctrine-data-fixtures-extension": "*"
     },
