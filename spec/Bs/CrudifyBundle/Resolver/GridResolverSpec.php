@@ -32,11 +32,11 @@ class GridResolverSpec extends ObjectBehavior
         $definition->getTemplates()->willReturn($templateDefinition);
 
         $pagination->setParam(Argument::any(), Argument::any())->willReturn();
-        $pagination->setTemplate(Argument::any())->will(function ($args) {
-            $this->getTemplate()->willReturn($args[0]);
+        $pagination->setTemplate(Argument::any())->will(function ($args, $pagination) {
+            $pagination->getTemplate()->willReturn($args[0]);
         });
-        $pagination->setSortableTemplate(Argument::any())->will(function ($args) {
-            $this->getSortableTemplate()->willReturn($args[0]);
+        $pagination->setSortableTemplate(Argument::any())->will(function ($args, $pagination) {
+            $pagination->getSortableTemplate()->willReturn($args[0]);
         });
     }
 
