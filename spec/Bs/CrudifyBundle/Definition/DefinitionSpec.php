@@ -90,6 +90,11 @@ class DefinitionSpec extends ObjectBehavior
         $this->getTemplates()->shouldReturn(null);
     }
 
+    function its_translationDomain_should_be_messages_by_default()
+    {
+        $this->getTranslationDomain()->shouldReturn('messages');
+    }
+
     function its_name_should_be_modifyable()
     {
         $this->setName('mapping_name');
@@ -179,5 +184,11 @@ class DefinitionSpec extends ObjectBehavior
     {
         $this->setTemplates($templateDefinition);
         $this->getTemplates()->shouldReturn($templateDefinition);
+    }
+
+    function its_translationDomain_should_be_modifyable()
+    {
+        $this->setTranslationDomain('crudify');
+        $this->getTranslationDomain()->shouldReturn('crudify');
     }
 }

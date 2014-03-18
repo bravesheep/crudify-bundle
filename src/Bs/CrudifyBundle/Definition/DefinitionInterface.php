@@ -75,4 +75,9 @@ interface DefinitionInterface
      * @return TemplateDefinitionInterface
      */
     public function getTemplates();
+
+    /**
+     * @return string
+     */
+    public function getTranslationDomain();
 }

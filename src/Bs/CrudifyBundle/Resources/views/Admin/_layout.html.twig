@@ -14,12 +14,25 @@
       <ul class="nav nav-tabs">
         {% for def in crudify_defined() if is_granted('CRUDIFY_INDEX', def) %}
           <li class="{{ definition is defined and definition.name == def.name ? 'active' }}">
-            <a href="{{ crudify_action('index', def) }}">{{ def.entityTitle|trans }}</a>
+            <a href="{{ crudify_action('index', def) }}">{{ def.entityTitle|trans({}, def.translationDomain) }}</a>
           </li>
         {% endfor %}
       </ul>
     </div>
   {% endblock %}
-  
+
+  {% block bs_crudify_flash %}
+    <div class="row">
+      {% for label, flashes in app.session.flashbag.all %}
+        {% for message in flashes %}
+          <div class="alert alert-{{ label }}">
+            <button type="button" class="close" data-dismiss="alert">&times;</button>
+            {{ message }}
+          </div>
+        {% endfor %}
+      {% endfor %}
+    </div>
+  {% endblock %}
+
   {% block bs_crudify_content %}{% endblock %}
 {% endblock %}

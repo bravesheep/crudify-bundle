@@ -60,11 +60,17 @@ class Definition implements DefinitionInterface
      */
     private $templates;
 
+    /**
+     * @var string
+     */
+    private $translationDomain;
+
     public function __construct($entity, EntityManager $entityManager)
     {
         $this->flags = [];
         $this->setEntity($entity);
         $this->setEntityManager($entityManager);
+        $this->setTranslationDomain('messages');
     }
 
     /**
@@ -272,5 +278,23 @@ class Definition implements DefinitionInterface
     public function getTemplates()
     {
         return $this->templates;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getTranslationDomain()
+    {
+        return $this->translationDomain;
+    }
+
+    /**
+     * @param string $translationDomain
+     * @return $this
+     */
+    public function setTranslationDomain($translationDomain)
+    {
+        $this->translationDomain = $translationDomain;
+        return $this;
     }
 }

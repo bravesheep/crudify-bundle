@@ -4,12 +4,13 @@
 {% endif %}
 
 {% block bs_crudify_content %}
-  <div class="row">
+  <div class="row crudify-edit">
     <div class="col-md-12">
       {% block bs_crudify_title %}
         <h3>
           {% block bs_crudify_title_content %}
-            {{ 'Edit'|trans }} <small>{{ definition.entityTitle|trans }}</small>
+            {{ 'Edit'|trans({}, definition.translationDomain) }}
+            <small>{{ definition.entityTitle|trans({}, definition.translationDomain) }}</small>
           {% endblock %}
         </h3>
       {% endblock %}
@@ -21,15 +22,15 @@
           <div>
             <button name="action" value="index" type="submit" class="btn btn-primary click-disable">
               <span class="fa fa-save"></span>
-              {{ 'Save'|trans }}
+              {{ 'Save'|trans({}, definition.translationDomain) }}
             </button>
             <button name="action" value="edit" type="submit" class="btn btn-default click-disable">
               <span class="fa fa-save"></span>
-              {{ 'Save and Continue Editing'|trans }}
+              {{ 'Save and Continue Editing'|trans({}, definition.translationDomain) }}
             </button>
             <a href="{{ crudify_action('index', definition) }}" class="btn pull-right">
               <span class="fa fa-times"></span>
-              {{ 'Cancel'|trans }}
+              {{ 'Cancel'|trans({}, definition.translationDomain) }}
             </a>
           </div>
         {% endblock %}
@@ -42,7 +43,7 @@
           {% set delete_form = crudify_delete_form(definition, object) %}
           {{ form_start(delete_form) }}
           {{ form_widget(delete_form) }}
-           <input type="submit" value="{{ "Delete"|trans }}" class="btn btn-danger">
+           <input type="submit" value="{{ "Delete"|trans({}, definition.translationDomain) }}" class="btn btn-danger">
           {{ form_end(delete_form) }}
         {% endblock %}
       {% endif %}

@@ -10,10 +10,12 @@ use Bs\CrudifyBundle\Resolver\FormOptionsResolver;
 use Doctrine\ORM\Query;
 use Knp\Component\Pager\Pagination\PaginationInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Bundle\FrameworkBundle\Translation\Translator;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\Form\Form;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\Session\Session;
 use Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;
 
 abstract class AbstractCrudController extends Controller implements CrudControllerInterface
@@ -146,5 +148,23 @@ abstract class AbstractCrudController extends Controller implements CrudControll
     public function getContainer()
     {
         return $this->container;
+    }
+
+    /**
+     * Add a translated flash to the flashbag, using the translation domain from the definition.
+     * @param DefinitionInterface $definition
+     * @param string              $type
+     * @param string              $message
+     * @param array               $vars
+     */
+    protected function addTranslatedFlash(DefinitionInterface $definition, $type, $message, array $vars = [])
+    {
+        /** @var Translator $trans */
+        $trans = $this->get('translator');
+        $message = $trans->trans($message, $vars, $definition->getTranslationDomain());
+
+        /** @var Session $session */
+        $session = $this->get('session');
+        $session->getFlashBag()->add($type, $message);
     }
 }

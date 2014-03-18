@@ -4,7 +4,8 @@
   {% block bs_crudify_title %}
     <h3>
       {% block bs_crudify_title_content %}
-        {{ "Overview"|trans }} <small>{{ definition.entityTitle|trans }}</small>
+        {{ "Overview"|trans({}, definition.translationDomain) }}
+        <small>{{ definition.entityTitle|trans({}, definition.translationDomain) }}</small>
       {% endblock %}
     </h3>
   {% endblock %}
@@ -12,20 +13,24 @@
   {% if is_granted('CRUDIFY_CREATE', definition) %}
     {% block bs_crudify_create_button %}
       <a href="{{ crudify_action('new', definition) }}" class="btn btn-success pull-right">
-        <i class="fa fa-plus"></i> {{ "Add"|trans }}
+        <i class="fa fa-plus"></i> {{ "Add"|trans({}, definition.translationDomain) }}
       </a>
     {% endblock %}
   {% endif %}
 
   {% block bs_crudify_grid %}
-    <table class="table table-striped table-hover">
+    <table class="table table-striped table-hover crudify-grid">
       <thead>
         <tr>
           {% block bs_crudify_thead_before %}{% endblock %}
           {% block bs_crudify_thead_columns %}
             {% for column in definition.index %}
               <th class="{{ column.type }}">
-                {{ knp_pagination_sortable(objects, column.title|trans, column.field) }}
+                {{ knp_pagination_sortable(
+                    objects,
+                    column.title|trans({}, definition.translationDomain),
+                    column.field
+                ) }}
               </th>
             {% endfor %}
           {% endblock %}
@@ -55,7 +60,7 @@
                         <a href="{{ crudify_action('edit', definition, object) }}"
                            class="btn btn-default btn-sm click-disable">
                           <span class="fa fa-pencil"></span>
-                          {{ 'Edit'|trans }}
+                          {{ 'Edit'|trans({}, definition.translationDomain) }}
                         </a>
                       {% endblock %}
                     {% endif %}

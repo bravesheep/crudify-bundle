@@ -52,9 +52,11 @@ class BaseController extends AbstractCrudController
             $manager->persist($object);
             $manager->flush();
             $this->triggerEvent(CrudifyEvents::CREATE, $object, $definition);
+            $this->addTranslatedFlash($definition, 'success', 'The object was created.');
             return $this->determineSuccessResponse($definition, $object, $request);
         }
 
+        $this->addTranslatedFlash($definition, 'error', 'There were errors on the form.');
         return $this->render($definition->getNewTemplate(), [
             'definition' => $definition,
             'form' => $form->createView(),
@@ -98,8 +100,11 @@ class BaseController extends AbstractCrudController
             $manager = $definition->getEntityManager();
             $manager->flush();
             $this->triggerEvent(CrudifyEvents::UPDATE, $object, $definition);
+            $this->addTranslatedFlash($definition, 'success', 'The object was updated.');
             return $this->determineSuccessResponse($definition, $object, $request);
         }
+
+        $this->addTranslatedFlash($definition, 'error', 'There were errors on the form.');
         return $this->render($definition->getEditTemplate(), [
             'definition' => $definition,
             'form' => $form->createView(),
@@ -126,6 +131,9 @@ class BaseController extends AbstractCrudController
             $manager->remove($object);
             $manager->flush();
             $this->triggerEvent(CrudifyEvents::DELETE, $object, $definition);
+            $this->addTranslatedFlash($definition, 'success', 'The object was removed.');
+        } else {
+            $this->addTranslatedFlash($definition, 'error', 'An error occured when trying to remove the object.');
         }
 
         return $this->redirect($this->generateUrl('bs_crudify.index', [
