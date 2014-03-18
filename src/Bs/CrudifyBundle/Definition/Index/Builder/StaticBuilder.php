@@ -37,6 +37,7 @@ class StaticBuilder extends AbstractBuilder
             } else {
                 $sortColumn = new Column();
                 $sortColumn->setName($options['index']['sort']['column']);
+                $sortColumn->setPath($options['index']['sort']['column']);
             }
             $definition->setDefaultSort($sortColumn, $options['index']['sort']['direction']);
         }

@@ -60,7 +60,7 @@ class Definition implements DefinitionInterface
      */
     private $templates;
 
-    public function __construct($entity, $entityManager)
+    public function __construct($entity, EntityManager $entityManager)
     {
         $this->flags = [];
         $this->setEntity($entity);

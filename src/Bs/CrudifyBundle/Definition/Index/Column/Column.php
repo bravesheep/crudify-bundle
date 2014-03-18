@@ -181,6 +181,6 @@ class Column implements ColumnInterface
      */
     public function isQueryable()
     {
-        return false !== $this->path;
+        return is_string($this->path);
     }
 }
