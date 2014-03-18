@@ -1,0 +1,4 @@
+crudify_admin:
+    prefix: /
+    type: crudify
+    resource: .

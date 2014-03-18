@@ -1,0 +1,21 @@
+default:
+    paths:
+        features: features
+    context:
+        class: Bs\CrudifyBundle\Tests\Context\FeatureContext
+    extensions:
+        Behat\Symfony2Extension\Extension:
+            mink_driver: true
+            kernel:
+                bootstrap: src/Bs/CrudifyBundle/Tests/Fixtures/App/autoload.php
+                path: src/Bs/CrudifyBundle/Tests/Fixtures/App/AppKernel.php
+                class: Bs\CrudifyBundle\Tests\Fixtures\App\AppKernel
+        Behat\MinkExtension\Extension:
+            zombie: ~
+            default_session: symfony2
+            javascript_session: zombie
+        VIPSoft\DoctrineDataFixturesExtension\Extension:
+            lifetime: feature
+            autoload: true
+            directories: ~
+            fixtures: ~
