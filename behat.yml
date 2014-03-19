@@ -13,7 +13,7 @@ default:
         Behat\MinkExtension\Extension:
             default_session: symfony2
         VIPSoft\DoctrineDataFixturesExtension\Extension:
-            lifetime: feature
+            lifetime: scenario
             autoload: true
             directories: ~
             fixtures: ~
