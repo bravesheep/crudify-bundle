@@ -14,6 +14,7 @@ use Doctrine\Bundle\DoctrineBundle\Registry;
 class FeatureContext extends MinkContext
 {
     use KernelDictionary;
+    use IndexContext;
 
     /**
      * @return DocumentElement
@@ -46,6 +47,7 @@ class FeatureContext extends MinkContext
             $address->setStreet($row['street']);
             $user->setName($row['name']);
             $user->setAddress($address);
+            $user->setEnabled(strtolower($row['enabled']) === 'yes');
             $em->persist($address);
             $em->persist($user);
         }
@@ -67,42 +69,10 @@ class FeatureContext extends MinkContext
             $address->setStreet($faker->streetName);
             $user->setName($faker->firstName);
             $user->setAddress($address);
+            $user->setEnabled($faker->boolean());
             $em->persist($address);
             $em->persist($user);
         }
         $em->flush();
-    }
-
-    /**
-     * @Then /^I should see a grid with (\d+) rows$/
-     */
-    public function iShouldSeeAGridWithRows($count)
-    {
-        $rows = $this->getPage()->findAll('css', '.crudify-grid > tbody > tr');
-        expect(count($rows))->toBe((int) $count);
-    }
-
-    /**
-     * @Then /^there should be pagination on the page$/
-     */
-    public function thereShouldBePaginationOnThePage()
-    {
-        expect($this->getPage()->find('css', 'ul.pagination'))->notToBe(null);
-    }
-
-    /**
-     * @When /^I click on the next page button$/
-     */
-    public function iClickOnTheNextPageButton()
-    {
-        $this->getPage()->findLink('Next »')->click();
-    }
-
-    /**
-     * @Then /^I should be on the second users page$/
-     */
-    public function iShouldBeOnTheSecondUsersPage()
-    {
-        expect($this->getSession()->getCurrentUrl())->toMatch('/page=2/');
     }
 }

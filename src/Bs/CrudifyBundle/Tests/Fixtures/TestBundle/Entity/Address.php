@@ -31,6 +31,7 @@ class Address
      *
      * @ORM\Column(type="string", length=255)
      * @Assert\NotBlank
+     * @Assert\Type("string")
      */
     private $city;
 
@@ -39,6 +40,7 @@ class Address
      *
      * @ORM\Column(type="string", length=255)
      * @Assert\NotBlank
+     * @Assert\Type("string")
      */
     private $street;
 

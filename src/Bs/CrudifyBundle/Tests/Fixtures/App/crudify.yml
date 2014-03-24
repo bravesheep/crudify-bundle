@@ -1,0 +1,12 @@
+bs_crudify:
+    default: users
+    mappings:
+        users:
+            entity: TestBundle:User
+            index:
+                columns:
+                    name: text
+                    address.city: text
+                    address.street: text
+                    enabled: bool
+            form: Bs\CrudifyBundle\Tests\Fixtures\TestBundle\Form\UserType

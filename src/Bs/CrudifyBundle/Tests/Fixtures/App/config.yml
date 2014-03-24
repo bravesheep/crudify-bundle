@@ -1,3 +1,6 @@
+imports:
+    - { resource: crudify.yml }
+
 # Framework configuration
 framework:
     esi:             { enabled: true }
@@ -48,15 +51,3 @@ doctrine:
 
 knp_paginator:
     page_range: 15
-
-bs_crudify:
-    default: users
-    mappings:
-        users:
-            entity: TestBundle:User
-            index:
-                columns:
-                    name: text
-                    address.city: text
-                    address.street: text
-            form: Bs\CrudifyBundle\Tests\Fixtures\TestBundle\Form\UserType

@@ -24,6 +24,7 @@ class User
      *
      * @ORM\OneToOne(targetEntity="Address", inversedBy="user")
      * @Assert\Valid
+     * @Assert\Type("string")
      */
     private $address;
 
@@ -32,8 +33,22 @@ class User
      *
      * @ORM\Column(type="string", length=255)
      * @Assert\NotBlank
+     * @Assert\Type("string")
      */
     private $name;
+
+    /**
+     * @var bool
+     *
+     * @ORM\Column(type="boolean")
+     * @Assert\Type("bool")
+     */
+    private $enabled;
+
+    public function __construct()
+    {
+        $this->enabled = false;
+    }
 
     /**
      * @param Address $address
@@ -77,5 +92,23 @@ class User
     public function getName()
     {
         return $this->name;
+    }
+
+    /**
+     * @param bool $enabled
+     * @return $this
+     */
+    public function setEnabled($enabled)
+    {
+        $this->enabled = $enabled;
+        return $this;
+    }
+
+    /**
+     * @return boolean
+     */
+    public function isEnabled()
+    {
+        return $this->enabled;
     }
 }
