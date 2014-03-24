@@ -34,4 +34,3 @@ Feature: Visiting the index page
     And I click on the next page button
     Then I should be on the second users page
     And I should see a grid with 10 rows
-

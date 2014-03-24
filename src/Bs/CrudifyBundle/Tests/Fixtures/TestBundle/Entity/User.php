@@ -22,9 +22,8 @@ class User
     /**
      * @var Address
      *
-     * @ORM\OneToOne(targetEntity="Address", inversedBy="user")
+     * @ORM\OneToOne(targetEntity="Address", inversedBy="user", cascade={"all"})
      * @Assert\Valid
-     * @Assert\Type("string")
      */
     private $address;
 
@@ -48,6 +47,7 @@ class User
     public function __construct()
     {
         $this->enabled = false;
+        $this->address = new Address();
     }
 
     /**
