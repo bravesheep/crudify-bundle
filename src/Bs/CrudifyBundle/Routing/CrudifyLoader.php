@@ -38,7 +38,7 @@ class CrudifyLoader extends Loader
         $routes->add('bs_crudify.create', $this->createRoute('/{mapping}', 'createAction', $mappingReq, ['POST']));
         $routes->add(
             'bs_crudify.edit',
-            $this->createRoute('/{mapping}/{id}/edit', 'editAction', $mappingIdReq, ['GET'])
+            $this->createRoute('/{mapping}/{id}', 'editAction', $mappingIdReq, ['GET'])
         );
         $routes->add(
             'bs_crudify.update',

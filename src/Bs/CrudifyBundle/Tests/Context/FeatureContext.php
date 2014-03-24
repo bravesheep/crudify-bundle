@@ -15,6 +15,7 @@ class FeatureContext extends MinkContext
 {
     use KernelDictionary;
     use IndexContext;
+    use EditContext;
 
     /**
      * @return DocumentElement

@@ -5,7 +5,7 @@ Feature: Visiting the index page
 
   Scenario: Getting redirected to the default mapping
     When I am on the homepage
-    Then I should be on "/users"
+    Then I should be on the users index page
 
   Scenario: I should be able to see the information in the user table
     Given the following users exist:
@@ -14,7 +14,7 @@ Feature: Visiting the index page
       | John  | Arviat      | Morbi Avenue  | no      |
       | Julia | Hallaar     | Nec, Street   | yes     |
       | Jane  | Tulita      | Ipsum St.     | yes     |
-    When I am on "/users"
+    When I am on the users index page
     Then I should see a grid with 4 rows
     And there should be 5 columns in the grid
     And I should see "Joe" in row 1
@@ -24,13 +24,13 @@ Feature: Visiting the index page
 
   Scenario: Pagination should be visible if there are many users
     Given there are 30 users
-    When I am on "/users"
+    When I am on the users index page
     Then I should see a grid with 20 rows
     And there should be pagination on the page
 
   Scenario: I should be able to visit the second page of results
     Given there are 30 users
-    When I am on "/users"
+    When I am on the users index page
     And I click on the next page button
     Then I should be on the second users page
     And I should see a grid with 10 rows

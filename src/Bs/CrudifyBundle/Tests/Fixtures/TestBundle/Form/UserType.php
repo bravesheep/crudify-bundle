@@ -4,6 +4,8 @@ namespace Bs\CrudifyBundle\Tests\Fixtures\TestBundle\Form;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\Form\FormEvent;
+use Symfony\Component\Form\FormEvents;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
 class UserType extends AbstractType
@@ -26,6 +28,14 @@ class UserType extends AbstractType
                 'required' => false,
             ])
         ;
+
+        $builder->addEventListener(FormEvents::PRE_SUBMIT, function (FormEvent $event) {
+            $data = $event->getData();
+            if (!isset($data['enabled'])) {
+                $data['enabled'] = false;
+            }
+            $event->setData($data);
+        });
     }
 
     /**

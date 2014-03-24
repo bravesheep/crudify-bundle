@@ -7,10 +7,10 @@ use Behat\Behat\Exception\PendingException;
 use Behat\Mink\Element\DocumentElement;
 use Behat\Mink\Element\NodeElement;
 use Behat\Mink\Session;
+use Behat\Mink\WebAssert;
 
 trait IndexContext
 {
-
     /**
      * @return DocumentElement
      */
@@ -21,6 +21,18 @@ trait IndexContext
      * @return Session
      */
     abstract public function getSession($name = null);
+
+    /**
+     * @param string $path
+     * @return string
+     */
+    abstract public function locatePath($path);
+
+    /**
+     * @param string $name
+     * @return WebAssert
+     */
+    abstract public function assertSession($name = null);
 
     /**
      * @When /^I click on the next page button$/
@@ -41,6 +53,7 @@ trait IndexContext
 
     /**
      * @Then /^I should see a grid with (\d+) rows$/
+     * @Then /^I should see a grid with (\d+) row$/
      */
     public function iShouldSeeAGridWithRows($count)
     {
@@ -76,5 +89,36 @@ trait IndexContext
         /** @var NodeElement $r */
         $r = $rows[$row];
         Assertion::contains($r->getText(), $what);
+    }
+
+    /**
+     * @Then /^I should be on the users index page$/
+     * @Then /^I should be on the user index page$/
+     */
+    public function iShouldBeOnTheUsersIndexPage()
+    {
+        $this->assertSession()->addressEquals($this->locatePath("/users"));
+        $this->assertSession()->pageTextContains('Overview users');
+    }
+
+    /**
+     * @Given /^I am on the users index page$/
+     * @when /^I go to the users index page$/
+     * @When /^I go to the user index page$/
+     * @Given /^I am on the user index page$/
+     */
+    public function iAmOnTheUsersIndexPage()
+    {
+        $this->getSession()->visit($this->locatePath("/users"));
+    }
+
+    /**
+     * @When /^I follow "([^"]*)" in row (\d+)$/
+     */
+    public function iFollowInRow($link, $rowNum)
+    {
+        $elem = $this->getPage()->find('css', '.crudify-grid > tbody > tr:nth-child(' . $rowNum . ')');
+        Assertion::notNull($elem);
+        $elem->clickLink($link);
     }
 }
