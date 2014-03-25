@@ -28,14 +28,6 @@ class UserType extends AbstractType
                 'required' => false,
             ])
         ;
-
-        $builder->addEventListener(FormEvents::PRE_SUBMIT, function (FormEvent $event) {
-            $data = $event->getData();
-            if (!isset($data['enabled'])) {
-                $data['enabled'] = false;
-            }
-            $event->setData($data);
-        });
     }
 
     /**

@@ -24,7 +24,7 @@ class BasicOptions implements OptionsInterface
     public function getUpdateOptions(CrudControllerInterface $controller, DefinitionInterface $definition, $object)
     {
         return [
-            'method' => 'PATCH',
+            'method' => 'PUT',
             'action' => $controller->getLink('update', $definition, $object),
         ];
     }
