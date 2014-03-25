@@ -36,7 +36,7 @@ class BasicOptionsSpec extends ObjectBehavior
         DefinitionInterface $definition
     ) {
         $result = $this->getUpdateOptions($controller, $definition, 10);
-        $result->shouldContainKeyValue('method', 'PATCH');
+        $result->shouldContainKeyValue('method', 'PUT');
         $result->shouldContainKeyValue('action', '/update/10');
     }
 
