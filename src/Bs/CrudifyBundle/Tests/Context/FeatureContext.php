@@ -2,6 +2,7 @@
 
 namespace Bs\CrudifyBundle\Tests\Context;
 
+use Assert\Assertion;
 use Behat\Behat\Exception\PendingException;
 use Behat\Gherkin\Node\TableNode;
 use Behat\Mink\Element\DocumentElement;
@@ -75,5 +76,34 @@ class FeatureContext extends MinkContext
             $em->persist($user);
         }
         $em->flush();
+    }
+
+    /**
+     * @When /^I click on "([^"]*)"$/
+     */
+    public function iClickOn($link)
+    {
+        $link = $this->getSession()->getSelectorsHandler()->xpathLiteral($link);
+        $elem = $this->getSession()->getPage()->find('xpath', "//a[normalize-space(string(.))=$link]");
+        Assertion::notNull($elem);
+        $elem->click();
+    }
+
+    /**
+     * @When /^I am on the address index page$/
+     */
+    public function iAmOnTheAddressIndexPage()
+    {
+        $this->visit($this->locatePath("/address"));
+    }
+
+    /**
+     * @Then /^I should not see an? "([^"]*)" link$/
+     */
+    public function iShouldNotSeeAnLink($link)
+    {
+        $link = $this->getSession()->getSelectorsHandler()->xpathLiteral($link);
+        $elem = $this->getSession()->getPage()->find('xpath', "//a[normalize-space(string(.))=$link]");
+        Assertion::same($elem, null);
     }
 }

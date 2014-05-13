@@ -10,3 +10,14 @@ bs_crudify:
                     address.street: text
                     enabled: bool
             form: Bs\CrudifyBundle\Tests\Fixtures\TestBundle\Form\UserType
+
+        address:
+            entity: TestBundle:address
+            index:
+                columns:
+                    user.name: text
+                    city: text
+                    street: text
+            form: Bs\CrudifyBundle\Tests\Fixtures\TestBundle\Form\AddressType
+            create: false
+            update: true

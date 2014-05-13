@@ -4,6 +4,7 @@ namespace Bs\CrudifyBundle\Controller;
 
 use Bs\CrudifyBundle\Definition\DefinitionInterface;
 use Bs\CrudifyBundle\Event\CrudifyEvents;
+use Doctrine\DBAL\DBALException;
 use Symfony\Component\HttpFoundation\Request;
 
 class BaseController extends AbstractCrudController
@@ -129,9 +130,14 @@ class BaseController extends AbstractCrudController
             $this->triggerEvent(CrudifyEvents::BEFORE_DELETE, $object, $definition);
             $manager = $definition->getEntityManager();
             $manager->remove($object);
-            $manager->flush();
-            $this->triggerEvent(CrudifyEvents::DELETE, $object, $definition);
-            $this->addTranslatedFlash($definition, 'success', 'The object was removed.');
+
+            try {
+                $manager->flush();
+                $this->triggerEvent(CrudifyEvents::DELETE, $object, $definition);
+                $this->addTranslatedFlash($definition, 'success', 'The object was removed.');
+            } catch (DBALException $e) {
+                $this->addTranslatedFlash($definition, 'error', 'An error occured when trying to remove the object.');
+            }
         } else {
             $this->addTranslatedFlash($definition, 'error', 'An error occured when trying to remove the object.');
         }

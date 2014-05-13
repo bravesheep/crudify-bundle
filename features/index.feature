@@ -34,3 +34,7 @@ Feature: Visiting the index page
     And I click on the next page button
     Then I should be on the second users page
     And I should see a grid with 10 rows
+
+  Scenario: No add link on mappings that do not have create rights
+    When I am on the address index page
+    Then I should not see an "Add" link

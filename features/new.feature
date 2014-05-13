@@ -6,7 +6,7 @@ Feature: Creating new objects using the CRUD
 
   Scenario: I should be able to visit the create page
     Given I am on the users index page
-    When I follow "Add"
+    When I click on "Add"
     Then I should be on the new user page
     And I should see "Add Users"
 
