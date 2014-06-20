@@ -2,12 +2,12 @@
 
 namespace spec\Bs\CrudifyBundle\Resolver;
 
-use Bs\CrudifyBundle\Definition\DefinitionInterface;
-use Bs\CrudifyBundle\Definition\Index\Column\ColumnInterface;
-use Bs\CrudifyBundle\Definition\Index\IndexDefinitionInterface;
-use Bs\CrudifyBundle\Query\ModifierInterface;
-use Bs\CrudifyBundle\Resolver\IdentityResolver;
-use Bs\CrudifyBundle\Resolver\QueryModifierResolver;
+use Bravesheep\CrudifyBundle\Definition\DefinitionInterface;
+use Bravesheep\CrudifyBundle\Definition\Index\Column\ColumnInterface;
+use Bravesheep\CrudifyBundle\Definition\Index\IndexDefinitionInterface;
+use Bravesheep\CrudifyBundle\Query\ModifierInterface;
+use Bravesheep\CrudifyBundle\Resolver\IdentityResolver;
+use Bravesheep\CrudifyBundle\Resolver\QueryModifierResolver;
 use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\Query\Expr\Select;
 use Doctrine\ORM\AbstractQuery;
@@ -29,7 +29,7 @@ class QueryResolverSpec extends ObjectBehavior
         $this->beConstructedWith($identityResolver, $queryModifierResolver);
 
         $queryModifierResolver
-            ->resolve(Argument::type('Bs\\CrudifyBundle\\Query\\ModifierInterface'))
+            ->resolve(Argument::type('Bravesheep\\CrudifyBundle\\Query\\ModifierInterface'))
             ->willReturnArgument()
         ;
 
@@ -41,7 +41,7 @@ class QueryResolverSpec extends ObjectBehavior
 
     function it_is_initializable()
     {
-        $this->shouldHaveType('Bs\\CrudifyBundle\\Resolver\\QueryResolver');
+        $this->shouldHaveType('Bravesheep\\CrudifyBundle\\Resolver\\QueryResolver');
     }
 
     function its_addJoins_should_add_some_joins(

@@ -9,7 +9,7 @@ class StaticBuilderSpec extends ObjectBehavior
 {
     function it_is_initializable()
     {
-        $this->shouldHaveType('Bs\CrudifyBundle\Definition\Index\Builder\StaticBuilder');
+        $this->shouldHaveType('Bravesheep\CrudifyBundle\Definition\Index\Builder\StaticBuilder');
     }
 
     function it_should_build_the_correct_definition_if_all_settings_are_defined()
@@ -44,7 +44,7 @@ class StaticBuilderSpec extends ObjectBehavior
         $definition->getQueryModifier()->shouldReturn('query_modifier');
         $definition->getObjectsPerPage()->shouldReturn(293);
 
-        $columnType = 'Bs\\CrudifyBundle\\Definition\\Index\\Column\\ColumnInterface';
+        $columnType = 'Bravesheep\\CrudifyBundle\\Definition\\Index\\Column\\ColumnInterface';
 
         $definition->getDefaultSortColumn()->shouldReturnAnInstanceOf($columnType);
         $definition->getDefaultSortColumn()->getName()->shouldReturn('sort_column');
@@ -93,7 +93,7 @@ class StaticBuilderSpec extends ObjectBehavior
 
         $definition = $this->build($options);
 
-        $columnType = 'Bs\\CrudifyBundle\\Definition\\Index\\Column\\ColumnInterface';
+        $columnType = 'Bravesheep\\CrudifyBundle\\Definition\\Index\\Column\\ColumnInterface';
 
         $definition->getColumn('first.path')->shouldReturnAnInstanceOf($columnType);
         $definition->getColumn('second')->shouldReturnAnInstanceOf($columnType);

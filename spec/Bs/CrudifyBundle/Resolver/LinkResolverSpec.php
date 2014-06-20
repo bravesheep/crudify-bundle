@@ -2,8 +2,8 @@
 
 namespace spec\Bs\CrudifyBundle\Resolver;
 
-use Bs\CrudifyBundle\Definition\DefinitionInterface;
-use Bs\CrudifyBundle\Resolver\IdentityResolver;
+use Bravesheep\CrudifyBundle\Definition\DefinitionInterface;
+use Bravesheep\CrudifyBundle\Resolver\IdentityResolver;
 use PhpSpec\ObjectBehavior;
 use Prophecy\Argument;
 use Symfony\Component\Routing\RouterInterface;
@@ -53,7 +53,7 @@ class LinkResolverSpec extends ObjectBehavior
 
     function it_is_initializable()
     {
-        $this->shouldHaveType('Bs\CrudifyBundle\Resolver\LinkResolver');
+        $this->shouldHaveType('Bravesheep\CrudifyBundle\Resolver\LinkResolver');
     }
 
     function it_should_retrieve_the_index_link(DefinitionInterface $definition)

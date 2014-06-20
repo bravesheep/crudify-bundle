@@ -2,7 +2,7 @@
 
 namespace spec\Bs\CrudifyBundle\Definition\Index\Column;
 
-use Bs\CrudifyBundle\Definition\Index\IndexDefinitionInterface;
+use Bravesheep\CrudifyBundle\Definition\Index\IndexDefinitionInterface;
 use PhpSpec\ObjectBehavior;
 use Prophecy\Argument;
 
@@ -10,7 +10,7 @@ class ColumnSpec extends ObjectBehavior
 {
     function it_is_initializable()
     {
-        $this->shouldHaveType('Bs\CrudifyBundle\Definition\Index\Column\Column');
+        $this->shouldHaveType('Bravesheep\CrudifyBundle\Definition\Index\Column\Column');
     }
 
     function its_name_should_be_modifyable()

@@ -2,7 +2,7 @@
 
 namespace spec\Bs\CrudifyBundle\Resolver;
 
-use Bs\CrudifyBundle\Definition\DefinitionInterface;
+use Bravesheep\CrudifyBundle\Definition\DefinitionInterface;
 use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\Mapping\ClassMetadata;
 use PhpSpec\ObjectBehavior;
@@ -23,7 +23,7 @@ class IdentityResolverSpec extends ObjectBehavior
 
     function it_is_initializable()
     {
-        $this->shouldHaveType('Bs\CrudifyBundle\Resolver\IdentityResolver');
+        $this->shouldHaveType('Bravesheep\CrudifyBundle\Resolver\IdentityResolver');
     }
 
     function it_should_return_the_identity_column_if_there_is_exactly_one(
@@ -41,7 +41,7 @@ class IdentityResolverSpec extends ObjectBehavior
     ) {
         $metadata->getIdentifierFieldNames()->willReturn(['some', 'id']);
         $this
-            ->shouldThrow('Bs\\CrudifyBundle\\Exception\\UnsupportedEntityException')
+            ->shouldThrow('Bravesheep\\CrudifyBundle\\Exception\\UnsupportedEntityException')
             ->duringGetIdentityColumn($definition)
         ;
     }
@@ -62,7 +62,7 @@ class IdentityResolverSpec extends ObjectBehavior
     ) {
         $metadata->getIdentifierValues($object)->willReturn([1, 2, 3]);
         $this
-            ->shouldThrow('Bs\\CrudifyBundle\\Exception\\UnsupportedEntityException')
+            ->shouldThrow('Bravesheep\\CrudifyBundle\\Exception\\UnsupportedEntityException')
             ->duringGetId($definition, $object)
         ;
     }

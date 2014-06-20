@@ -2,7 +2,7 @@
 
 namespace spec\Bs\CrudifyBundle\Resolver;
 
-use Bs\CrudifyBundle\Query\ObjectRetrieverInterface;
+use Bravesheep\CrudifyBundle\Query\ObjectRetrieverInterface;
 use PhpSpec\ObjectBehavior;
 use Prophecy\Argument;
 use Symfony\Component\DependencyInjection\ContainerInterface;
@@ -16,7 +16,7 @@ class ObjectRetrieverResolverSpec extends ObjectBehavior
 
     function it_is_initializable()
     {
-        $this->shouldHaveType('Bs\CrudifyBundle\Resolver\ObjectRetrieverResolver');
+        $this->shouldHaveType('Bravesheep\CrudifyBundle\Resolver\ObjectRetrieverResolver');
     }
 
     function it_should_resolve_a_service(ContainerInterface $container, ObjectRetrieverInterface $retriever)
@@ -30,7 +30,7 @@ class ObjectRetrieverResolverSpec extends ObjectBehavior
 
     function it_should_resolve_a_class(ContainerInterface $container)
     {
-        $class = 'Bs\\CrudifyBundle\\Tests\\Fixtures\\Query\\MockObjectRetriever';
+        $class = 'Bravesheep\\CrudifyBundle\\Tests\\Fixtures\\Query\\MockObjectRetriever';
         $container->has($class)->willReturn(false);
         $this->resolve($class)->shouldReturnAnInstanceOf($class);
     }
@@ -46,7 +46,7 @@ class ObjectRetrieverResolverSpec extends ObjectBehavior
         $container->has($service)->willReturn(false);
 
         $this
-            ->shouldThrow('Bs\\CrudifyBundle\\Exception\\ObjectRetrieverNotFoundException')
+            ->shouldThrow('Bravesheep\\CrudifyBundle\\Exception\\ObjectRetrieverNotFoundException')
             ->duringResolve($service)
         ;
     }
@@ -57,7 +57,7 @@ class ObjectRetrieverResolverSpec extends ObjectBehavior
         $container->has($class)->willReturn(false);
 
         $this
-            ->shouldThrow('Bs\\CrudifyBundle\\Exception\\ObjectRetrieverNotFoundException')
+            ->shouldThrow('Bravesheep\\CrudifyBundle\\Exception\\ObjectRetrieverNotFoundException')
             ->duringResolve($class)
         ;
     }
@@ -65,7 +65,7 @@ class ObjectRetrieverResolverSpec extends ObjectBehavior
     function it_should_throw_an_exception_for_an_invalid_type()
     {
         $this
-            ->shouldThrow('Bs\\CrudifyBundle\\Exception\\ObjectRetrieverNotFoundException')
+            ->shouldThrow('Bravesheep\\CrudifyBundle\\Exception\\ObjectRetrieverNotFoundException')
             ->duringResolve(10)
         ;
     }

@@ -2,11 +2,11 @@
 
 namespace spec\Bs\CrudifyBundle\Resolver;
 
-use Bs\CrudifyBundle\Controller\CrudControllerInterface;
-use Bs\CrudifyBundle\Definition\DefinitionInterface;
-use Bs\CrudifyBundle\Definition\Form\FormDefinition;
-use Bs\CrudifyBundle\Form\OptionsProvider\OptionsInterface;
-use Bs\CrudifyBundle\Resolver\FormOptionsResolver;
+use Bravesheep\CrudifyBundle\Controller\CrudControllerInterface;
+use Bravesheep\CrudifyBundle\Definition\DefinitionInterface;
+use Bravesheep\CrudifyBundle\Definition\Form\FormDefinition;
+use Bravesheep\CrudifyBundle\Form\OptionsProvider\OptionsInterface;
+use Bravesheep\CrudifyBundle\Resolver\FormOptionsResolver;
 use PhpSpec\ObjectBehavior;
 use Prophecy\Argument;
 use Symfony\Component\DependencyInjection\ContainerInterface;
@@ -15,7 +15,7 @@ class FormOptionsResolverSpec extends ObjectBehavior
 {
     function it_is_initializable()
     {
-        $this->shouldHaveType('Bs\CrudifyBundle\Resolver\FormOptionsResolver');
+        $this->shouldHaveType('Bravesheep\CrudifyBundle\Resolver\FormOptionsResolver');
     }
 
     function it_should_throw_an_error_on_a_nonexistant_service(
@@ -34,7 +34,7 @@ class FormOptionsResolverSpec extends ObjectBehavior
 
         $this->setContainer($container);
         $this
-            ->shouldThrow('Bs\\CrudifyBundle\\Exception\\OptionsProviderNotFoundException')
+            ->shouldThrow('Bravesheep\\CrudifyBundle\\Exception\\OptionsProviderNotFoundException')
             ->duringResolve($definition, FormOptionsResolver::TYPE_CREATE, $controller)
         ;
     }
@@ -54,7 +54,7 @@ class FormOptionsResolverSpec extends ObjectBehavior
 
         $this->setContainer($container);
         $this
-            ->shouldThrow('Bs\\CrudifyBundle\\Exception\\OptionsProviderNotFoundException')
+            ->shouldThrow('Bravesheep\\CrudifyBundle\\Exception\\OptionsProviderNotFoundException')
             ->duringResolve($definition, FormOptionsResolver::TYPE_CREATE, $controller)
         ;
     }
@@ -89,7 +89,7 @@ class FormOptionsResolverSpec extends ObjectBehavior
         CrudControllerInterface $controller,
         DefinitionInterface $mappingDefinition
     ) {
-        $class = 'Bs\\CrudifyBundle\\Tests\\Fixtures\\Form\\OptionsProvider\\MockOptionsProvider';
+        $class = 'Bravesheep\\CrudifyBundle\\Tests\\Fixtures\\Form\\OptionsProvider\\MockOptionsProvider';
 
         $container->has($class)->willReturn(false);
 
@@ -140,7 +140,7 @@ class FormOptionsResolverSpec extends ObjectBehavior
         CrudControllerInterface $controller,
         DefinitionInterface $mappingDefinition
     ) {
-        $class = 'Bs\\CrudifyBundle\\Tests\\Fixtures\\Form\\OptionsProvider\\MockOptionsProvider';
+        $class = 'Bravesheep\\CrudifyBundle\\Tests\\Fixtures\\Form\\OptionsProvider\\MockOptionsProvider';
 
         $container->has($class)->willReturn(false);
 
@@ -165,7 +165,7 @@ class FormOptionsResolverSpec extends ObjectBehavior
         $mappingDefinition->getName()->willReturn('test');
 
         $this
-            ->shouldThrow('Bs\\CrudifyBundle\\Exception\\OptionsProviderNotFoundException')
+            ->shouldThrow('Bravesheep\\CrudifyBundle\\Exception\\OptionsProviderNotFoundException')
             ->duringResolve($definition, FormOptionsResolver::TYPE_CREATE, $controller)
         ;
     }

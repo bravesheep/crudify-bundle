@@ -17,7 +17,7 @@ class FormResolverSpec extends ObjectBehavior
 
     function it_is_initializable()
     {
-        $this->shouldHaveType('Bs\CrudifyBundle\Resolver\FormResolver');
+        $this->shouldHaveType('Bravesheep\CrudifyBundle\Resolver\FormResolver');
     }
 
     function it_should_resolve_a_form_service(
@@ -35,7 +35,7 @@ class FormResolverSpec extends ObjectBehavior
     function it_should_resolve_a_form_class(
         ContainerInterface $container
     ) {
-        $class = 'Bs\\CrudifyBundle\\Tests\\Fixtures\\Form\\ExampleFormType';
+        $class = 'Bravesheep\\CrudifyBundle\\Tests\\Fixtures\\Form\\ExampleFormType';
 
         $container->has($class)->willReturn(false);
 
@@ -45,7 +45,7 @@ class FormResolverSpec extends ObjectBehavior
     function it_should_set_the_container_of_a_container_aware_class(
         ContainerInterface $container
     ) {
-        $class = 'Bs\\CrudifyBundle\\Tests\\Fixtures\\Form\\ExampleContainerAwareFormType';
+        $class = 'Bravesheep\\CrudifyBundle\\Tests\\Fixtures\\Form\\ExampleContainerAwareFormType';
 
         $container->has($class)->willReturn(false);
 
@@ -61,7 +61,7 @@ class FormResolverSpec extends ObjectBehavior
         $container->has($service)->willReturn(false);
 
         $this
-            ->shouldThrow('Bs\\CrudifyBundle\\Exception\\FormNotFoundException')
+            ->shouldThrow('Bravesheep\\CrudifyBundle\\Exception\\FormNotFoundException')
             ->duringResolve($service)
         ;
     }
@@ -73,7 +73,7 @@ class FormResolverSpec extends ObjectBehavior
         $container->has($class)->willReturn(false);
 
         $this
-            ->shouldThrow('Bs\\CrudifyBundle\\Exception\\FormNotFoundException')
+            ->shouldThrow('Bravesheep\\CrudifyBundle\\Exception\\FormNotFoundException')
             ->duringResolve($class)
         ;
     }
@@ -81,7 +81,7 @@ class FormResolverSpec extends ObjectBehavior
     function it_should_throw_an_error_for_invalid_types()
     {
         $this
-            ->shouldThrow('Bs\\CrudifyBundle\\Exception\\FormNotFoundException')
+            ->shouldThrow('Bravesheep\\CrudifyBundle\\Exception\\FormNotFoundException')
             ->duringResolve(10)
         ;
     }

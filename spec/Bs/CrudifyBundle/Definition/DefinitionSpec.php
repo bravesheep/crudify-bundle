@@ -2,9 +2,9 @@
 
 namespace spec\Bs\CrudifyBundle\Definition;
 
-use Bs\CrudifyBundle\Definition\Form\FormDefinitionInterface;
-use Bs\CrudifyBundle\Definition\Index\IndexDefinitionInterface;
-use Bs\CrudifyBundle\Definition\Template\TemplateDefinitionInterface;
+use Bravesheep\CrudifyBundle\Definition\Form\FormDefinitionInterface;
+use Bravesheep\CrudifyBundle\Definition\Index\IndexDefinitionInterface;
+use Bravesheep\CrudifyBundle\Definition\Template\TemplateDefinitionInterface;
 use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\EntityRepository;
 use PhpSpec\ObjectBehavior;
@@ -21,7 +21,7 @@ class DefinitionSpec extends ObjectBehavior
 
     function it_is_initializable()
     {
-        $this->shouldHaveType('Bs\CrudifyBundle\Definition\Definition');
+        $this->shouldHaveType('Bravesheep\CrudifyBundle\Definition\Definition');
     }
 
     function its_name_is_null_by_default()

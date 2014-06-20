@@ -2,8 +2,8 @@
 
 namespace spec\Bs\CrudifyBundle\Form\OptionsProvider;
 
-use Bs\CrudifyBundle\Controller\CrudControllerInterface;
-use Bs\CrudifyBundle\Definition\DefinitionInterface;
+use Bravesheep\CrudifyBundle\Controller\CrudControllerInterface;
+use Bravesheep\CrudifyBundle\Definition\DefinitionInterface;
 use PhpSpec\ObjectBehavior;
 use Prophecy\Argument;
 
@@ -11,7 +11,7 @@ class BasicOptionsSpec extends ObjectBehavior
 {
     function it_is_initializable()
     {
-        $this->shouldHaveType('Bs\CrudifyBundle\Form\OptionsProvider\BasicOptions');
+        $this->shouldHaveType('Bravesheep\CrudifyBundle\Form\OptionsProvider\BasicOptions');
     }
 
     function let(CrudControllerInterface $controller, DefinitionInterface $definition)

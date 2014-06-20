@@ -2,7 +2,7 @@
 
 namespace spec\Bs\CrudifyBundle\Definition\Form;
 
-use Bs\CrudifyBundle\Definition\DefinitionInterface;
+use Bravesheep\CrudifyBundle\Definition\DefinitionInterface;
 use PhpSpec\ObjectBehavior;
 use Prophecy\Argument;
 
@@ -19,7 +19,7 @@ class FormDefinitionSpec extends ObjectBehavior
 
     function it_is_initializable()
     {
-        $this->shouldHaveType('Bs\CrudifyBundle\Definition\Form\FormDefinition');
+        $this->shouldHaveType('Bravesheep\CrudifyBundle\Definition\Form\FormDefinition');
     }
 
     function it_should_return_the_constructor_arguments()

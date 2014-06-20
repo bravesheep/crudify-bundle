@@ -2,7 +2,7 @@
 
 namespace spec\Bs\CrudifyBundle\Security\Authorization\Voter;
 
-use Bs\CrudifyBundle\Definition\DefinitionInterface;
+use Bravesheep\CrudifyBundle\Definition\DefinitionInterface;
 use PhpSpec\ObjectBehavior;
 use Prophecy\Argument;
 use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
@@ -12,7 +12,7 @@ class CrudifyAccessVoterSpec extends ObjectBehavior
 {
     function it_is_initializable()
     {
-        $this->shouldHaveType('Bs\CrudifyBundle\Security\Authorization\Voter\CrudifyAccessVoter');
+        $this->shouldHaveType('Bravesheep\CrudifyBundle\Security\Authorization\Voter\CrudifyAccessVoter');
     }
 
     function it_should_support_all_crudify_attributes()
@@ -68,7 +68,7 @@ class CrudifyAccessVoterSpec extends ObjectBehavior
     function it_should_not_be_constructed_with_an_invalid_default()
     {
         $this
-            ->shouldThrow('Bs\\CrudifyBundle\\Exception\\CrudifyException')
+            ->shouldThrow('Bravesheep\\CrudifyBundle\\Exception\\CrudifyException')
             ->during('__construct', ['test'])
         ;
     }

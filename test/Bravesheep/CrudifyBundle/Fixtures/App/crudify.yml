@@ -1,0 +1,23 @@
+bravesheep_crudify:
+    default: users
+    mappings:
+        users:
+            entity: TestBundle:User
+            index:
+                columns:
+                    name: text
+                    address.city: text
+                    address.street: text
+                    enabled: bool
+            form: Bravesheep\CrudifyBundle\Tests\Fixtures\TestBundle\Form\UserType
+
+        address:
+            entity: TestBundle:address
+            index:
+                columns:
+                    user.name: text
+                    city: text
+                    street: text
+            form: Bravesheep\CrudifyBundle\Tests\Fixtures\TestBundle\Form\AddressType
+            create: false
+            update: true

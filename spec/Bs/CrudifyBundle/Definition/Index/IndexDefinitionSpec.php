@@ -2,8 +2,8 @@
 
 namespace spec\Bs\CrudifyBundle\Definition\Index;
 
-use Bs\CrudifyBundle\Definition\DefinitionInterface;
-use Bs\CrudifyBundle\Definition\Index\Column\ColumnInterface;
+use Bravesheep\CrudifyBundle\Definition\DefinitionInterface;
+use Bravesheep\CrudifyBundle\Definition\Index\Column\ColumnInterface;
 use PhpSpec\ObjectBehavior;
 use Prophecy\Argument;
 
@@ -11,7 +11,7 @@ class IndexDefinitionSpec extends ObjectBehavior
 {
     function it_is_initializable()
     {
-        $this->shouldHaveType('Bs\CrudifyBundle\Definition\Index\IndexDefinition');
+        $this->shouldHaveType('Bravesheep\CrudifyBundle\Definition\Index\IndexDefinition');
     }
 
     function it_should_have_no_colums_by_default()

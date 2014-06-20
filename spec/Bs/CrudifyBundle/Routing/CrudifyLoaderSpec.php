@@ -9,7 +9,7 @@ class CrudifyLoaderSpec extends ObjectBehavior
 {
     function it_is_initializable()
     {
-        $this->shouldHaveType('Bs\CrudifyBundle\Routing\CrudifyLoader');
+        $this->shouldHaveType('Bravesheep\CrudifyBundle\Routing\CrudifyLoader');
     }
 
     function it_should_add_all_base_routes()

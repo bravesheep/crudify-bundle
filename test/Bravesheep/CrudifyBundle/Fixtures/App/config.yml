@@ -1,0 +1,53 @@
+imports:
+    - { resource: crudify.yml }
+
+# Framework configuration
+framework:
+    esi:             { enabled: true }
+    translator:      { fallback: en }
+    secret:          secret
+    test:            ~
+    router:          { resource: "%kernel.root_dir%/routing.yml" }
+    form:            ~
+    csrf_protection: ~
+    validation:      { enable_annotations: true }
+    templating:      { engines: ['twig'] }
+    default_locale:  en
+    trusted_proxies: ~
+    session:
+        storage_id: session.storage.mock_file
+
+security:
+    encoders:
+        Symfony\Component\Security\Core\User\User: plaintext
+    role_hierarchy:
+        ROLE_ADMIN:       ROLE_USER
+        ROLE_SUPER_ADMIN: [ROLE_USER, ROLE_ADMIN, ROLE_ALLOWED_TO_SWITCH]
+    providers:
+        in_memory:
+            memory:
+                users:
+                    user: { password: userpass, roles: [ 'ROLE_USER' ] }
+                    admin: { password: adminpass, roles: [ 'ROLE_ADMIN' ] }
+    firewalls:
+        main:
+            pattern: ^/
+            anonymous: true
+
+doctrine:
+    orm:
+        auto_mapping: false
+        auto_generate_proxy_classes: true
+        mappings:
+            TestBundle:
+                type: annotation
+                prefix: Bravesheep\CrudifyBundle\Fixtures\TestBundle\Entity
+                alias: TestBundle
+                is_bundle: true
+    dbal:
+        path:    "%kernel.cache_dir%/db-test.sqlite"
+        driver:  pdo_sqlite
+        charset: UTF8
+
+knp_paginator:
+    page_range: 15

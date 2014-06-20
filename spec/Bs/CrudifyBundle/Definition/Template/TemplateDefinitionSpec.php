@@ -2,7 +2,7 @@
 
 namespace spec\Bs\CrudifyBundle\Definition\Template;
 
-use Bs\CrudifyBundle\Definition\DefinitionInterface;
+use Bravesheep\CrudifyBundle\Definition\DefinitionInterface;
 use PhpSpec\ObjectBehavior;
 use Prophecy\Argument;
 
@@ -10,7 +10,7 @@ class TemplateDefinitionSpec extends ObjectBehavior
 {
     function it_is_initializable()
     {
-        $this->shouldHaveType('Bs\CrudifyBundle\Definition\Template\TemplateDefinition');
+        $this->shouldHaveType('Bravesheep\CrudifyBundle\Definition\Template\TemplateDefinition');
     }
 
     function its_index_should_be_null_by_default()

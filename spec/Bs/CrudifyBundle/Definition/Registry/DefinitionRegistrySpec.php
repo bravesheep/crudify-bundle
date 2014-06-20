@@ -2,7 +2,7 @@
 
 namespace spec\Bs\CrudifyBundle\Definition\Registry;
 
-use Bs\CrudifyBundle\Definition\DefinitionInterface;
+use Bravesheep\CrudifyBundle\Definition\DefinitionInterface;
 use PhpSpec\ObjectBehavior;
 use Prophecy\Argument;
 
@@ -10,7 +10,7 @@ class DefinitionRegistrySpec extends ObjectBehavior
 {
     function it_is_initializable()
     {
-        $this->shouldHaveType('Bs\CrudifyBundle\Definition\Registry\DefinitionRegistry');
+        $this->shouldHaveType('Bravesheep\CrudifyBundle\Definition\Registry\DefinitionRegistry');
     }
 
     function it_should_have_no_definitions_by_default()

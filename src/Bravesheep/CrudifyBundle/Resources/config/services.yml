@@ -1,0 +1,177 @@
+parameters:
+    # Index definition
+    bravesheep_crudify.definition.index.builder_registry.class: Bravesheep\CrudifyBundle\Definition\Index\Builder\Registry\BuilderRegistry
+    bravesheep_crudify.definition.index.builder.static.class: Bravesheep\CrudifyBundle\Definition\Index\Builder\StaticBuilder
+    bravesheep_crudify.definition.index.builder.dynamic.class: Bravesheep\CrudifyBundle\Definition\Index\Builder\DynamicBuilder
+
+    # Definitions registry and loader
+    bravesheep_crudify.definition.registry.class: Bravesheep\CrudifyBundle\Definition\Registry\SymfonyDefinitionRegistry
+    bravesheep_crudify.definition.loader.class: Bravesheep\CrudifyBundle\Definition\Loader\DIDefinitionLoader
+
+    # Routing loader
+    bravesheep_crudify.routing_loader.class: Bravesheep\CrudifyBundle\Routing\CrudifyLoader
+
+    # Resolvers
+    bravesheep_crudify.resolver.controller.class: Bravesheep\CrudifyBundle\Resolver\ControllerResolver
+    bravesheep_crudify.resolver.form_options.class: Bravesheep\CrudifyBundle\Resolver\FormOptionsResolver
+    bravesheep_crudify.resolver.form.class: Bravesheep\CrudifyBundle\Resolver\FormResolver
+    bravesheep_crudify.resolver.grid.class: Bravesheep\CrudifyBundle\Resolver\GridResolver
+    bravesheep_crudify.resolver.identity.class: Bravesheep\CrudifyBundle\Resolver\IdentityResolver
+    bravesheep_crudify.resolver.link.class: Bravesheep\CrudifyBundle\Resolver\LinkResolver
+    bravesheep_crudify.resolver.query.class: Bravesheep\CrudifyBundle\Resolver\QueryResolver
+    bravesheep_crudify.resolver.query_modifier.class: Bravesheep\CrudifyBundle\Resolver\QueryModifierResolver
+    bravesheep_crudify.resolver.object_retriever.class: Bravesheep\CrudifyBundle\Resolver\ObjectRetrieverResolver
+
+    # Controller
+    bravesheep_crudify.controller.class: Bravesheep\CrudifyBundle\Controller\CrudifyController
+    bravesheep_crudify.controller.base.class: Bravesheep\CrudifyBundle\Controller\BaseController
+
+    # Twig extension
+    bravesheep_crudify.twig.extension.class: Bravesheep\CrudifyBundle\Twig\CrudifyExtension
+
+    # Security voter
+    bravesheep_crudify.security.access.crudify_voter.class: Bravesheep\CrudifyBundle\Security\Authorization\Voter\CrudifyAccessVoter
+
+    # Form options providers
+    bravesheep_crudify.form.options.provider.basic.class: Bravesheep\CrudifyBundle\Form\OptionsProvider\BasicOptions
+
+    # Default object retriever
+    bravesheep_crudify.query.retriever.repository.class: Bravesheep\CrudifyBundle\Query\RepositoryObjectRetriever
+
+services:
+    # Index definition registry
+    bravesheep_crudify.definition.index.builder_registry:
+        class: %bravesheep_crudify.definition.index.builder_registry.class%
+
+    # The index definition builder that builds based on static field definitions
+    bravesheep_crudify.definition.index.builder.static:
+        class: %bravesheep_crudify.definition.index.builder.static.class%
+        public: false
+        tags:
+            - { name: bravesheep_crudify.index_builder, alias: static }
+
+    # The index definition builder that builds automatically based on the entity provided
+    bravesheep_crudify.definition.index.builder.dynamic:
+        class: %bravesheep_crudify.definition.index.builder.dynamic.class%
+        public: false
+        arguments:
+            - @doctrine
+        tags:
+            - { name: bravesheep_crudify.index_builder, alias: dynamic }
+
+
+    # Loader for definitions from config
+    bravesheep_crudify.definition.loader:
+        class: %bravesheep_crudify.definition.loader.class%
+        public: false
+        arguments:
+            - @doctrine
+            - @bravesheep_crudify.definition.index.builder_registry
+        calls:
+            - [setContainer, [@service_container]]
+            - [setTemplates, [%bravesheep_crudify.template_defaults%]]
+
+
+    # The registry that contains the definitions for different entities
+    bravesheep_crudify.definition.registry:
+        class: %bravesheep_crudify.definition.registry.class%
+        arguments:
+            - @bravesheep_crudify.definition.loader
+        calls:
+            - [addMappings, [%bravesheep_crudify.definitions%]]
+
+
+    # Custom routing loader for crudify
+    bravesheep_crudify.routing_loader:
+        class: %bravesheep_crudify.routing_loader.class%
+        arguments:
+            - %bravesheep_crudify.default_mapping%
+        tags:
+            - { name: routing.loader }
+
+    bravesheep_crudify.resolver.controller:
+        class: %bravesheep_crudify.resolver.controller.class%
+        arguments:
+            - %bravesheep_crudify.default_controller%
+        calls:
+            - [setContainer, [@service_container]]
+
+    bravesheep_crudify.resolver.form_options:
+        class: %bravesheep_crudify.resolver.form_options.class%
+        calls:
+            - [setContainer, [@service_container]]
+
+    bravesheep_crudify.resolver.form:
+        class: %bravesheep_crudify.resolver.form.class%
+        calls:
+            - [setContainer, [@service_container]]
+
+    bravesheep_crudify.resolver.grid:
+        class: %bravesheep_crudify.resolver.grid.class%
+        arguments:
+            - @knp_paginator
+
+    bravesheep_crudify.resolver.identity:
+        class: %bravesheep_crudify.resolver.identity.class%
+
+    bravesheep_crudify.resolver.link:
+        class: %bravesheep_crudify.resolver.link.class%
+        arguments:
+            - @router
+            - @bravesheep_crudify.resolver.identity
+
+    bravesheep_crudify.resolver.query_modifier:
+        class: %bravesheep_crudify.resolver.query_modifier.class%
+        calls:
+            - [setContainer, [@service_container]]
+
+    bravesheep_crudify.resolver.query:
+        class: %bravesheep_crudify.resolver.query.class%
+        arguments:
+            - @bravesheep_crudify.resolver.identity
+            - @bravesheep_crudify.resolver.query_modifier
+
+    bravesheep_crudify.resolver.object_retriever:
+        class: %bravesheep_crudify.resolver.object_retriever.class%
+        calls:
+            - [setContainer, [@service_container]]
+
+    # The controller that handles requests
+    bravesheep_crudify.controller:
+        class: %bravesheep_crudify.controller.class%
+        calls:
+            - [setContainer, [@service_container]]
+
+    # Default base controller
+    bravesheep_crudify.controller.base:
+        class: %bravesheep_crudify.controller.base.class%
+        calls:
+            - [setContainer, [@service_container]]
+
+    # Twig extension
+    bravesheep_crudify.twig.extension:
+        class: %bravesheep_crudify.twig.extension.class%
+        arguments:
+            - @property_accessor
+            - @bravesheep_crudify.resolver.link
+            - @bravesheep_crudify.resolver.controller
+            - @bravesheep_crudify.definition.registry
+        tags:
+            - { name: twig.extension }
+
+    # Security voter
+    bravesheep_crudify.security.access.crudify_voter:
+        class: %bravesheep_crudify.security.access.crudify_voter.class%
+        public: false
+        arguments:
+            - %bravesheep_crudify.security.default_access%
+        tags:
+            - { name: security.voter }
+
+    # Basic form options provider
+    bravesheep_crudify.form.options.provider.basic:
+        class: %bravesheep_crudify.form.options.provider.basic.class%
+
+    # Default object retriever
+    bravesheep_crudify.query.retriever.repository:
+        class: %bravesheep_crudify.query.retriever.repository.class%

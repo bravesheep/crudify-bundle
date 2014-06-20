@@ -2,7 +2,7 @@
 
 namespace spec\Bs\CrudifyBundle\Resolver;
 
-use Bs\CrudifyBundle\Controller\CrudControllerInterface;
+use Bravesheep\CrudifyBundle\Controller\CrudControllerInterface;
 use PhpSpec\ObjectBehavior;
 use Prophecy\Argument;
 use Symfony\Component\DependencyInjection\ContainerInterface;
@@ -11,7 +11,7 @@ class ControllerResolverSpec extends ObjectBehavior
 {
     function it_is_initializable()
     {
-        $this->shouldHaveType('Bs\CrudifyBundle\Resolver\ControllerResolver');
+        $this->shouldHaveType('Bravesheep\CrudifyBundle\Resolver\ControllerResolver');
     }
 
     function it_should_throw_an_error_on_a_nonexistant_service(ContainerInterface $container)
@@ -20,7 +20,7 @@ class ControllerResolverSpec extends ObjectBehavior
         $container->has($service)->willReturn(false);
         $this->setContainer($container);
         $this
-            ->shouldThrow('Bs\\CrudifyBundle\\Exception\\ControllerNotFoundException')
+            ->shouldThrow('Bravesheep\\CrudifyBundle\\Exception\\ControllerNotFoundException')
             ->duringResolve($service)
         ;
     }
@@ -31,7 +31,7 @@ class ControllerResolverSpec extends ObjectBehavior
         $container->has($class)->willReturn(false);
         $this->setContainer($container);
         $this
-            ->shouldThrow('Bs\\CrudifyBundle\\Exception\\ControllerNotFoundException')
+            ->shouldThrow('Bravesheep\\CrudifyBundle\\Exception\\ControllerNotFoundException')
             ->duringResolve($class)
         ;
     }
@@ -48,7 +48,7 @@ class ControllerResolverSpec extends ObjectBehavior
 
     function it_should_retrieve_an_existing_class(ContainerInterface $container)
     {
-        $class = 'Bs\\CrudifyBundle\\Tests\\Fixtures\\Controller\\ExtendedController';
+        $class = 'Bravesheep\\CrudifyBundle\\Tests\\Fixtures\\Controller\\ExtendedController';
         $container->has($class)->willReturn(false);
 
         $this->setContainer($container);
@@ -57,7 +57,7 @@ class ControllerResolverSpec extends ObjectBehavior
 
     function it_should_not_create_the_same_class_twice(ContainerInterface $container)
     {
-        $class = 'Bs\\CrudifyBundle\\Tests\\Fixtures\\Controller\\ExtendedController';
+        $class = 'Bravesheep\\CrudifyBundle\\Tests\\Fixtures\\Controller\\ExtendedController';
         $container->has($class)->willReturn(false);
 
         $this->setContainer($container);
@@ -66,7 +66,7 @@ class ControllerResolverSpec extends ObjectBehavior
 
     function it_should_throw_an_error_if_it_does_not_understand_the_type()
     {
-        $this->shouldThrow('Bs\\CrudifyBundle\\Exception\\ControllerNotFoundException')->duringResolve(10);
+        $this->shouldThrow('Bravesheep\\CrudifyBundle\\Exception\\ControllerNotFoundException')->duringResolve(10);
     }
 
     function it_should_return_the_controller_if_the_argument_is_already_a_controller(CrudControllerInterface $controller)

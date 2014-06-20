@@ -1,8 +1,8 @@
-# BsCrudifyBundle
+# BravesheepCrudifyBundle
 The Bravesheep crudify bundle provides an easy way to quickly get a CRUD interface (Create-Read-Update-Delete) for
 simple entities. The bundle has several extension points and options to customize behavior. Most
 functionality can be customized quickly via the configuration. For a more generalized (be it more verbose)
-approach you should take a look at the [SonataAdminBundle][sonata_admin_bundle]. Currently the BsCrudifyBundle only
+approach you should take a look at the [SonataAdminBundle][sonata_admin_bundle]. Currently the BravesheepCrudifyBundle only
 supports Doctrine ORM as a backend for retrieving data.
 
 ## Documentation
@@ -58,19 +58,24 @@ public function registerBundles()
 {
     return array(
         // ...
-        new Bs\CrudifyBundle\BsCrudifyBundle(),
+        new Knp\Bundle\PaginatorBundle\KnpPaginatorBundle(),
+        new Bravesheep\CrudifyBundle\BravesheepCrudifyBundle(),
         // ...
     );
 }
 ```
 
-[doc_introduction]: src/Bs/CrudifyBundle/Resources/doc/introduction.md
-[doc_permissions]: src/Bs/CrudifyBundle/Resources/doc/permissions.md
-[doc_templates]: src/Bs/CrudifyBundle/Resources/doc/templates.md
-[doc_modify_index_query]: src/Bs/CrudifyBundle/Resources/doc/modify_index_query.md
-[doc_custom_object_retriever]: src/Bs/CrudifyBundle/Resources/doc/custom_object_retriever.md
-[doc_custom_form_options]: src/Bs/CrudifyBundle/Resources/doc/custom_form_options.md
-[doc_custom_controller]: src/Bs/CrudifyBundle/Resources/doc/custom_controller.md
-[doc_config]: src/Bs/CrudifyBundle/Resources/doc/config.md
+Don't forget to further configure the KnpPaginatorBundle, following [their guide][knp_menu_install]. If you are already
+using the KnpPaginatorBundle in your AppKernel, then you don't need to add it again.
+
+[doc_introduction]: src/Bravesheep/CrudifyBundle/Resources/doc/introduction.md
+[doc_permissions]: src/Bravesheep/CrudifyBundle/Resources/doc/permissions.md
+[doc_templates]: src/Bravesheep/CrudifyBundle/Resources/doc/templates.md
+[doc_modify_index_query]: src/Bravesheep/CrudifyBundle/Resources/doc/modify_index_query.md
+[doc_custom_object_retriever]: src/Bravesheep/CrudifyBundle/Resources/doc/custom_object_retriever.md
+[doc_custom_form_options]: src/Bravesheep/CrudifyBundle/Resources/doc/custom_form_options.md
+[doc_custom_controller]: src/Bravesheep/CrudifyBundle/Resources/doc/custom_controller.md
+[doc_config]: src/Bravesheep/CrudifyBundle/Resources/doc/config.md
 [composer]: https://getcomposer.org/
 [sonata_admin_bundle]: https://github.com/sonata-project/SonataAdminBundle
+[knp_menu_install]: https://github.com/KnpLabs/KnpPaginatorBundle/blob/master/README.md#installation-and-configuration

@@ -2,7 +2,7 @@
 
 namespace spec\Bs\CrudifyBundle\Definition\Index\Builder\Registry;
 
-use Bs\CrudifyBundle\Definition\Index\Builder\BuilderInterface;
+use Bravesheep\CrudifyBundle\Definition\Index\Builder\BuilderInterface;
 use PhpSpec\ObjectBehavior;
 use Prophecy\Argument;
 
@@ -10,7 +10,7 @@ class BuilderRegistrySpec extends ObjectBehavior
 {
     function it_is_initializable()
     {
-        $this->shouldHaveType('Bs\CrudifyBundle\Definition\Index\Builder\Registry\BuilderRegistry');
+        $this->shouldHaveType('Bravesheep\CrudifyBundle\Definition\Index\Builder\Registry\BuilderRegistry');
     }
 
     function it_should_have_no_builders_by_default()
@@ -30,7 +30,7 @@ class BuilderRegistrySpec extends ObjectBehavior
     function it_should_throw_an_error_if_it_cannot_find_a_builder()
     {
         $this
-            ->shouldThrow('Bs\\CrudifyBundle\\Exception\\BuilderNotFoundException')
+            ->shouldThrow('Bravesheep\\CrudifyBundle\\Exception\\BuilderNotFoundException')
             ->duringGetBuilder('nonexistant_builder')
         ;
     }

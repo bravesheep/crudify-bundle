@@ -2,7 +2,7 @@
 
 namespace spec\Bs\CrudifyBundle\Resolver;
 
-use Bs\CrudifyBundle\Query\ModifierInterface;
+use Bravesheep\CrudifyBundle\Query\ModifierInterface;
 use PhpSpec\ObjectBehavior;
 use Prophecy\Argument;
 use Symfony\Component\DependencyInjection\ContainerInterface;
@@ -16,7 +16,7 @@ class QueryModifierResolverSpec extends ObjectBehavior
 
     function it_is_initializable()
     {
-        $this->shouldHaveType('Bs\CrudifyBundle\Resolver\QueryModifierResolver');
+        $this->shouldHaveType('Bravesheep\CrudifyBundle\Resolver\QueryModifierResolver');
     }
 
     function it_should_resolve_a_service(ContainerInterface $container, ModifierInterface $modifier)
@@ -34,14 +34,14 @@ class QueryModifierResolverSpec extends ObjectBehavior
         $container->has($service)->willReturn(false);
 
         $this
-            ->shouldThrow('Bs\\CrudifyBundle\\Exception\\QueryModifierNotFoundException')
+            ->shouldThrow('Bravesheep\\CrudifyBundle\\Exception\\QueryModifierNotFoundException')
             ->duringResolve($service)
         ;
     }
 
     function it_should_resolve_a_class(ContainerInterface $container)
     {
-        $class = 'Bs\\CrudifyBundle\\Tests\\Fixtures\\Query\\MockModifier';
+        $class = 'Bravesheep\\CrudifyBundle\\Tests\\Fixtures\\Query\\MockModifier';
         $container->has($class)->willReturn(false);
 
         $this->resolve($class)->shouldBeAnInstanceOf($class);
@@ -53,7 +53,7 @@ class QueryModifierResolverSpec extends ObjectBehavior
         $container->has($class)->willReturn(false);
 
         $this
-            ->shouldThrow('Bs\\CrudifyBundle\\Exception\\QueryModifierNotFoundException')
+            ->shouldThrow('Bravesheep\\CrudifyBundle\\Exception\\QueryModifierNotFoundException')
             ->duringResolve($class)
         ;
     }
@@ -66,7 +66,7 @@ class QueryModifierResolverSpec extends ObjectBehavior
     function it_should_throw_an_error_for_incompatible_types()
     {
         $this
-            ->shouldThrow('Bs\\CrudifyBundle\\Exception\\QueryModifierNotFoundException')
+            ->shouldThrow('Bravesheep\\CrudifyBundle\\Exception\\QueryModifierNotFoundException')
             ->duringResolve(10)
         ;
     }

@@ -2,10 +2,10 @@
 
 namespace spec\Bs\CrudifyBundle\Resolver;
 
-use Bs\CrudifyBundle\Definition\DefinitionInterface;
-use Bs\CrudifyBundle\Definition\Index\Column\ColumnInterface;
-use Bs\CrudifyBundle\Definition\Index\IndexDefinitionInterface;
-use Bs\CrudifyBundle\Definition\Template\TemplateDefinitionInterface;
+use Bravesheep\CrudifyBundle\Definition\DefinitionInterface;
+use Bravesheep\CrudifyBundle\Definition\Index\Column\ColumnInterface;
+use Bravesheep\CrudifyBundle\Definition\Index\IndexDefinitionInterface;
+use Bravesheep\CrudifyBundle\Definition\Template\TemplateDefinitionInterface;
 use Doctrine\ORM\AbstractQuery;
 use Knp\Bundle\PaginatorBundle\Pagination\SlidingPagination;
 use Knp\Component\Pager\Paginator;
@@ -42,7 +42,7 @@ class GridResolverSpec extends ObjectBehavior
 
     function it_is_initializable()
     {
-        $this->shouldHaveType('Bs\CrudifyBundle\Resolver\GridResolver');
+        $this->shouldHaveType('Bravesheep\CrudifyBundle\Resolver\GridResolver');
     }
 
     function it_should_retrieve_some_pagination(
@@ -137,7 +137,7 @@ class GridResolverSpec extends ObjectBehavior
         $indexDefinition->hasColumnWithField('another_field')->willReturn(false);
 
         $this
-            ->shouldThrow('Bs\\CrudifyBundle\\Exception\\CrudifyException')
+            ->shouldThrow('Bravesheep\\CrudifyBundle\\Exception\\CrudifyException')
             ->duringGetGrid($query, $indexDefinition, $request)
         ;
     }

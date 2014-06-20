@@ -2,7 +2,7 @@
 
 namespace spec\Bs\CrudifyBundle\Definition\Registry;
 
-use Bs\CrudifyBundle\Definition\Loader\DIDefinitionLoader;
+use Bravesheep\CrudifyBundle\Definition\Loader\DIDefinitionLoader;
 use PhpSpec\ObjectBehavior;
 use Prophecy\Argument;
 
@@ -15,7 +15,7 @@ class SymfonyDefinitionRegistrySpec extends ObjectBehavior
 
     function it_is_initializable()
     {
-        $this->shouldHaveType('Bs\CrudifyBundle\Definition\Registry\SymfonyDefinitionRegistry');
+        $this->shouldHaveType('Bravesheep\CrudifyBundle\Definition\Registry\SymfonyDefinitionRegistry');
     }
 
     function it_should_call_the_loader_when_adding_mappings(DIDefinitionLoader $loader)

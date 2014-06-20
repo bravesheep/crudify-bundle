@@ -2,7 +2,7 @@
 
 namespace spec\Bs\CrudifyBundle\Query;
 
-use Bs\CrudifyBundle\Definition\DefinitionInterface;
+use Bravesheep\CrudifyBundle\Definition\DefinitionInterface;
 use Doctrine\ORM\EntityRepository;
 use PhpSpec\ObjectBehavior;
 use Prophecy\Argument;
@@ -11,7 +11,7 @@ class RepositoryObjectRetrieverSpec extends ObjectBehavior
 {
     function it_is_initializable()
     {
-        $this->shouldHaveType('Bs\CrudifyBundle\Query\RepositoryObjectRetriever');
+        $this->shouldHaveType('Bravesheep\CrudifyBundle\Query\RepositoryObjectRetriever');
     }
 
     function it_should_retrieve_the_object_from_the_repository(
