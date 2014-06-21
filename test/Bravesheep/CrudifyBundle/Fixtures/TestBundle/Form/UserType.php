@@ -34,7 +34,7 @@ class UserType extends AbstractType
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults([
-            'data_class' => 'Bravesheep\CrudifyBundle\Tests\Fixtures\TestBundle\Entity\User',
+            'data_class' => 'Bravesheep\CrudifyBundle\Fixtures\TestBundle\Entity\User',
         ]);
     }
 

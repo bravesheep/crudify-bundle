@@ -3,21 +3,21 @@
   {% form_theme form definition.templates.formTheme %}
 {% endif %}
 
-{% block bs_crudify_content %}
+{% block crudify_content %}
   <div class="row crudify-new">
     <div class="col-md-12">
-      {% block bs_crudify_title %}
+      {% block crudify_title %}
         <h3>
-          {% block bs_crudify_title_content %}
+          {% block crudify_title_content %}
             {{ 'Add'|trans({}, definition.translationDomain) }}
             <small>{{ definition.entityTitle|trans({}, definition.translationDomain) }}</small>
           {% endblock %}
         </h3>
       {% endblock %}
-      {% block bs_crudify_form %}
+      {% block crudify_form %}
         {{ form_start(form) }}
         {{ form_widget(form) }}
-        {% block bs_crudify_form_actions %}
+        {% block crudify_form_actions %}
           <hr>
           <div>
             <button name="action" value="index" type="submit" class="btn btn-primary click-disable">

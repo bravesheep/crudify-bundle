@@ -32,7 +32,7 @@ class CrudifyController implements ContainerAwareInterface
      */
     private function getDefinition($mapping)
     {
-        $registry = $this->container->get('bs_crudify.definition.registry');
+        $registry = $this->container->get('bravesheep_crudify.definition.registry');
         if (!$registry->hasDefinition($mapping)) {
             throw new NotFoundHttpException();
         }
@@ -47,7 +47,7 @@ class CrudifyController implements ContainerAwareInterface
     private function getController(DefinitionInterface $definition)
     {
         $controller = $definition->getController();
-        return $this->container->get('bs_crudify.resolver.controller')->resolve($controller);
+        return $this->container->get('bravesheep_crudify.resolver.controller')->resolve($controller);
     }
 
     /**

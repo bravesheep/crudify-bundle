@@ -17,19 +17,19 @@ class CrudifyLoaderSpec extends ObjectBehavior
         $routeClass = 'Symfony\\Component\\Routing\\Route';
 
         $collection = $this->load('.', 'crudify');
-        $collection->get('bs_crudify.index')->shouldBeAnInstanceOf($routeClass);
-        $collection->get('bs_crudify.new')->shouldBeAnInstanceOf($routeClass);
-        $collection->get('bs_crudify.create')->shouldBeAnInstanceOf($routeClass);
-        $collection->get('bs_crudify.edit')->shouldBeAnInstanceOf($routeClass);
-        $collection->get('bs_crudify.update')->shouldBeAnInstanceOf($routeClass);
-        $collection->get('bs_crudify.delete')->shouldBeAnInstanceOf($routeClass);
+        $collection->get('crudify.index')->shouldBeAnInstanceOf($routeClass);
+        $collection->get('crudify.new')->shouldBeAnInstanceOf($routeClass);
+        $collection->get('crudify.create')->shouldBeAnInstanceOf($routeClass);
+        $collection->get('crudify.edit')->shouldBeAnInstanceOf($routeClass);
+        $collection->get('crudify.update')->shouldBeAnInstanceOf($routeClass);
+        $collection->get('crudify.delete')->shouldBeAnInstanceOf($routeClass);
 
-        $collection->get('bs_crudify.index')->getMethods()->shouldReturn(['GET']);
-        $collection->get('bs_crudify.new')->getMethods()->shouldReturn(['GET']);
-        $collection->get('bs_crudify.create')->getMethods()->shouldReturn(['POST']);
-        $collection->get('bs_crudify.edit')->getMethods()->shouldReturn(['GET']);
-        $collection->get('bs_crudify.update')->getMethods()->shouldReturnArrayValues(['PUT', 'PATCH']);
-        $collection->get('bs_crudify.delete')->getMethods()->shouldReturn(['DELETE']);
+        $collection->get('crudify.index')->getMethods()->shouldReturn(['GET']);
+        $collection->get('crudify.new')->getMethods()->shouldReturn(['GET']);
+        $collection->get('crudify.create')->getMethods()->shouldReturn(['POST']);
+        $collection->get('crudify.edit')->getMethods()->shouldReturn(['GET']);
+        $collection->get('crudify.update')->getMethods()->shouldReturnArrayValues(['PUT', 'PATCH']);
+        $collection->get('crudify.delete')->getMethods()->shouldReturn(['DELETE']);
     }
 
     public function getMatchers()

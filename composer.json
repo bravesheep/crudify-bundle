@@ -19,13 +19,13 @@
         "knplabs/knp-paginator-bundle": "~2.3"
     },
     "require-dev": {
-        "phpspec/phpspec": "2.0.*@dev",
+        "phpspec/phpspec": "~2.0",
         "behat/behat": "~2.5",
-        "behat/mink-extension": "*",
-        "behat/mink-browserkit-driver": "*",
-        "behat/symfony2-extension": "*",
-        "vipsoft/doctrine-data-fixtures-extension": "*",
-        "fzaninotto/faker": "~1.3",
+        "behat/mink-extension": "~1.3",
+        "behat/mink-browserkit-driver": "~1.1",
+        "behat/symfony2-extension": "~1.1",
+        "vipsoft/doctrine-data-fixtures-extension": "~2.5",
+        "fzaninotto/faker": "~1.4",
         "bravesheep/phpspec-expect": "~0.1"
     },
     "autoload": {

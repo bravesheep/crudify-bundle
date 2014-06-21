@@ -26,7 +26,7 @@ class AddressType extends AbstractType
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults([
-            'data_class' => 'Bravesheep\CrudifyBundle\Tests\Fixtures\TestBundle\Entity\Address',
+            'data_class' => 'Bravesheep\CrudifyBundle\Fixtures\TestBundle\Entity\Address',
         ]);
     }
 

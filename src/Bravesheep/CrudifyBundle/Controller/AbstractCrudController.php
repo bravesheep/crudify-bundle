@@ -25,7 +25,7 @@ abstract class AbstractCrudController extends Controller implements CrudControll
      */
     protected function createSelectQuery(IndexDefinitionInterface $definition)
     {
-        return $this->get('bs_crudify.resolver.query')->resolveQuery($definition);
+        return $this->get('bravesheep_crudify.resolver.query')->resolveQuery($definition);
     }
 
     /**
@@ -36,7 +36,7 @@ abstract class AbstractCrudController extends Controller implements CrudControll
      */
     protected function getGrid(Query $builder, DefinitionInterface $definition, Request $request)
     {
-        return $this->get('bs_crudify.resolver.grid')->getGrid($builder, $definition->getIndex(), $request);
+        return $this->get('bravesheep_crudify.resolver.grid')->getGrid($builder, $definition->getIndex(), $request);
     }
 
     /**
@@ -47,9 +47,9 @@ abstract class AbstractCrudController extends Controller implements CrudControll
     protected function createCreateForm(DefinitionInterface $definition)
     {
         $type = $definition->getForm()->getCreateForm();
-        $type = $this->get('bs_crudify.resolver.form')->resolve($type);
+        $type = $this->get('bravesheep_crudify.resolver.form')->resolve($type);
 
-        $resolver = $this->get('bs_crudify.resolver.form_options');
+        $resolver = $this->get('bravesheep_crudify.resolver.form_options');
         $options = $resolver->resolve($definition->getForm(), FormOptionsResolver::TYPE_CREATE, $this);
         return $this->createForm($type, null, $options);
     }
@@ -63,9 +63,9 @@ abstract class AbstractCrudController extends Controller implements CrudControll
     protected function createUpdateForm(DefinitionInterface $definition, $object)
     {
         $type = $definition->getForm()->getUpdateForm();
-        $type = $this->get('bs_crudify.resolver.form')->resolve($type);
+        $type = $this->get('bravesheep_crudify.resolver.form')->resolve($type);
 
-        $resolver = $this->get('bs_crudify.resolver.form_options');
+        $resolver = $this->get('bravesheep_crudify.resolver.form_options');
         $options = $resolver->resolve($definition->getForm(), FormOptionsResolver::TYPE_UPDATE, $this, $object);
         return $this->createForm($type, $object, $options);
     }
@@ -99,7 +99,7 @@ abstract class AbstractCrudController extends Controller implements CrudControll
      */
     public function getLink($action, DefinitionInterface $definition, $object = null)
     {
-        return $this->get('bs_crudify.resolver.link')->getLinkForAction($action, $definition, $object);
+        return $this->get('bravesheep_crudify.resolver.link')->getLinkForAction($action, $definition, $object);
     }
 
     /**
@@ -138,7 +138,8 @@ abstract class AbstractCrudController extends Controller implements CrudControll
      */
     protected function retrieveObject(DefinitionInterface $definition, $id)
     {
-        $retriever = $this->get('bs_crudify.resolver.object_retriever')->resolve($definition->getObjectRetriever());
+        $retriever = $this->get('bravesheep_crudify.resolver.object_retriever')
+            ->resolve($definition->getObjectRetriever());
         return $retriever->retrieve($definition, $id);
     }
 

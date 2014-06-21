@@ -18,10 +18,10 @@ controller for any of the previously mentioned attributes. In your Twig template
 access for.
 
 The default voter returns for the `CRUDIFY_INDEX` attribute the access specified in the configuration key
-`bs_crudify.default_access` (by default this is 'grant'). For the `CRUDIFY_CREATE`, `CRUDIFY_UPDATE` and
+`bravesheep_crudify.default_access` (by default this is 'grant'). For the `CRUDIFY_CREATE`, `CRUDIFY_UPDATE` and
 `CRUDIFY_DELETE` attributes, the voter will check whether or not the mapping has enabled creates, updates or
 deletes respectively. If a mapping has enabled any of these actions, then the voter will return the value of
-`bs_crudify.default_access`. If a mapping has disabled an action, then the voter will deny access.
+`bravesheep_crudify.default_access`. If a mapping has disabled an action, then the voter will deny access.
 
 If you define multiple access voters for a specific permission, you may want to change the behavior of the access
 permission manager to only allow access when all voters agree on access, read more about this in the symfony

@@ -6,7 +6,7 @@ use Behat\Behat\Exception\PendingException;
 use Behat\Mink\Element\DocumentElement;
 use Behat\Mink\Session;
 use Behat\Mink\WebAssert;
-use Bravesheep\CrudifyBundle\Tests\Fixtures\TestBundle\Entity\User;
+use Bravesheep\CrudifyBundle\Fixtures\TestBundle\Entity\User;
 use Doctrine\Bundle\DoctrineBundle\Registry;
 
 trait EditContext

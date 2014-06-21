@@ -10,7 +10,7 @@
 {% endblock %}
 
 {% block body %}
-  {% block bs_crudify_menu %}
+  {% block crudify_menu %}
     <div class="row">
       <ul class="nav nav-tabs">
         {% for def in crudify_defined() if is_granted('CRUDIFY_INDEX', def) %}
@@ -22,7 +22,7 @@
     </div>
   {% endblock %}
 
-  {% block bs_crudify_flash %}
+  {% block crudify_flash %}
     <div class="row">
       {% for label, flashes in app.session.flashbag.all %}
         {% for message in flashes %}
@@ -35,5 +35,5 @@
     </div>
   {% endblock %}
 
-  {% block bs_crudify_content %}{% endblock %}
+  {% block crudify_content %}{% endblock %}
 {% endblock %}

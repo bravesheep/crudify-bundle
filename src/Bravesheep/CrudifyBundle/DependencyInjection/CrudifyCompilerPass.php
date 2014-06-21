@@ -25,17 +25,17 @@ class CrudifyCompilerPass implements CompilerPassInterface
      */
     private function processIndexDefinitionFactoryTags(ContainerBuilder $container)
     {
-        if (!$container->hasDefinition('bs_crudify.definition.index.builder_registry')) {
+        if (!$container->hasDefinition('bravesheep_crudify.definition.index.builder_registry')) {
             return;
         }
 
-        $definition = $container->getDefinition('bs_crudify.definition.index.builder_registry');
-        $taggedServices = $container->findTaggedServiceIds('bs_crudify.index_builder');
+        $definition = $container->getDefinition('bravesheep_crudify.definition.index.builder_registry');
+        $taggedServices = $container->findTaggedServiceIds('bravesheep_crudify.index_builder');
         foreach ($taggedServices as $id => $tagAttributes) {
             foreach ($tagAttributes as $attributes) {
                 if (!isset($attributes['alias'])) {
                     throw new InvalidDefinitionException(
-                        "Attribute 'alias' for tag 'bs_crudify.index_builder' not found on service '{$id}'"
+                        "Attribute 'alias' for tag 'bravesheep_crudify.index_builder' not found on service '{$id}'"
                     );
                 }
                 $definition->addMethodCall('addBuilder', [new Reference($id), $attributes['alias']]);
@@ -50,17 +50,17 @@ class CrudifyCompilerPass implements CompilerPassInterface
      */
     private function processDefinitionTags(ContainerBuilder $container)
     {
-        if (!$container->hasDefinition('bs_crudify.definition.registry')) {
+        if (!$container->hasDefinition('bravesheep_crudify.definition.registry')) {
             return;
         }
 
-        $definition = $container->getDefinition('bs_crudify.definition.registry');
-        $taggedServices = $container->findTaggedServiceIds('bs_crudify.definition');
+        $definition = $container->getDefinition('bravesheep_crudify.definition.registry');
+        $taggedServices = $container->findTaggedServiceIds('bravesheep_crudify.definition');
         foreach ($taggedServices as $id => $tagAttributes) {
             foreach ($tagAttributes as $attributes) {
                 if (!isset($attributes['alias'])) {
                     throw new InvalidDefinitionException(
-                        "Attribute 'alias' for tag 'bs_crudify.definition' not found on service {$id}"
+                        "Attribute 'alias' for tag 'bravesheep_crudify.definition' not found on service {$id}"
                     );
                 }
                 $definition->addMethodCall('addDefinition', [new Reference($id), $attributes['alias']]);

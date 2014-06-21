@@ -4,15 +4,15 @@ namespace Bravesheep\CrudifyBundle\Event;
 
 final class CrudifyEvents
 {
-    const BEFORE_CREATE = 'bs_crudify.before_create';
+    const BEFORE_CREATE = 'bravesheep_crudify.before_create';
 
-    const CREATE = 'bs_crudify.create';
+    const CREATE = 'bravesheep_crudify.create';
 
-    const BEFORE_UPDATE = 'bs_crudify.before_update';
+    const BEFORE_UPDATE = 'bravesheep_crudify.before_update';
 
-    const UPDATE = 'bs_crudify.update';
+    const UPDATE = 'bravesheep_crudify.update';
 
-    const BEFORE_DELETE = 'bs_crudify.before_delete';
+    const BEFORE_DELETE = 'bravesheep_crudify.before_delete';
 
-    const DELETE = 'bs_crudify.delete';
+    const DELETE = 'bravesheep_crudify.delete';
 }

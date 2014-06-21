@@ -22,30 +22,30 @@ class CrudifyLoader extends Loader
         if ($this->defaultMapping !== null) {
             $route = new Route('/', [
                 '_controller' => 'FrameworkBundle:Redirect:redirect',
-                'route' => 'bs_crudify.index',
+                'route' => 'crudify.index',
                 'permanent' => true,
                 'mapping' => $this->defaultMapping,
             ]);
-            $routes->add('bs_crudify.homepage_redirect', $route);
+            $routes->add('crudify.homepage_redirect', $route);
         }
 
 
         $mappingReq = ['mapping' => '\w+'];
         $mappingIdReq = array_merge($mappingReq, ['id' => '\d+']);
 
-        $routes->add('bs_crudify.index', $this->createRoute('/{mapping}', 'indexAction', $mappingReq, ['GET']));
-        $routes->add('bs_crudify.new', $this->createRoute('/{mapping}/new', 'newAction', $mappingReq, ['GET']));
-        $routes->add('bs_crudify.create', $this->createRoute('/{mapping}', 'createAction', $mappingReq, ['POST']));
+        $routes->add('crudify.index', $this->createRoute('/{mapping}', 'indexAction', $mappingReq, ['GET']));
+        $routes->add('crudify.new', $this->createRoute('/{mapping}/new', 'newAction', $mappingReq, ['GET']));
+        $routes->add('crudify.create', $this->createRoute('/{mapping}', 'createAction', $mappingReq, ['POST']));
         $routes->add(
-            'bs_crudify.edit',
+            'crudify.edit',
             $this->createRoute('/{mapping}/{id}', 'editAction', $mappingIdReq, ['GET'])
         );
         $routes->add(
-            'bs_crudify.update',
+            'crudify.update',
             $this->createRoute('/{mapping}/{id}', 'updateAction', $mappingIdReq, ['PUT', 'PATCH'])
         );
         $routes->add(
-            'bs_crudify.delete',
+            'crudify.delete',
             $this->createRoute('/{mapping}/{id}', 'deleteAction', $mappingIdReq, ['DELETE'])
         );
         return $routes;
@@ -55,7 +55,7 @@ class CrudifyLoader extends Loader
     {
         $route = new Route(
             $path,
-            ['_controller' => "bs_crudify.controller:{$action}"],
+            ['_controller' => "bravesheep_crudify.controller:{$action}"],
             $requirements,
             [],
             '',

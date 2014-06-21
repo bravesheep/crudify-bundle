@@ -7,8 +7,8 @@ use Behat\Gherkin\Node\TableNode;
 use Behat\Mink\Element\DocumentElement;
 use Behat\MinkExtension\Context\MinkContext;
 use Behat\Symfony2Extension\Context\KernelDictionary;
-use Bravesheep\CrudifyBundle\Tests\Fixtures\TestBundle\Entity\Address;
-use Bravesheep\CrudifyBundle\Tests\Fixtures\TestBundle\Entity\User;
+use Bravesheep\CrudifyBundle\Fixtures\TestBundle\Entity\Address;
+use Bravesheep\CrudifyBundle\Fixtures\TestBundle\Entity\User;
 use Doctrine\Bundle\DoctrineBundle\Registry;
 
 class FeatureContext extends MinkContext

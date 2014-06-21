@@ -40,7 +40,7 @@ class LinkResolver
         } elseif (is_int($object)) {
             $parameters['id'] = $object;
         }
-        $route = "bs_crudify.{$action}";
+        $route = "crudify.{$action}";
         return $this->router->generate($route, $parameters);
     }
 }

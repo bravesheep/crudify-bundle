@@ -2,9 +2,9 @@
 An example configuration with the defaults:
 
 ```yaml
-bs_crudify:
+bravesheep_crudify:
     default: ~ # the mapping to which the administrator should redirect by default
-    controller: bs_crudify.controller.base # The default controller that shows and edits mappings
+    controller: bravesheep_crudify.controller.base # The default controller that shows and edits mappings
     default_access: grant # Allowed: grant, abstain, deny; default result whenever access is checked in crudify
     templates: # Provide the templates used for showing
         layout: BravesheepCrudifyBundle:Admin:_layout.html.twig # Layout file
@@ -40,9 +40,9 @@ bs_crudify:
                 create: ~ # Form type for create, either class or service name
                 update: ~ # Form type for update, either class or service name
             # Provider that generates the options available to the form
-            form_options_provider: bs_crudify.form.options.provider.basic
+            form_options_provider: bravesheep_crudify.form.options.provider.basic
             # Service/class name which provides the loading of a single object for a definition
-            object_retriever: bs_crudify.query.retriever.repository
+            object_retriever: bravesheep_crudify.query.retriever.repository
             create: true # Whether or not to enable create functionality for the mapping
             update: true # Whether or not to enable update functionality for the mapping
             delete: true # Whether or not to enable delete functionality for the mapping

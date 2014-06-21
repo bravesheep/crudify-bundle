@@ -34,7 +34,7 @@ Then run `composer update bravesheep/crudify-bundle`
 Define mappings in your configuration file `app/config/config.yml`:
 
 ```yaml
-bs_crudify:
+bravesheep_crudify:
     mappings: ~
 ```
 

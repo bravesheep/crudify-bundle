@@ -18,29 +18,29 @@ class LinkResolverSpec extends ObjectBehavior
     ) {
         $this->beConstructedWith($router, $identityResolver);
 
-        $router->generate('bs_crudify.index', Argument::withKey('mapping'))->will(function ($args) {
+        $router->generate('crudify.index', Argument::withKey('mapping'))->will(function ($args) {
             return  '/' . $args[1]['mapping'] . '/index';
         });
-        $router->generate('bs_crudify.new', Argument::withKey('mapping'))->will(function ($args) {
+        $router->generate('crudify.new', Argument::withKey('mapping'))->will(function ($args) {
             return '/' . $args[1]['mapping'] . '/new';
         });
-        $router->generate('bs_crudify.create', Argument::withKey('mapping'))->will(function ($args) {
+        $router->generate('crudify.create', Argument::withKey('mapping'))->will(function ($args) {
             return '/' . $args[1]['mapping'] . '/create';
         });
         $router
-            ->generate('bs_crudify.edit', Argument::allOf(Argument::withKey('mapping'), Argument::withKey('id')))
+            ->generate('crudify.edit', Argument::allOf(Argument::withKey('mapping'), Argument::withKey('id')))
             ->will(function ($args) {
                 return '/' . $args[1]['mapping'] . '/edit/' . $args[1]['id'];
             })
         ;
         $router
-            ->generate('bs_crudify.update', Argument::allOf(Argument::withKey('mapping'), Argument::withKey('id')))
+            ->generate('crudify.update', Argument::allOf(Argument::withKey('mapping'), Argument::withKey('id')))
             ->will(function ($args) {
                 return '/' . $args[1]['mapping'] . '/update/' . $args[1]['id'];
             })
         ;
         $router
-            ->generate('bs_crudify.delete', Argument::allOf(Argument::withKey('mapping'), Argument::withKey('id')))
+            ->generate('crudify.delete', Argument::allOf(Argument::withKey('mapping'), Argument::withKey('id')))
             ->will(function ($args) {
                 return '/' . $args[1]['mapping'] . '/delete/' . $args[1]['id'];
             })

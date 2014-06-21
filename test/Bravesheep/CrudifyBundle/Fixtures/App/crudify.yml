@@ -9,15 +9,15 @@ bravesheep_crudify:
                     address.city: text
                     address.street: text
                     enabled: bool
-            form: Bravesheep\CrudifyBundle\Tests\Fixtures\TestBundle\Form\UserType
+            form: Bravesheep\CrudifyBundle\Fixtures\TestBundle\Form\UserType
 
         address:
-            entity: TestBundle:address
+            entity: TestBundle:Address
             index:
                 columns:
                     user.name: text
                     city: text
                     street: text
-            form: Bravesheep\CrudifyBundle\Tests\Fixtures\TestBundle\Form\AddressType
+            form: Bravesheep\CrudifyBundle\Fixtures\TestBundle\Form\AddressType
             create: false
             update: true

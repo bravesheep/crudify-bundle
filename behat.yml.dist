@@ -7,8 +7,8 @@ default:
         Behat\Symfony2Extension\Extension:
             mink_driver: true
             kernel:
-                bootstrap: src/test/Bravesheep/CrudifyBundle/Fixtures/App/autoload.php
-                path: src/test/Bravesheep/CrudifyBundle/Fixtures/App/AppKernel.php
+                bootstrap: test/Bravesheep/CrudifyBundle/Fixtures/App/autoload.php
+                path: test/Bravesheep/CrudifyBundle/Fixtures/App/AppKernel.php
                 class: Bravesheep\CrudifyBundle\Fixtures\App\AppKernel
         Behat\MinkExtension\Extension:
             default_session: symfony2

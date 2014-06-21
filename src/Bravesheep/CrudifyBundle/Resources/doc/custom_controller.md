@@ -26,9 +26,9 @@ the definition of your service). Alternatively you can provide the name of a cla
 constructed as long as it has no required arguments for the constructor. The `setContainer` method is also called
 automatically for controllers constructed this way.
 
-You can override the controller for all mappings you provide by changing the setting in the `bs_crudify.controller`
-key. Or you can override the controller for a specific mapping by setting the `mapping.controller` key for your
-specific mapping (either with the service or the class mentioned previously). Also take a look at the
-[default configuration][doc_config].
+You can override the controller for all mappings you provide by changing the setting in the 
+`bravesheep_crudify.controller` key. Or you can override the controller for a specific mapping by setting the 
+`mapping.controller` key for your specific mapping (either with the service or the class mentioned previously). Also 
+take a look at the [default configuration][doc_config].
 
 [doc_config]: config.md

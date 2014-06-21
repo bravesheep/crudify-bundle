@@ -9,10 +9,10 @@ In the BravesheepCrudifyBundle you can override the following templates:
 * `new`: The template to be used for the new/create view.
 * `edit`: The template to be used for the edit/update view.
 
-All of these templates can be overridden globally by changing their respective configuration key in the `bs_crudify.templates`
-array of your configuration. Alternatively you can override a template for a specific mapping only by changing the
-respective configuration key in the `bs_crudify.mappings.{mapping}.templates` array, where `{mapping}` is the mapping for which
-you want to override a default template.
+All of these templates can be overridden globally by changing their respective configuration key in the 
+`bravesheep_crudify.templates` array of your configuration. Alternatively you can override a template for a specific 
+mapping only by changing the respective configuration key in the `bravesheep_crudify.mappings.{mapping}.templates` 
+array, where `{mapping}` is the mapping for which you want to override a default template.
 
 ## Twig functions
 The BravesheepCrudifyBundle creates a few functions that you can call in your templates:
@@ -28,23 +28,24 @@ The BravesheepCrudifyBundle creates a few functions that you can call in your te
   `CrudControllerInterface::createDeleteForm()` function in your controller, so make sure that function is correctly
   implemented if you have used a custom controller.
 * `crudify_value(column, object)`: Display the value of `column` for `object` inside the index view. This function calls
-  the correct block for the column or shows the value as a string if no block could be found. Read more about these blocks
-  below.
+  the correct block for the column or shows the value as a string if no block could be found. Read more about these 
+  blocks below.
 * `crudify_definition(mapping)`: Retrieve the definition for a specific mapping. This may be useful to check for access
   permissions on the admin when called in combination with `is_granted()`.
 
 ## Value blocks
-When rendering the grid inside the index view, as long as the `crudify_value()` function is used to display the field values,
-some blocks will be called inside your view. These blocks should be named `crudify_field_{type}` where `{type}` is the type
-of the column. If you don't define a block for a specific type, then the `crudify_value()` function will try to display the
-value of a specific column for some object as a string.
+When rendering the grid inside the index view, as long as the `crudify_value()` function is used to display the field 
+values, some blocks will be called inside your view. These blocks should be named `crudify_field_{type}` where `{type}` 
+is the type of the column. If you don't define a block for a specific type, then the `crudify_value()` function will try 
+to display the value of a specific column for some object as a string.
 
 You might the `{% use %}` tag Twig provides to include blocks in your template, you can read more about that tag
-in [the Twig documentation][twig_use_tag]. The default BravesheepCrudifyBundle layout template also uses that tag to include
-a few default blocks for some types:
+in [the Twig documentation][twig_use_tag]. The default BravesheepCrudifyBundle layout template also uses that tag to 
+include a few default blocks for some types:
 
 * `bool`: Displays a Yes/No value for a field.
-* `url`: Adds an anchor tag around the value with the href attribute being the same as the value, giving you a clickable link.
+* `url`: Adds an anchor tag around the value with the href attribute being the same as the value, giving you a clickable 
+  link.
 * `date`: Displays a field as a date with `Y-m-d` as the format.
 * `datetime`: Displays a field as a date and time with `Y-m-d H:i` as the format.
 * `email`: Similar to the `url` type, except with `mailto:` added to the href attribute.
