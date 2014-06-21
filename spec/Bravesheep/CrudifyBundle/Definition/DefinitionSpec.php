@@ -191,4 +191,39 @@ class DefinitionSpec extends ObjectBehavior
         $this->setTranslationDomain('crudify');
         $this->getTranslationDomain()->shouldReturn('crudify');
     }
+
+    function its_extras_should_be_an_empty_array_by_default()
+    {
+        $this->getExtras()->shouldBeArray();
+    }
+
+    function its_extras_should_be_modifyable()
+    {
+        $data = ['test' => 1];
+        $this->setExtras($data);
+        $this->getExtras()->shouldReturn($data);
+    }
+
+    function it_should_be_possible_to_add_an_extra_configuration_key()
+    {
+        $this->setExtras(['test' => 1]);
+        $this->setExtra('other', 2);
+
+        $extras = $this->getExtras();
+        $extras->shouldHaveKey('other');
+        $extras->shouldHaveKey('test');
+    }
+
+    function it_should_retrieve_the_default_for_a_non_set_extra_key()
+    {
+        $this->setExtra('test', 'test');
+
+        $this->getExtra('other', 10)->shouldReturn(10);
+    }
+
+    function it_should_return_the_value_of_a_set_extra_key()
+    {
+        $this->setExtra('test', 42);
+        $this->getExtra('test', 10)->shouldReturn(42);
+    }
 }

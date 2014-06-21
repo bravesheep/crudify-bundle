@@ -65,12 +65,18 @@ class Definition implements DefinitionInterface
      */
     private $translationDomain;
 
+    /**
+     * @var array
+     */
+    private $extras;
+
     public function __construct($entity, EntityManager $entityManager)
     {
         $this->flags = [];
         $this->setEntity($entity);
         $this->setEntityManager($entityManager);
         $this->setTranslationDomain('messages');
+        $this->extras = [];
     }
 
     /**
@@ -296,5 +302,52 @@ class Definition implements DefinitionInterface
     {
         $this->translationDomain = $translationDomain;
         return $this;
+    }
+
+    /**
+     * Set the list of extra configured keys.
+     * @param array $extras
+     * @return $this
+     */
+    public function setExtras(array $extras)
+    {
+        $this->extras = $extras;
+        return $this;
+    }
+
+    /**
+     * Retrieve extra configured keys.
+     * @return array
+     */
+    public function getExtras()
+    {
+        return $this->extras;
+    }
+
+    /**
+     * Set an extra configuration key.
+     * @param string $key
+     * @param mixed $value
+     * @return $this
+     */
+    public function setExtra($key, $value)
+    {
+        $this->extras[$key] = $value;
+        return $this;
+    }
+
+    /**
+     * Retrieve an extra configuration setting.
+     * @param string $key
+     * @param mixed  $default
+     * @return mixed
+     */
+    public function getExtra($key, $default = null)
+    {
+        if (isset($this->extras[$key])) {
+            return $this->extras[$key];
+        } else {
+            return $default;
+        }
     }
 }

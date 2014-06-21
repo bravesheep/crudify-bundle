@@ -99,6 +99,9 @@ class DIDefinitionLoader extends ContainerAware
         } else {
             $definition->setEntityTitle($options['title']);
         }
+
+        $definition->setExtras($options['extras']);
+
         $registry->addDefinition($definition, $key);
     }
 
