@@ -142,7 +142,7 @@ class BaseController extends AbstractCrudController
             $this->addTranslatedFlash($definition, 'error', 'An error occured when trying to remove the object.');
         }
 
-        return $this->redirect($this->generateUrl('crudify.index', [
+        return $this->redirect($this->generateUrl('bravesheep_crudify.index', [
             'mapping' => $definition->getName(),
         ]));
     }

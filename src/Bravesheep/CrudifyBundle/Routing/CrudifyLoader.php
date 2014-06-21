@@ -22,30 +22,39 @@ class CrudifyLoader extends Loader
         if ($this->defaultMapping !== null) {
             $route = new Route('/', [
                 '_controller' => 'FrameworkBundle:Redirect:redirect',
-                'route' => 'crudify.index',
+                'route' => 'bravesheep_crudify.index',
                 'permanent' => true,
                 'mapping' => $this->defaultMapping,
             ]);
-            $routes->add('crudify.homepage_redirect', $route);
+            $routes->add('bravesheep_crudify.homepage_redirect', $route);
         }
 
 
         $mappingReq = ['mapping' => '\w+'];
         $mappingIdReq = array_merge($mappingReq, ['id' => '\d+']);
 
-        $routes->add('crudify.index', $this->createRoute('/{mapping}', 'indexAction', $mappingReq, ['GET']));
-        $routes->add('crudify.new', $this->createRoute('/{mapping}/new', 'newAction', $mappingReq, ['GET']));
-        $routes->add('crudify.create', $this->createRoute('/{mapping}', 'createAction', $mappingReq, ['POST']));
         $routes->add(
-            'crudify.edit',
+            'bravesheep_crudify.index',
+            $this->createRoute('/{mapping}', 'indexAction', $mappingReq, ['GET'])
+        );
+        $routes->add(
+            'bravesheep_crudify.new',
+            $this->createRoute('/{mapping}/new', 'newAction', $mappingReq, ['GET'])
+        );
+        $routes->add(
+            'bravesheep_crudify.create',
+            $this->createRoute('/{mapping}', 'createAction', $mappingReq, ['POST'])
+        );
+        $routes->add(
+            'bravesheep_crudify.edit',
             $this->createRoute('/{mapping}/{id}', 'editAction', $mappingIdReq, ['GET'])
         );
         $routes->add(
-            'crudify.update',
+            'bravesheep_crudify.update',
             $this->createRoute('/{mapping}/{id}', 'updateAction', $mappingIdReq, ['PUT', 'PATCH'])
         );
         $routes->add(
-            'crudify.delete',
+            'bravesheep_crudify.delete',
             $this->createRoute('/{mapping}/{id}', 'deleteAction', $mappingIdReq, ['DELETE'])
         );
         return $routes;

@@ -40,7 +40,7 @@ class LinkResolver
         } elseif (is_int($object)) {
             $parameters['id'] = $object;
         }
-        $route = "crudify.{$action}";
+        $route = "bravesheep_crudify.{$action}";
         return $this->router->generate($route, $parameters);
     }
 }
