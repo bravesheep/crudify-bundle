@@ -18,29 +18,38 @@ class LinkResolverSpec extends ObjectBehavior
     ) {
         $this->beConstructedWith($router, $identityResolver);
 
-        $router->generate('crudify.index', Argument::withKey('mapping'))->will(function ($args) {
+        $router->generate('bravesheep_crudify.index', Argument::withKey('mapping'))->will(function ($args) {
             return  '/' . $args[1]['mapping'] . '/index';
         });
-        $router->generate('crudify.new', Argument::withKey('mapping'))->will(function ($args) {
+        $router->generate('bravesheep_crudify.new', Argument::withKey('mapping'))->will(function ($args) {
             return '/' . $args[1]['mapping'] . '/new';
         });
-        $router->generate('crudify.create', Argument::withKey('mapping'))->will(function ($args) {
+        $router->generate('bravesheep_crudify.create', Argument::withKey('mapping'))->will(function ($args) {
             return '/' . $args[1]['mapping'] . '/create';
         });
         $router
-            ->generate('crudify.edit', Argument::allOf(Argument::withKey('mapping'), Argument::withKey('id')))
+            ->generate(
+                'bravesheep_crudify.edit',
+                Argument::allOf(Argument::withKey('mapping'), Argument::withKey('id'))
+            )
             ->will(function ($args) {
                 return '/' . $args[1]['mapping'] . '/edit/' . $args[1]['id'];
             })
         ;
         $router
-            ->generate('crudify.update', Argument::allOf(Argument::withKey('mapping'), Argument::withKey('id')))
+            ->generate(
+                'bravesheep_crudify.update',
+                Argument::allOf(Argument::withKey('mapping'),Argument::withKey('id'))
+            )
             ->will(function ($args) {
                 return '/' . $args[1]['mapping'] . '/update/' . $args[1]['id'];
             })
         ;
         $router
-            ->generate('crudify.delete', Argument::allOf(Argument::withKey('mapping'), Argument::withKey('id')))
+            ->generate(
+                'bravesheep_crudify.delete',
+                Argument::allOf(Argument::withKey('mapping'), Argument::withKey('id'))
+            )
             ->will(function ($args) {
                 return '/' . $args[1]['mapping'] . '/delete/' . $args[1]['id'];
             })
