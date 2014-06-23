@@ -3,7 +3,6 @@
 namespace Bravesheep\CrudifyBundle\Definition\Index\Builder;
 
 use Bravesheep\CrudifyBundle\Definition\Index\Column\Column;
-use Bravesheep\CrudifyBundle\Definition\Index\IndexDefinition;
 
 class StaticBuilder extends AbstractBuilder
 {
@@ -12,12 +11,13 @@ class StaticBuilder extends AbstractBuilder
      */
     public function build(array $options)
     {
-        $definition = new IndexDefinition();
+        $definition = parent::build($options);
+
         foreach ($options['index']['columns'] as $name => $settings) {
             $column = new Column();
             $column->setName($name);
             if (null === $settings['title']) {
-                $column->setTitle(ucfirst(str_replace(['-', '_', '.'], ' ', $name)));
+                $column->setTitle($this->titlize($name));
             } else {
                 $column->setTitle($settings['title']);
             }
@@ -32,18 +32,13 @@ class StaticBuilder extends AbstractBuilder
         }
 
         if (null !== $options['index']['sort']['column']) {
-            if ($definition->hasColumn($options['index']['sort']['column'])) {
-                $sortColumn = $definition->getColumn($options['index']['sort']['column']);
-            } else {
-                $sortColumn = new Column();
-                $sortColumn->setName($options['index']['sort']['column']);
-                $sortColumn->setPath($options['index']['sort']['column']);
-            }
-            $definition->setDefaultSort($sortColumn, $options['index']['sort']['direction']);
+            $this->setSortColumn(
+                $definition,
+                $options['index']['sort']['column'],
+                $options['index']['sort']['direction']
+            );
         }
-        $definition->setBaseEntity($options['entity']);
-        $definition->setObjectsPerPage($options['index']['page_limit']);
-        $definition->setQueryModifier($options['index']['query_modifier']);
+
         return $definition;
     }
 }

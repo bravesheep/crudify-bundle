@@ -74,7 +74,7 @@ class Configuration implements ConfigurationInterface
                                         ->end()
                                     ->end()
                                     ->arrayNode('columns')
-                                        ->isRequired()
+                                        ->treatNullLike([])
                                         ->prototype('array')
                                             ->beforeNormalization()
                                                 ->ifString()
