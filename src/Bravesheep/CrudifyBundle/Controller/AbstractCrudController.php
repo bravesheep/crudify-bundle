@@ -111,7 +111,9 @@ abstract class AbstractCrudController extends Controller implements CrudControll
     protected function determineSuccessResponse(DefinitionInterface $definition, $object, Request $request)
     {
         $action = $request->request->get('action', 'index');
-        if ($action === 'edit') {
+        if ($action === 'new') {
+            return $this->redirect($this->getLink('new', $definition));
+        } elseif ($action === 'edit') {
             return $this->redirect($this->getLink('edit', $definition, $object));
         } elseif ($action === 'index') {
             return $this->redirect($this->getLink('index', $definition));
