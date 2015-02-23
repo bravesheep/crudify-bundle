@@ -16,7 +16,7 @@ use Symfony\Component\Form\Form;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Session\Session;
-use Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;
+use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 
 abstract class AbstractCrudController extends Controller implements CrudControllerInterface
 {
@@ -125,12 +125,12 @@ abstract class AbstractCrudController extends Controller implements CrudControll
     /**
      * @param string $what
      * @param object $object
-     * @throws AccessDeniedHttpException
+     * @throws AccessDeniedException
      */
     protected function isGranted($what, $object = null)
     {
         if (!$this->get('security.context')->isGranted($what, $object)) {
-            throw new AccessDeniedHttpException("Not allowed to {$what} on object");
+            throw new AccessDeniedException("Not allowed to {$what} on object");
         }
     }
 

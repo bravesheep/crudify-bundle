@@ -7,8 +7,8 @@ use Symfony\Component\DependencyInjection\ContainerAwareInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
+use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 
 class CrudifyController implements ContainerAwareInterface
 {
@@ -54,13 +54,13 @@ class CrudifyController implements ContainerAwareInterface
      * Check if the user has access to the specified definition for the given attribute.
      * @param string              $attribute
      * @param DefinitionInterface $definition
-     * @throws AccessDeniedHttpException
+     * @throws AccessDeniedException
      */
     private function isGranted($attribute, DefinitionInterface $definition)
     {
         $securityContext = $this->container->get('security.context');
         if (!$securityContext->isGranted($attribute, $definition)) {
-            throw new AccessDeniedHttpException();
+            throw new AccessDeniedException();
         }
     }
 
