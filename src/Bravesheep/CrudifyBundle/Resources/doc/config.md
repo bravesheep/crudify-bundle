@@ -34,6 +34,7 @@ bravesheep_crudify:
                         title: ~ # Will be determined using the column name by default
                         type: ~
                         path: ~ # Determined using the column name by default, false to ignore the column in the query
+                        sortable: ~ # If null, will try to determine whether a column is sortable automatically, otherwise indicate using a bool
                     column.from.other.table: type # You may use columns from joinable entities
             # If create and update use the same form, you may optionally use form: 'form_type' instead
             form:
