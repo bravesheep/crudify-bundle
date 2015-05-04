@@ -55,4 +55,9 @@ interface ColumnInterface
      * @return bool
      */
     public function isQueryable();
+
+    /**
+     * @return bool
+     */
+    public function isSortable();
 }

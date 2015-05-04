@@ -190,17 +190,25 @@ class IndexDefinition implements IndexDefinitionInterface
     }
 
     /**
-     * @return bool
+     * {@inheritdoc}
      */
     public function hasColumnWithField($field)
+    {
+       return $this->getColumnWithField($field) !== null;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getColumnWithField($field)
     {
         /** @var ColumnInterface $column */
         foreach ($this as $column) {
             if ($column->getField() === $field) {
-                return true;
+                return $column;
             }
         }
-        return false;
+        return null;
     }
 
     /**

@@ -37,6 +37,11 @@ class Column implements ColumnInterface
     private $parent;
 
     /**
+     * @var bool
+     */
+    private $sortable;
+
+    /**
      * @param string $name
      * @return $this
      */
@@ -182,5 +187,42 @@ class Column implements ColumnInterface
     public function isQueryable()
     {
         return is_string($this->path);
+    }
+
+    /**
+     * @param bool $sortable
+     * @return $this
+     */
+    public function setSortable($sortable)
+    {
+        $this->sortable = $sortable;
+        return $this;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function isSortable()
+    {
+        if ($this->sortable === null) {
+            $type = $this->getParent()->getParent()->getEntityName();
+            $em = $this->getParent()->getParent()->getEntityManager();
+            $metadata = $em->getClassMetadata($type);
+            $parts = explode(self::NAME_SEP, $this->getPath());
+
+            $last = count($parts) - 1;
+            foreach ($parts as $idx => $part) {
+                if ($idx === $last) {
+                    return $metadata->hasField($part);
+                } else {
+                    if (!$metadata->hasAssociation($part)) {
+                        return false;
+                    }
+                    $metadata = $metadata->getAssociationMapping($part);
+                    $metadata = $em->getClassMetadata($metadata['targetEntity']);
+                }
+            }
+        }
+        return $this->sortable;
     }
 }

@@ -86,6 +86,7 @@ class Configuration implements ConfigurationInterface
                                                 ->scalarNode('title')->defaultNull()->end()
                                                 ->scalarNode('type')->defaultValue('text')->end()
                                                 ->scalarNode('path')->defaultNull()->end()
+                                                ->scalarNode('sortable')->defaultNull()->end()
                                             ->end()
                                         ->end()
                                     ->end()

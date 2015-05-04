@@ -26,11 +26,15 @@
           {% block crudify_thead_columns %}
             {% for column in definition.index %}
               <th class="{{ column.type }}">
-                {{ knp_pagination_sortable(
-                    objects,
-                    column.title|trans({}, definition.translationDomain),
-                    column.field
-                ) }}
+                {% if column.sortable %}
+                  {{ knp_pagination_sortable(
+                      objects,
+                      column.title|trans({}, definition.translationDomain),
+                      column.field
+                  ) }}
+                {% else %}
+                  {{ column.title|trans({}, definition.translationDomain) }}
+                {% endif %}
               </th>
             {% endfor %}
           {% endblock %}

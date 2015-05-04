@@ -3,6 +3,7 @@
 namespace Bravesheep\CrudifyBundle\Definition\Index;
 
 use Bravesheep\CrudifyBundle\Definition\DefinitionInterface;
+use Bravesheep\CrudifyBundle\Definition\Index\Column\Column;
 use Bravesheep\CrudifyBundle\Definition\Index\Column\ColumnInterface;
 use Bravesheep\CrudifyBundle\Exception\ColumnNotFoundException;
 use Bravesheep\CrudifyBundle\Query\ModifierInterface;
@@ -75,9 +76,16 @@ interface IndexDefinitionInterface extends \IteratorAggregate, \Countable
     public function getObjectsPerPage();
 
     /**
+     * @param string $field
      * @return bool
      */
     public function hasColumnWithField($field);
+
+    /**
+     * @param string $field
+     * @return Column
+     */
+    public function getColumnWithField($field);
 
     /**
      * @return ModifierInterface

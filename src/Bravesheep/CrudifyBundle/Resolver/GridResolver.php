@@ -42,6 +42,10 @@ class GridResolver
             throw new CrudifyException("No such column '{$sortColumn}' in definition.");
         }
 
+        if (null !== $sortColumn && !$index->getColumnWithField($sortColumn)->isSortable()) {
+            throw new CrudifyException("Not allowed to sort column '{$sortColumn}'.");
+        }
+
         /** @var SlidingPagination $pagination */
         $pagination = $this->paginator->paginate($query, $request->get('page', 1), $index->getObjectsPerPage());
 

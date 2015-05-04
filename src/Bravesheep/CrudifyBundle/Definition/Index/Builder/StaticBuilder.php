@@ -22,6 +22,10 @@ class StaticBuilder extends AbstractBuilder
                 $column->setTitle($settings['title']);
             }
 
+            if (is_bool($settings['sortable'])) {
+                $column->setSortable($settings['sortable']);
+            }
+
             if (null === $settings['path'] || true === $settings['path']) {
                 $column->setPath($name);
             } else {
