@@ -58,8 +58,8 @@ class CrudifyController implements ContainerAwareInterface
      */
     private function isGranted($attribute, DefinitionInterface $definition)
     {
-        $securityContext = $this->container->get('security.context');
-        if (!$securityContext->isGranted($attribute, $definition)) {
+        $authorizationChecker = $this->container->get('security.authorization_checker');
+        if (!$authorizationChecker->isGranted($attribute, $definition)) {
             throw new AccessDeniedException();
         }
     }
