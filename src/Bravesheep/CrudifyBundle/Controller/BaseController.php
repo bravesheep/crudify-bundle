@@ -75,6 +75,9 @@ class BaseController extends AbstractCrudController
             throw $this->createNotFoundException();
         }
 
+        // store referer to redirect back after save
+        $this->get('session')->set('edit_referer', $request->headers->get('referer'));
+
         $form = $this->createUpdateForm($definition, $object);
         return $this->render($definition->getTemplates()->getEdit(), [
             'definition' => $definition,

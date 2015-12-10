@@ -116,6 +116,12 @@ abstract class AbstractCrudController extends Controller implements CrudControll
         } elseif ($action === 'edit') {
             return $this->redirect($this->getLink('edit', $definition, $object));
         } elseif ($action === 'index') {
+            // redirect back to stored referer
+            $referer = $this->get('session')->remove('edit_referer');
+            if ($referer) {
+                return $this->redirect($referer);
+            }
+            // redirect back to index page
             return $this->redirect($this->getLink('index', $definition));
         } else {
             throw new CrudifyException("Invalid action '{$action}' was submitted");
