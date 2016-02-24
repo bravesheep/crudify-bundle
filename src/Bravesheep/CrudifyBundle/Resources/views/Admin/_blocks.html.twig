@@ -9,19 +9,19 @@
 {% endblock %}
 
 {% block crudify_field_time %}
-  {{ value|date('H:i') }}
+  {{ value ? value|date('H:i') }}
 {% endblock %}
 
 {% block crudify_field_date %}
-  {{ value|date('Y-m-d') }}
+  {{ value ? value|date('Y-m-d') }}
 {% endblock %}
 
 {% block crudify_field_datetime %}
-  {{ value|date('Y-m-d H:i') }}
+  {{ value ? value|date('Y-m-d H:i') }}
 {% endblock %}
 
 {% block crudify_field_datetimetz %}
-  {{ value|date('Y-m-d H:i P') }}
+  {{ value ? value|date('Y-m-d H:i P') }}
 {% endblock %}
 
 {% block crudify_field_email %}
