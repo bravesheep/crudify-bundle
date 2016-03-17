@@ -7,10 +7,12 @@ use Bravesheep\CrudifyBundle\Definition\Form\FormDefinitionInterface;
 use Bravesheep\CrudifyBundle\Exception\CrudifyException;
 use Bravesheep\CrudifyBundle\Exception\OptionsProviderNotFoundException;
 use Bravesheep\CrudifyBundle\Form\OptionsProvider\OptionsInterface;
-use Symfony\Component\DependencyInjection\ContainerAware;
+use Symfony\Component\DependencyInjection\ContainerAwareTrait;
 
-class FormOptionsResolver extends ContainerAware
+class FormOptionsResolver
 {
+    use ContainerAwareTrait;
+
     const TYPE_CREATE = 'create';
 
     const TYPE_UPDATE = 'update';

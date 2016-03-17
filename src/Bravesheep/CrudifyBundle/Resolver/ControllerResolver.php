@@ -4,10 +4,12 @@ namespace Bravesheep\CrudifyBundle\Resolver;
 
 use Bravesheep\CrudifyBundle\Controller\CrudControllerInterface;
 use Bravesheep\CrudifyBundle\Exception\ControllerNotFoundException;
-use Symfony\Component\DependencyInjection\ContainerAware;
+use Symfony\Component\DependencyInjection\ContainerAwareTrait;
 
-class ControllerResolver extends ContainerAware
+class ControllerResolver
 {
+    use ContainerAwareTrait;
+
     private $defaultController;
 
     private $resolved;

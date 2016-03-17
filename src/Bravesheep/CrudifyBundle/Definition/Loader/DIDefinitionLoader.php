@@ -10,10 +10,12 @@ use Bravesheep\CrudifyBundle\Definition\Index\IndexDefinitionInterface;
 use Bravesheep\CrudifyBundle\Definition\Registry\DefinitionRegistry;
 use Bravesheep\CrudifyBundle\Definition\Template\TemplateDefinition;
 use Doctrine\Bundle\DoctrineBundle\Registry;
-use Symfony\Component\DependencyInjection\ContainerAware;
+use Symfony\Component\DependencyInjection\ContainerAwareTrait;
 
-class DIDefinitionLoader extends ContainerAware
+class DIDefinitionLoader
 {
+    use ContainerAwareTrait;
+
     /**
      * @var string[]
      */

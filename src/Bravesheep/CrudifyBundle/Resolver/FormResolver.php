@@ -3,12 +3,14 @@
 namespace Bravesheep\CrudifyBundle\Resolver;
 
 use Bravesheep\CrudifyBundle\Exception\FormNotFoundException;
-use Symfony\Component\DependencyInjection\ContainerAware;
-use Symfony\Component\DependencyInjection\ContainerAwareInterface;
+use Symfony\Component\DependencyInjection\ContainerAwareTrait;
+use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\Form\FormTypeInterface;
 
-class FormResolver extends ContainerAware
+class FormResolver
 {
+    use ContainerAwareTrait;
+
     /**
      * @param mixed $form
      * @return FormTypeInterface
@@ -18,24 +20,13 @@ class FormResolver extends ContainerAware
     {
         if (is_string($form)) {
             if ($this->container->has($form)) {
-                $form = $this->container->get($form);
-            } elseif (class_exists($form, true)) {
-                $refl = new \ReflectionClass($form);
-                if ($refl->implementsInterface('Symfony\Component\Form\FormTypeInterface')) {
-                    $constructor = $refl->getConstructor();
-                    if (null === $constructor || $constructor->getNumberOfRequiredParameters() === 0) {
-                        $form = $refl->newInstance();
-                        if ($form instanceof ContainerAwareInterface) {
-                            $form->setContainer($this->container);
-                        }
-                    }
+                $form = $this->container->get($form, ContainerInterface::IGNORE_ON_INVALID_REFERENCE);
+                if (null !== $form) {
+                    $form = get_class($form);
                 }
             }
         }
 
-        if (!($form instanceof FormTypeInterface)) {
-            throw new FormNotFoundException();
-        }
         return $form;
     }
 }

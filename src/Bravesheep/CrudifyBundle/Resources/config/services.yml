@@ -55,7 +55,7 @@ services:
         class: %bravesheep_crudify.definition.index.builder.dynamic.class%
         public: false
         arguments:
-            - @doctrine
+            - "@doctrine"
         tags:
             - { name: bravesheep_crudify.index_builder, alias: dynamic }
 
@@ -65,10 +65,10 @@ services:
         class: %bravesheep_crudify.definition.loader.class%
         public: false
         arguments:
-            - @doctrine
-            - @bravesheep_crudify.definition.index.builder_registry
+            - "@doctrine"
+            - "@bravesheep_crudify.definition.index.builder_registry"
         calls:
-            - [setContainer, [@service_container]]
+            - [setContainer, ["@service_container"]]
             - [setTemplates, [%bravesheep_crudify.template_defaults%]]
 
 
@@ -76,7 +76,7 @@ services:
     bravesheep_crudify.definition.registry:
         class: %bravesheep_crudify.definition.registry.class%
         arguments:
-            - @bravesheep_crudify.definition.loader
+            - "@bravesheep_crudify.definition.loader"
         calls:
             - [addMappings, [%bravesheep_crudify.definitions%]]
 
@@ -94,22 +94,22 @@ services:
         arguments:
             - %bravesheep_crudify.default_controller%
         calls:
-            - [setContainer, [@service_container]]
+            - [setContainer, ["@service_container"]]
 
     bravesheep_crudify.resolver.form_options:
         class: %bravesheep_crudify.resolver.form_options.class%
         calls:
-            - [setContainer, [@service_container]]
+            - [setContainer, ["@service_container"]]
 
     bravesheep_crudify.resolver.form:
         class: %bravesheep_crudify.resolver.form.class%
         calls:
-            - [setContainer, [@service_container]]
+            - [setContainer, ["@service_container"]]
 
     bravesheep_crudify.resolver.grid:
         class: %bravesheep_crudify.resolver.grid.class%
         arguments:
-            - @knp_paginator
+            - "@knp_paginator"
 
     bravesheep_crudify.resolver.identity:
         class: %bravesheep_crudify.resolver.identity.class%
@@ -117,45 +117,45 @@ services:
     bravesheep_crudify.resolver.link:
         class: %bravesheep_crudify.resolver.link.class%
         arguments:
-            - @router
-            - @bravesheep_crudify.resolver.identity
+            - "@router"
+            - "@bravesheep_crudify.resolver.identity"
 
     bravesheep_crudify.resolver.query_modifier:
         class: %bravesheep_crudify.resolver.query_modifier.class%
         calls:
-            - [setContainer, [@service_container]]
+            - [setContainer, ["@service_container"]]
 
     bravesheep_crudify.resolver.query:
         class: %bravesheep_crudify.resolver.query.class%
         arguments:
-            - @bravesheep_crudify.resolver.identity
-            - @bravesheep_crudify.resolver.query_modifier
+            - "@bravesheep_crudify.resolver.identity"
+            - "@bravesheep_crudify.resolver.query_modifier"
 
     bravesheep_crudify.resolver.object_retriever:
         class: %bravesheep_crudify.resolver.object_retriever.class%
         calls:
-            - [setContainer, [@service_container]]
+            - [setContainer, ["@service_container"]]
 
     # The controller that handles requests
     bravesheep_crudify.controller:
         class: %bravesheep_crudify.controller.class%
         calls:
-            - [setContainer, [@service_container]]
+            - [setContainer, ["@service_container"]]
 
     # Default base controller
     bravesheep_crudify.controller.base:
         class: %bravesheep_crudify.controller.base.class%
         calls:
-            - [setContainer, [@service_container]]
+            - [setContainer, ["@service_container"]]
 
     # Twig extension
     bravesheep_crudify.twig.extension:
         class: %bravesheep_crudify.twig.extension.class%
         arguments:
-            - @property_accessor
-            - @bravesheep_crudify.resolver.link
-            - @bravesheep_crudify.resolver.controller
-            - @bravesheep_crudify.definition.registry
+            - "@property_accessor"
+            - "@bravesheep_crudify.resolver.link"
+            - "@bravesheep_crudify.resolver.controller"
+            - "@bravesheep_crudify.definition.registry"
         tags:
             - { name: twig.extension }
 
