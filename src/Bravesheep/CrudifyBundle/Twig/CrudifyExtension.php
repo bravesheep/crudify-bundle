@@ -7,6 +7,7 @@ use Bravesheep\CrudifyBundle\Definition\Index\Column\ColumnInterface;
 use Bravesheep\CrudifyBundle\Definition\Registry\DefinitionRegistry;
 use Bravesheep\CrudifyBundle\Resolver\ControllerResolver;
 use Bravesheep\CrudifyBundle\Resolver\LinkResolver;
+use Bravesheep\CrudifyBundle\Twig\Node\RenderCrudifyFieldNode;
 use Symfony\Component\PropertyAccess\Exception\ExceptionInterface;
 use Symfony\Component\PropertyAccess\PropertyAccessor;
 
@@ -55,9 +56,13 @@ class CrudifyExtension extends \Twig_Extension
     public function getFunctions()
     {
         return [
-            'crudify_value' => new \Twig_Function_Node(
-                'Bravesheep\CrudifyBundle\Twig\Node\RenderCrudifyFieldNode',
-                ['is_safe' => ['html']]
+            'crudify_value' => new \Twig_SimpleFunction(
+                'crudify_value',
+                [$this, 'renderBlock'],
+                [
+                    'node_class' => 'Bravesheep\CrudifyBundle\Twig\Node\RenderCrudifyFieldNode',
+                    'is_safe' => ['html']
+                ]
             ),
             new \Twig_SimpleFunction('crudify_action', [$this, 'getLinkForAction']),
             new \Twig_SimpleFunction('crudify_delete_form', [$this, 'createDeleteForm']),
@@ -106,7 +111,7 @@ class CrudifyExtension extends \Twig_Extension
             $context['object'] = $object;
             $result = $template->renderBlock($block, $context, $blocks);
         } else {
-            $result = \twig_escape_filter($template->getEnvironment(), (string) $value);
+            $result = htmlspecialchars((string) $value, ENT_QUOTES | ENT_SUBSTITUTE, 'utf-8');
         }
         return $result;
     }
