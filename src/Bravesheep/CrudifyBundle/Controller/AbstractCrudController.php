@@ -114,6 +114,7 @@ abstract class AbstractCrudController extends Controller implements CrudControll
         if ($action === 'new') {
             return $this->redirect($this->getLink('new', $definition));
         } elseif ($action === 'edit') {
+            $this->get('session')->set('ignore_referer', true);
             return $this->redirect($this->getLink('edit', $definition, $object));
         } elseif ($action === 'index') {
             // redirect back to stored referer
