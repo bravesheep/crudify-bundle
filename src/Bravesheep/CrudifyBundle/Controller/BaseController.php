@@ -77,7 +77,10 @@ class BaseController extends AbstractCrudController
 
         // store referer to redirect back after save
         if (!$this->get('session')->remove('ignore_referer')) {
-            $this->get('session')->set('edit_referer', $request->headers->get('referer'));
+            $this->get('session')->set(
+                'edit_referer_' . $definition->getName(),
+                $request->headers->get('referer')
+            );
         }
 
         $form = $this->createUpdateForm($definition, $object);

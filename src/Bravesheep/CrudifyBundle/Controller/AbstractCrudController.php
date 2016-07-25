@@ -18,9 +18,14 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Session\Session;
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 
+/**
+ * Class AbstractCrudController
+ * @package Bravesheep\CrudifyBundle\Controller
+ */
 abstract class AbstractCrudController extends Controller implements CrudControllerInterface
 {
     /**
+     * @param IndexDefinitionInterface $definition
      * @return Query
      */
     protected function createSelectQuery(IndexDefinitionInterface $definition)
@@ -104,9 +109,10 @@ abstract class AbstractCrudController extends Controller implements CrudControll
 
     /**
      * @param DefinitionInterface $definition
-     * @param object              $object
-     * @param Request             $request
+     * @param object $object
+     * @param Request $request
      * @return Response
+     * @throws CrudifyException
      */
     protected function determineSuccessResponse(DefinitionInterface $definition, $object, Request $request)
     {
@@ -118,7 +124,7 @@ abstract class AbstractCrudController extends Controller implements CrudControll
             return $this->redirect($this->getLink('edit', $definition, $object));
         } elseif ($action === 'index') {
             // redirect back to stored referer
-            $referer = $this->get('session')->remove('edit_referer');
+            $referer = $this->get('session')->remove('edit_referer_' . $definition->getName());
             if ($referer) {
                 return $this->redirect($referer);
             }
@@ -132,11 +138,12 @@ abstract class AbstractCrudController extends Controller implements CrudControll
     /**
      * @param string $what
      * @param object $object
+     * @return void
      * @throws AccessDeniedException
      */
     protected function isGranted($what, $object = null)
     {
-        if (!$this->get('security.context')->isGranted($what, $object)) {
+        if (!$this->get('security.authorization_checker')->isGranted($what, $object)) {
             throw new AccessDeniedException("Not allowed to {$what} on object");
         }
     }
