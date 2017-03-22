@@ -4,9 +4,10 @@ namespace Bravesheep\CrudifyBundle\Resolver;
 
 use Bravesheep\CrudifyBundle\Exception\ObjectRetrieverNotFoundException;
 use Bravesheep\CrudifyBundle\Query\ObjectRetrieverInterface;
+use Symfony\Component\DependencyInjection\ContainerAwareInterface;
 use Symfony\Component\DependencyInjection\ContainerAwareTrait;
 
-class ObjectRetrieverResolver
+class ObjectRetrieverResolver implements ContainerAwareInterface
 {
     use ContainerAwareTrait;
 

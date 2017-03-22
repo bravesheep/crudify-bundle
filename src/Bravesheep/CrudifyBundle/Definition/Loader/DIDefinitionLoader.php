@@ -10,9 +10,10 @@ use Bravesheep\CrudifyBundle\Definition\Index\IndexDefinitionInterface;
 use Bravesheep\CrudifyBundle\Definition\Registry\DefinitionRegistry;
 use Bravesheep\CrudifyBundle\Definition\Template\TemplateDefinition;
 use Doctrine\Bundle\DoctrineBundle\Registry;
+use Symfony\Component\DependencyInjection\ContainerAwareInterface;
 use Symfony\Component\DependencyInjection\ContainerAwareTrait;
 
-class DIDefinitionLoader
+class DIDefinitionLoader implements ContainerAwareInterface
 {
     use ContainerAwareTrait;
 

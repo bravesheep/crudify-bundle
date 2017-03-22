@@ -3,11 +3,12 @@
 namespace Bravesheep\CrudifyBundle\Resolver;
 
 use Bravesheep\CrudifyBundle\Exception\FormNotFoundException;
+use Symfony\Component\DependencyInjection\ContainerAwareInterface;
 use Symfony\Component\DependencyInjection\ContainerAwareTrait;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\Form\FormTypeInterface;
 
-class FormResolver
+class FormResolver implements ContainerAwareInterface
 {
     use ContainerAwareTrait;
 

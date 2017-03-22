@@ -4,9 +4,10 @@ namespace Bravesheep\CrudifyBundle\Resolver;
 
 use Bravesheep\CrudifyBundle\Exception\QueryModifierNotFoundException;
 use Bravesheep\CrudifyBundle\Query\ModifierInterface;
+use Symfony\Component\DependencyInjection\ContainerAwareInterface;
 use Symfony\Component\DependencyInjection\ContainerAwareTrait;
 
-class QueryModifierResolver
+class QueryModifierResolver implements ContainerAwareInterface
 {
     use ContainerAwareTrait;
 
