@@ -1,5 +1,5 @@
 {
-  "name": "tweedegolf/crudify-bundle",
+  "name": "bravesheep/crudify-bundle",
   "description": "Symfony bundle that provides a simple CRUD interface",
   "license": "MIT",
   "authors": [
@@ -13,13 +13,11 @@
     }
   ],
   "require": {
-    "symfony/symfony": "^3.4",
+    "symfony/symfony": "^3.4|^4.0",
     "doctrine/orm": "^2.6",
     "doctrine/doctrine-bundle": "^1.11",
-    "knplabs/knp-paginator-bundle": "^4.0"
-  },
-  "require-dev": {
-    "roave/security-advisories": "dev-master"
+    "knplabs/knp-paginator-bundle": "^4.0",
+    "bravesheep/phpspec-expect": "^0.2.0"
   },
   "autoload": {
     "psr-4": {
@@ -27,5 +25,14 @@
       "Bravesheep\\CrudifyBundle\\Context\\": "features/bootstrap/Bravesheep/CrudifyBundle/Context/",
       "Bravesheep\\CrudifyBundle\\": "src/Bravesheep/CrudifyBundle/"
     }
+  },
+  "require-dev": {
+    "behat/behat": "^3.5",
+    "behat/mink-extension": "^2.3",
+    "behat/mink-browserkit-driver": "^1.3",
+    "behat/symfony2-extension": "^2.1",
+    "fzaninotto/faker": "^1.8",
+    "phpspec/phpspec": "^5.1",
+    "vipsoft/doctrine-data-fixtures-extension": "^3.3"
   }
 }
