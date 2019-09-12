@@ -1,38 +1,34 @@
 {
-    "name": "bravesheep/crudify-bundle",
-    "description": "Symfony 2 bundle that provides a simple CRUD interface",
-    "license": "MIT",
-    "authors": [
-        {
-            "name": "Marlon Baeten",
-            "email": "marlon@bravesheep.nl"
-        },
-        {
-            "name": "Ruben Nijveld",
-            "email": "ruben@bravesheep.nl"
-        }
-    ],
-    "require": {
-        "symfony/symfony": "~2.6|~3.0",
-        "doctrine/doctrine-bundle": "~1.6",
-        "doctrine/orm": "~2.5",
-        "knplabs/knp-paginator-bundle": "~2.5"
+  "name": "bravesheep/crudify-bundle",
+  "description": "Symfony bundle that provides a simple CRUD interface",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Marlon Baeten",
+      "email": "marlon@bravesheep.nl"
     },
-    "require-dev": {
-        "phpspec/phpspec": "~2.0",
-        "behat/behat": "~2.5",
-        "behat/mink-extension": "~1.3",
-        "behat/mink-browserkit-driver": "~1.1",
-        "behat/symfony2-extension": "~1.1",
-        "vipsoft/doctrine-data-fixtures-extension": "~2.5",
-        "fzaninotto/faker": "~1.4",
-        "bravesheep/phpspec-expect": "~0.1"
-    },
-    "autoload": {
-        "psr-4": {
-            "Bravesheep\\CrudifyBundle\\Fixtures\\": "test/Bravesheep/CrudifyBundle/Fixtures/",
-            "Bravesheep\\CrudifyBundle\\Context\\": "features/bootstrap/Bravesheep/CrudifyBundle/Context/",
-            "Bravesheep\\CrudifyBundle\\": "src/Bravesheep/CrudifyBundle/"
-        }
+    {
+      "name": "Ruben Nijveld",
+      "email": "ruben@bravesheep.nl"
     }
+  ],
+  "require": {
+    "symfony/symfony": "^3.4|^4.0",
+    "doctrine/orm": "^2.6",
+    "doctrine/doctrine-bundle": "^1.11",
+    "knplabs/knp-paginator-bundle": "^4.0",
+    "bravesheep/phpspec-expect": "^0.2.0"
+  },
+  "autoload": {
+    "psr-4": {
+      "Bravesheep\\CrudifyBundle\\Fixtures\\": "test/Bravesheep/CrudifyBundle/Fixtures/",
+      "Bravesheep\\CrudifyBundle\\Context\\": "features/bootstrap/Bravesheep/CrudifyBundle/Context/",
+      "Bravesheep\\CrudifyBundle\\": "src/Bravesheep/CrudifyBundle/"
+    }
+  },
+  "require-dev": {
+    "behat/symfony2-extension": "^2.1",
+    "fzaninotto/faker": "^1.8",
+    "phpspec/phpspec": "^5.1"
+  }
 }
