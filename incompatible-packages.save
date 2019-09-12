@@ -1,0 +1,5 @@
+require:
+
+
+vipsoft/doctrine-data-fixtures-extension
+behat/mink-extensionbehat/mink-browserkit-drive
