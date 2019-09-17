@@ -14,7 +14,7 @@ class RenderCrudifyFieldNode extends \Twig_Node_Expression_Function
         }
 
         $compiler
-            ->raw("\$this->env->getExtension('crudify')->renderBlock(\$this, ")
+            ->raw("\$this->env->getExtension(Bravesheep\CrudifyBundle\Twig\CrudifyExtension::class)->renderBlock(\$this, ")
             ->subcompile($arguments[0])
             ->raw(", ")
             ->subcompile($arguments[1])

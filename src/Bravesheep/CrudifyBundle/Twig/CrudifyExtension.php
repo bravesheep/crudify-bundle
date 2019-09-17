@@ -92,7 +92,7 @@ class CrudifyExtension extends \Twig_Extension
         if (!isset($blocks[$block])) {
             $current = $template;
             do {
-                if ($current->hasBlock($block)) {
+                if ($current->hasBlock($block, $context)) {
                     break;
                 }
                 $current = $current->getParent($context);
