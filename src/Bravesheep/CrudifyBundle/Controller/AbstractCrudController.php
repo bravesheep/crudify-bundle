@@ -141,7 +141,7 @@ abstract class AbstractCrudController extends Controller implements CrudControll
      * @return void
      * @throws AccessDeniedException
      */
-    protected function isGranted($what, $object = null)
+    protected function isGranted($what, $object = null): bool
     {
         if (!$this->get('security.authorization_checker')->isGranted($what, $object)) {
             throw new AccessDeniedException("Not allowed to {$what} on object");

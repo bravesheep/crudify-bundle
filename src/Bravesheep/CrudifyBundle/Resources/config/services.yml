@@ -75,6 +75,7 @@ services:
     # The registry that contains the definitions for different entities
     bravesheep_crudify.definition.registry:
         class: "%bravesheep_crudify.definition.registry.class%"
+        public: true
         arguments:
             - "@bravesheep_crudify.definition.loader"
         calls:
@@ -84,6 +85,7 @@ services:
     # Custom routing loader for crudify
     bravesheep_crudify.routing_loader:
         class: "%bravesheep_crudify.routing_loader.class%"
+        public: true
         arguments:
             - "%bravesheep_crudify.default_mapping%"
         tags:
@@ -91,6 +93,7 @@ services:
 
     bravesheep_crudify.resolver.controller:
         class: "%bravesheep_crudify.resolver.controller.class%"
+        public: true
         arguments:
             - "%bravesheep_crudify.default_controller%"
         calls:
@@ -98,59 +101,70 @@ services:
 
     bravesheep_crudify.resolver.form_options:
         class: "%bravesheep_crudify.resolver.form_options.class%"
+        public: true
         calls:
             - [setContainer, ["@service_container"]]
 
     bravesheep_crudify.resolver.form:
         class: "%bravesheep_crudify.resolver.form.class%"
+        public: true
         calls:
             - [setContainer, ["@service_container"]]
 
     bravesheep_crudify.resolver.grid:
         class: "%bravesheep_crudify.resolver.grid.class%"
+        public: true
         arguments:
             - "@knp_paginator"
 
     bravesheep_crudify.resolver.identity:
         class: "%bravesheep_crudify.resolver.identity.class%"
+        public: true
 
     bravesheep_crudify.resolver.link:
         class: "%bravesheep_crudify.resolver.link.class%"
+        public: true
         arguments:
             - "@router"
             - "@bravesheep_crudify.resolver.identity"
 
     bravesheep_crudify.resolver.query_modifier:
         class: "%bravesheep_crudify.resolver.query_modifier.class%"
+        public: true
         calls:
             - [setContainer, ["@service_container"]]
 
     bravesheep_crudify.resolver.query:
         class: "%bravesheep_crudify.resolver.query.class%"
+        public: true
         arguments:
             - "@bravesheep_crudify.resolver.identity"
             - "@bravesheep_crudify.resolver.query_modifier"
 
     bravesheep_crudify.resolver.object_retriever:
         class: "%bravesheep_crudify.resolver.object_retriever.class%"
+        public: true
         calls:
             - [setContainer, ["@service_container"]]
 
     # The controller that handles requests
     bravesheep_crudify.controller:
         class: "%bravesheep_crudify.controller.class%"
+        public: true
         calls:
             - [setContainer, ["@service_container"]]
 
     # Default base controller
     bravesheep_crudify.controller.base:
         class: "%bravesheep_crudify.controller.base.class%"
+        public: true
         calls:
             - [setContainer, ["@service_container"]]
 
     # Twig extension
     bravesheep_crudify.twig.extension:
         class: "%bravesheep_crudify.twig.extension.class%"
+        public: true
         arguments:
             - "@property_accessor"
             - "@bravesheep_crudify.resolver.link"
@@ -171,7 +185,9 @@ services:
     # Basic form options provider
     bravesheep_crudify.form.options.provider.basic:
         class: "%bravesheep_crudify.form.options.provider.basic.class%"
+        public: true
 
     # Default object retriever
     bravesheep_crudify.query.retriever.repository:
         class: "%bravesheep_crudify.query.retriever.repository.class%"
+        public: true
