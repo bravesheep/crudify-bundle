@@ -16,8 +16,7 @@
     "symfony/framework-bundle": "^3.4 || ^4.0",
     "doctrine/orm": "^2.6",
     "doctrine/doctrine-bundle": "^1.11",
-    "knplabs/knp-paginator-bundle": "^4.0",
-    "bravesheep/phpspec-expect": "^0.2.0"
+    "knplabs/knp-paginator-bundle": "^4.0"
   },
   "autoload": {
     "psr-4": {
@@ -28,6 +27,7 @@
   },
   "require-dev": {
     "behat/symfony2-extension": "^2.1",
+    "bravesheep/phpspec-expect": "^0.2.0",
     "fzaninotto/faker": "^1.8",
     "phpspec/phpspec": "^5.1"
   }
